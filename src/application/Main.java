@@ -1,5 +1,5 @@
 package application;
-//gameduaxe
+
 	
 import com.almasb.fxgl.app.GameApplication;
 import java.io.IOException;
