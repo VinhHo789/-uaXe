@@ -1,7 +1,13 @@
 package application;
 	
-import com.almasb.fxgl.app.GameApplication;
+
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Properties;
+
 import javafx.scene.Node;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -20,22 +26,53 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Properties;
 
 
 public class Main extends Application {
-	@Override
 	//start
-	public void start(Stage primaryStage) {
-		try {
-			AnchorPane root = FXMLLoader.load(getClass().getResource("GiaodienUI.fxml"));
-			setupMenuEventHandlers(root, primaryStage);
-			Scene scene = new Scene(root);
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
+	private static final String CONFIG_FILE_PATH = "config.properties";
+    private static final String VOLUME_KEY = "volume";
+
+    private Properties config = new Properties();
+    private double volume = 0.5;
+    private MediaPlayer mediaPlayer;
+    public void start(Stage primaryStage) {
+        try {
+            AnchorPane root = FXMLLoader.load(getClass().getResource("GiaodienUI.fxml"));
+            setupMenuEventHandlers(root, primaryStage);
+            Scene scene = new Scene(root);
+
+            // Load configuration file
+            loadConfig();
+
+            // Create media and media player objects
+            String musicFilePath = "src/music/LND.mp3";
+            Media media = new Media(new File(musicFilePath).toURI().toString());
+
+           
+            try {
+                mediaPlayer = new MediaPlayer(media);
+                mediaPlayer.setVolume(volume);
+                mediaPlayer.setOnError(() -> System.out.println("Error occurred while playing media"));
+                mediaPlayer.play();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 	
 	//menu screen
 	private void setupMenuEventHandlers(AnchorPane root, Stage primaryStage) {
@@ -66,11 +103,16 @@ public class Main extends Application {
                     AnchorPane root = loader.load();
                     Slider volumeSlider = (Slider) root.lookup("#volumeSlider");
                     Button backButton = (Button) root.lookup("#backButton");
+                    loadConfig();
+                    volumeSlider.setValue(volume);
                     volumeSlider.setOnMouseReleased(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
                             double volume = volumeSlider.getValue();
-                            // Code to adjust the volume goes here
+                            volume = volumeSlider.getValue();
+                            volume = volume / 100;
+                            mediaPlayer.setVolume(volume);
+                            saveConfig(volumeSlider);
                         }
                     });
 
@@ -327,6 +369,30 @@ public class Main extends Application {
 	        }
 	    });
 	}
+	
+	private void loadConfig() {
+	    try (FileInputStream in = new FileInputStream(CONFIG_FILE_PATH)) {
+	        config.load(in);
+	        String volumeString = config.getProperty(VOLUME_KEY);
+	        if (volumeString != null) {
+	            volume = Double.parseDouble(volumeString);
+	        }
+	    } catch (IOException e) {
+	        // ignore, use default values
+	    }
+	}
+
+
+
+	private void saveConfig(Slider volumeSlider) {
+	    config.setProperty("volume", String.valueOf(volumeSlider.getValue()));
+	    try (FileOutputStream out = new FileOutputStream(CONFIG_FILE_PATH)) {
+	        config.store(out, "Volume Configuration");
+	    } catch (IOException e) {
+	        // ignore, unable to save config
+	    }
+	}
+
 
 	public static void main(String[] args) {
 		launch(args);
