@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="-136.0" layoutY="-149.0" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-image: url('background.jpg');;">
+      	<stylesheets>
+    		<URL value="@application.css" />
+ 		</stylesheets>
+         <children>
+            <Text fill="#f97b22" layoutX="675.0" layoutY="220.0" scaleX="4.0" scaleY="4.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ĐUA XE ĐẶT CƯỢC 2.0">
+               <effect>
+                  <Glow level="0.79" />
+               </effect>
+            </Text>
+            <Button id="playButton" layoutX="725.0" layoutY="309.0" mnemonicParsing="false" scaleX="2.0" scaleY="2.0" text="CHƠI GAME" />
+            <Button id="settingButton" layoutX="726.0" layoutY="409.0" mnemonicParsing="false" scaleX="2.0" scaleY="2.0" text="TÙY CHỈNH" />
+            <Button id="quitButton" layoutX="721.0" layoutY="519.0" mnemonicParsing="false" scaleX="2.0" scaleY="2.0" text="THOÁT GAME" />
+            <Text layoutX="145.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MỘT SẢN PHẨM CỦA PMGS" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
