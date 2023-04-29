@@ -5,9 +5,14 @@ package application;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Properties;
+import java.util.Scanner;
 
 import javafx.scene.Node;
 import javafx.application.Application;
@@ -20,7 +25,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -33,20 +40,22 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
+import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
 
 
 public class Main extends Application {
 	//start
-	private static final String CONFIG_FILE_PATH = "config.properties";
-    private static final String VOLUME_KEY = "volume";
+	protected static final String CONFIG_FILE_PATH = "config.properties";
+    protected static final String VOLUME_KEY = "volume";
 
-    private Properties config = new Properties();
-    private double volume = 0.5;
-    private MediaPlayer mediaPlayer;
+    protected Properties config = new Properties();
+    protected double volume = 0.5;
+    protected MediaPlayer mediaPlayer;
     public void start(Stage primaryStage) {
         try {
-            AnchorPane root = FXMLLoader.load(getClass().getResource("GiaodienUI.fxml"));
-            setupMenuEventHandlers(root, primaryStage);
+            AnchorPane root = FXMLLoader.load(getClass().getResource("DangNhap.fxml"));
+            setupLoginEventHandlers(root, primaryStage);
             Scene scene = new Scene(root);
 
             // Load configuration file
@@ -65,18 +74,117 @@ public class Main extends Application {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-
             primaryStage.setScene(scene);
             primaryStage.show();
+
         } catch(Exception e) {
             e.printStackTrace();
         }
     }
 
-	
+  //menu screen
+   /* public void setupMenuEventHandlers(AnchorPane root, Stage primaryStage) {
+    	Button playButton = (Button) root.lookup("#playButton");
+        MenuEvent menuEvent = new MenuEvent();
+        playButton.setOnAction(event -> {
+            try {
+                Scene scene = menuEvent.handlePlayButton(root, primaryStage);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        Button settingButton = (Button) root.lookup("#settingButton");
+        settingButton.setOnAction(event -> {
+            try {
+                Scene scene = menuEvent.handleSettingButton(root, primaryStage);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+
+        Button quitButton = (Button) root.lookup("#quitButton");
+        quitButton.setOnAction(event -> menuEvent.handleQuitButton(event, primaryStage));
+    }
+    */
 	//menu screen
-	private void setupMenuEventHandlers(AnchorPane root, Stage primaryStage) {
+    protected void setupLoginEventHandlers(AnchorPane root, Stage primaryStage) {
+        
+    	ListView<String> lookup = (ListView<String>) root.lookup("#listUserName");
+		ListView<String> usernamesList = lookup;
+		Button okButton = (Button) root.lookup("#okButton");
+        // Read the usernames and their associated money from user.txt and store them in an ObservableList of Strings
+        ObservableList<String> usernamesAndMoney = FXCollections.observableArrayList();
+        try (Scanner scanner = new Scanner(new File("user.txt"))) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] tokens = line.split(",");
+                String username = tokens[0];
+                String money = tokens[1];
+                String formattedString = String.format("%-90s %10s", username, money);
+                usernamesAndMoney.add(formattedString);
+
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        // Set the usernames and their associated money as the items of the ListView
+        usernamesList.setItems(usernamesAndMoney);
+        Button createButton = (Button) root.lookup("#createButton");
+        TextField newUsernameField = (TextField) root.lookup("#newUsernameField");
+        createButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                // Get the new username from the newUsernameField
+                String newUsername = newUsernameField.getText();
+                if (!newUsername.trim().isEmpty()) {
+                    // Append the new username and money to the user.txt file
+                    try (PrintWriter writer = new PrintWriter(new FileWriter("user.txt", true))) {
+                        writer.println(newUsername + ",0");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    // Add the new username and money to the ObservableList and refresh the ListView
+                    String formattedString = String.format("%-90s %10s", newUsername, "100");
+                    usernamesAndMoney.add(formattedString);
+                    usernamesList.refresh();
+                    // Clear the newUsernameField
+                    newUsernameField.clear();
+                }
+            }
+        });
+        okButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                // Get the selected username from the ListView
+                String selectedUsername = usernamesList.getSelectionModel().getSelectedItem();
+                
+                if (selectedUsername != null) {
+                    try {
+                        // Load the DangNhapUI.fxml file
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("GiaodienUI.fxml"));
+                        AnchorPane root = loader.load();
+                        
+                        // Set up the event handlers for the DangNhapUI
+                        setupMenuEventHandlers(root, primaryStage);
+                        
+                        // Set the scene to the DangNhapUI
+                        Scene scene = new Scene(root);
+                        primaryStage.setScene(scene);
+                        primaryStage.show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        
+    }
+
+    
+    
+	protected void setupMenuEventHandlers(AnchorPane root, Stage primaryStage) {
 		Button playButton = (Button) root.lookup("#playButton");
         playButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -152,7 +260,8 @@ public class Main extends Application {
         });
 	}
 	
-	private void setupChooseCarEventHandlers(AnchorPane root, Stage primaryStage) {
+	
+	protected void setupChooseCarEventHandlers(AnchorPane root, Stage primaryStage) {
 		Button mau1 = (Button) root.lookup("#mau1");
 		Button mau2 = (Button) root.lookup("#mau2");
 		Button mau3 = (Button) root.lookup("#mau3");
@@ -224,7 +333,7 @@ public class Main extends Application {
         });
 	}
 	
-	private void setupbetMenuEventHandlers(AnchorPane root, Stage primaryStage)
+	protected void setupbetMenuEventHandlers(AnchorPane root, Stage primaryStage)
 	{
 		
 		Button backButton = (Button) root.lookup("#backButton");
@@ -264,7 +373,7 @@ public class Main extends Application {
         });
 	}
 	
-	private void setupbuyItemMenuEventHandlers(AnchorPane root, Stage primaryStage) {
+	protected void setupbuyItemMenuEventHandlers(AnchorPane root, Stage primaryStage) {
 	    ImageView tocHanh = (ImageView) root.lookup("#tocHanhicon");
 	    ImageView tocBien = (ImageView) root.lookup("#tocBienicon");
 	    ImageView kietSuc = (ImageView) root.lookup("#kietSucicon");
@@ -371,7 +480,7 @@ public class Main extends Application {
 	    });
 	}
 	
-	private void loadConfig() {
+	protected void loadConfig() {
 	    try (FileInputStream in = new FileInputStream(CONFIG_FILE_PATH)) {
 	        config.load(in);
 	        String volumeString = config.getProperty(VOLUME_KEY);
@@ -385,7 +494,7 @@ public class Main extends Application {
 
 
 
-	private void saveConfig(Slider volumeSlider) {
+	protected void saveConfig(Slider volumeSlider) {
 	    config.setProperty("volume", String.valueOf(volumeSlider.getValue()));
 	    try (FileOutputStream out = new FileOutputStream(CONFIG_FILE_PATH)) {
 	        config.store(out, "Volume Configuration");
@@ -400,9 +509,4 @@ public class Main extends Application {
 	}
 }
 
-
-	public static void main(String[] args) {
-		launch(args);
-	}
-}
 

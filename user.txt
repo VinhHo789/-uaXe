@@ -1,0 +1,4 @@
+Vinh,100
+Trieu,50
+Iamgod,200
+Thi,0
