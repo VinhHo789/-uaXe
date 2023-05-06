@@ -21,7 +21,7 @@
                   <Font name="Consolas" size="12.0" />
                </font>
             </Text>
-            <Button id="mau1" fx:id="mau1" layoutX="193.0" layoutY="503.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="MẪU 1" textFill="#f97b22" />
+            <Button id="mau1" fx:id="mau1" layoutX="192.0" layoutY="503.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="MẪU 1" textFill="#f97b22" />
             <Button id="mau2" fx:id="mau2" layoutX="340.0" layoutY="503.0" mnemonicParsing="false" text="MẪU 2" textFill="#f97b22" />
             <Button id="mau3" fx:id="mau3" layoutX="483.0" layoutY="503.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="89.0" text="MẪU 3" textFill="#f97b22" />
             <Button fx:id="mau4" layoutX="632.0" layoutY="503.0" mnemonicParsing="false" text="MẪU 4" />

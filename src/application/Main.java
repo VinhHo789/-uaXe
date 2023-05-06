@@ -45,7 +45,7 @@ import javafx.collections.FXCollections;
 
 
 public class Main extends Application {
-	//start
+	//Dat dep trai
 	//Bien com chua cac bien va ham common
     CommonFunction com = new CommonFunction();
     
