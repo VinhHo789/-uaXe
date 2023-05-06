@@ -38,11 +38,10 @@ public class settingMenuController implements Initializable{
         volumeSlider.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                double volume = volumeSlider.getValue();
-                volume = volumeSlider.getValue();
-                volume = volume / 100;
-                main.com.mediaPlayer.setVolume(volume);
-                main.com.saveConfig(volumeSlider);
+                double volume = volumeSlider.getValue() / 100;
+                CommonFunction.volume = volume;
+                CommonFunction.changeVolume(volume);
+                
             }
         });
         backButton.setOnAction(new EventHandler<ActionEvent>() {

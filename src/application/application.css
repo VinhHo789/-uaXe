@@ -18,7 +18,7 @@
 */
 
 .button{
-	-fx-background-color: linear-gradient(to bottom, #000000, #FF8C00); 
+	-fx-background-color: linear-gradient(to bottom, #FF8C00, #FF8C00); 
     -fx-background-radius: 20px; 
     -fx-text-fill: white;
     -fx-font-size: 16px;

@@ -18,17 +18,24 @@ import javafx.stage.Stage;
 
 public class CommonFunction {
 	protected Properties config = new Properties();
-    protected double volume = 0.5;
+    public static double volume = 0.5;
     public String scenePath = "DangNhap.fxml";
 	protected String CONFIG_FILE_PATH = "config.properties";
     protected String VOLUME_KEY = "volume";
-    String musicFilePath = "src/music/LND.mp3";
-    Media media = new Media(new File(musicFilePath).toURI().toString());
-    MediaPlayer mediaPlayer = new MediaPlayer(media);
+    public static String musicFilePath = "src/music/LND.mp3";
+    public static Media media = new Media(new File(musicFilePath).toURI().toString());
+    public static MediaPlayer mediaPlayer;
     protected int money = 0;
+    
+    
 
    
-
+    public static void play() {
+    	mediaPlayer = new MediaPlayer(media);
+    }
+    public static void changeVolume(double vol) {
+    	mediaPlayer.setVolume(vol);
+    }
     public void changeMusic(String path){
         try {
             media = new Media(new File(path).toURI().toString());
