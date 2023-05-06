@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.settingMenuController">
    <children>
       <AnchorPane layoutX="-136.0" layoutY="-149.0" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-image: url('background.jpg');;">
       	<stylesheets>
@@ -17,8 +17,8 @@
             <Button id="deleteButton" layoutX="469.0" layoutY="462.0" mnemonicParsing="false" scaleX="2.0" scaleY="2.0" text="XÓA DỮ LIỆU" />
             <Button id="spButton" layoutX="433.0" layoutY="597.0" mnemonicParsing="false" scaleX="2.0" scaleY="2.0" text="ỦNG HỘ NHÀ PHÁT TRIỂN" />
             <Text layoutX="145.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MỘT SẢN PHẨM CỦA PMGS" />
-            <Slider id="volumeSlider" layoutX="383.0" layoutY="289.0" prefHeight="93.0" prefWidth="259.0" showTickLabels="true" showTickMarks="true" styleClass="anchor" />
-            <Button id="backButton" layoutX="145.0" layoutY="712.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="95.0" text="QUAY LẠI" />
+            <Slider id="volumeSlider" fx:id="volumeSlider" layoutX="383.0" layoutY="289.0" prefHeight="93.0" prefWidth="259.0" showTickLabels="true" showTickMarks="true" styleClass="anchor" />
+            <Button id="backButton" fx:id="backButton" layoutX="145.0" layoutY="712.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="95.0" text="QUAY LẠI" />
          </children>
       </AnchorPane>
    </children>

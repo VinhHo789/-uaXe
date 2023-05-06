@@ -2,3 +2,6 @@ Vinh,100
 Trieu,50
 Iamgod,200
 Thi,0
+vinh,0
+thi,0
+vinh,100
