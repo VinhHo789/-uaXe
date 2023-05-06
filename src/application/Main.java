@@ -65,8 +65,9 @@ public class Main extends Application {
 
            
             try {
-                com.mediaPlayer = new MediaPlayer(media);
-                com.mediaPlayer.setVolume(com.volume);
+            	CommonFunction.play();
+            	CommonFunction.changeVolume(CommonFunction.volume);
+                
                 com.mediaPlayer.setOnError(() -> System.out.println("Error occurred while playing media"));
                 com.mediaPlayer.play();
             } catch (Exception e) {
