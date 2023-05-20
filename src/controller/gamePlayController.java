@@ -62,6 +62,7 @@ public class gamePlayController implements Initializable {
 	private int loop_rounds = 3;
 	private int countdown = 4;
 	
+	private double widthImage = 880;
 	private double originalX;
 	private Random random = new Random();
 	@Override
@@ -79,19 +80,18 @@ public class gamePlayController implements Initializable {
 		car1ImageView.setImage(car1Image);
 		roadImageView2.setVisible(false);
 		endingRoadImageView.setVisible(false);
-		giaoDienAnchorPane.setMinWidth(700);
-		giaoDienAnchorPane.setMaxWidth(700);
+
 		
 		Timeline starttimeline = new Timeline();
 
 		// Configure the first KeyFrame
 		KeyFrame startstartKeyFrame = new KeyFrame(Duration.ZERO,
-		        new KeyValue(startingRoadImageView.translateXProperty(), 2.5)); // Start from the right edge of the pane
+		        new KeyValue(startingRoadImageView.translateXProperty(), 0)); // Start from the right edge of the pane
 		starttimeline.getKeyFrames().add(startstartKeyFrame);
 
 		// Configure the second KeyFrame
 		KeyFrame endstartKeyFrame = new KeyFrame(Duration.seconds(duration_second * speed),
-		        new KeyValue(startingRoadImageView.translateXProperty(), -1412.5)); // Move to the left edge of the pane
+		        new KeyValue(startingRoadImageView.translateXProperty(), -widthImage*2)); // Move to the left edge of the pane
 		starttimeline.getKeyFrames().add(endstartKeyFrame);
 		// Create a timeline with two KeyFrames
 		
@@ -101,12 +101,12 @@ public class gamePlayController implements Initializable {
 
 		// Configure the first KeyFrame
 		KeyFrame startKeyFrame = new KeyFrame(Duration.ZERO,
-		        new KeyValue(roadImageView1.translateXProperty(), 715)); // Start from the right edge of the pane
+		        new KeyValue(roadImageView1.translateXProperty(), widthImage)); // Start from the right edge of the pane
 		timeline.getKeyFrames().add(startKeyFrame);
 
 		// Configure the second KeyFrame
 		KeyFrame endKeyFrame = new KeyFrame(Duration.seconds(duration_second * speed),
-		        new KeyValue(roadImageView1.translateXProperty(), -710)); // Move to the left edge of the pane
+		        new KeyValue(roadImageView1.translateXProperty(), -widthImage)); // Move to the left edge of the pane
 		timeline.getKeyFrames().add(endKeyFrame);
 		
 		
@@ -115,10 +115,10 @@ public class gamePlayController implements Initializable {
 		PauseTransition delay = new PauseTransition(Duration.seconds(startTimeroad1));
 		Timeline timeline2 = new Timeline();
 		KeyFrame startKeyFrame2 = new KeyFrame(Duration.ZERO,
-		        new KeyValue(roadImageView2.translateXProperty(), 715)); // Start from the right edge of the pane
+		        new KeyValue(roadImageView2.translateXProperty(), widthImage)); // Start from the right edge of the pane
 		timeline2.getKeyFrames().add(startKeyFrame2);
 		KeyFrame endKeyFrame2 = new KeyFrame(Duration.seconds(duration_second * speed),
-		        new KeyValue(roadImageView2.translateXProperty(), -710)); // Move to the left edge of the pane
+		        new KeyValue(roadImageView2.translateXProperty(), -widthImage)); // Move to the left edge of the pane
 		timeline2.getKeyFrames().add(endKeyFrame2);
 		
 		
@@ -128,12 +128,12 @@ public class gamePlayController implements Initializable {
 
 		// Configure the first KeyFrame
 		KeyFrame startendKeyFrame = new KeyFrame(Duration.ZERO,
-		        new KeyValue(endingRoadImageView.translateXProperty(), 715)); // Start from the right edge of the pane
+		        new KeyValue(endingRoadImageView.translateXProperty(), widthImage)); // Start from the right edge of the pane
 		endtimeline.getKeyFrames().add(startendKeyFrame);
 
 		// Configure the second KeyFrame
 		KeyFrame endendKeyFrame = new KeyFrame(Duration.seconds(duration_second * speed / 2),
-		        new KeyValue(endingRoadImageView.translateXProperty(), 2.5)); // Move to the left edge of the pane
+		        new KeyValue(endingRoadImageView.translateXProperty(), 0)); // Move to the left edge of the pane
 		endtimeline.getKeyFrames().add(endendKeyFrame);
 		
 		

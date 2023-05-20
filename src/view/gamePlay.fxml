@@ -5,20 +5,20 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.gamePlayController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="888.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.gamePlayController">
    <children>
-      <AnchorPane fx:id="giaoDienAnchorPane" layoutX="-129.0" layoutY="-137.0" prefHeight="600.0" prefWidth="800.0" stylesheets="@application.css">
+      <AnchorPane fx:id="giaoDienAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="888.0" stylesheets="@../application/application.css">
          <children>
-            <ImageView fx:id="roadImageView1" fitHeight="265.0" fitWidth="753.0" layoutX="128.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="roadImageView2" fitHeight="265.0" fitWidth="753.0" layoutX="128.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="startingRoadImageView" fitHeight="265.0" fitWidth="753.0" layoutX="128.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="endingRoadImageView" fitHeight="265.0" fitWidth="753.0" layoutX="128.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true" />
-            <Text fx:id="countdownText" fill="#1925c3" layoutX="301.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start" wrappingWidth="228.13671875">
+            <ImageView fx:id="endingRoadImageView" fitHeight="359.0" fitWidth="888.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="roadImageView1" fitHeight="359.0" fitWidth="888.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="roadImageView2" fitHeight="359.0" fitWidth="888.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="startingRoadImageView" fitHeight="359.0" fitWidth="888.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true" />
+            <Text fx:id="countdownText" fill="#1925c3" layoutX="354.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start" wrappingWidth="228.13671875">
                <font>
                   <Font name="Consolas" size="77.0" />
                </font>
             </Text>
-            <ImageView fx:id="car1ImageView" fitHeight="36.0" fitWidth="62.0" layoutX="128.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="car1ImageView" fitHeight="36.0" fitWidth="62.0" layoutX="23.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
    </children>
