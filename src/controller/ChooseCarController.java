@@ -1,4 +1,4 @@
-package application;
+package controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -34,50 +34,48 @@ public class ChooseCarController implements Initializable {
 	
 	@FXML
 	protected Button backButton;
-	
-	
-	Main main = new Main();
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		mau1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-            	main.com.sceneTransition("betMenu.fxml", event);
+            	CommonFunction.sceneTransition("/view/betMenu.fxml", event);
             }
         });
 		mau2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-            	main.com.sceneTransition("betMenu.fxml", event);
+            	CommonFunction.sceneTransition("/view/betMenu.fxml", event);
             }
         });
 		
 		mau3.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-            	main.com.sceneTransition("betMenu.fxml", event);
+            	CommonFunction.sceneTransition("/view/betMenu.fxml", event);
             }
         });
 		
 		mau4.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-            	main.com.sceneTransition("betMenu.fxml", event);
+            	CommonFunction.sceneTransition("betMenu.fxml", event);
             }
         });
 		
 		mau5.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-            	main.com.sceneTransition("betMenu.fxml", event);
+            	CommonFunction.sceneTransition("betMenu.fxml", event);
             }
         });
 		
 		backButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-            	main.com.sceneTransition("GiaodienUI.fxml", event);
+            	CommonFunction.sceneTransition("GiaodienUI.fxml", event);
             }
         });
 		

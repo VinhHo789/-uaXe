@@ -1,9 +1,10 @@
-package application;
+package controller;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.Main;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -26,23 +27,20 @@ public class betMenuController implements Initializable {
 	
 	@FXML
 	protected TextField moneyField;
-	
-	Main main = new Main();
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		backButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-            	System.out.println("1");
-                main.com.sceneTransition("ChooseCar.fxml", event);
+                CommonFunction.sceneTransition("/view/ChooseCar.fxml", event);
             }
         });
 		
 		okButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-            	main.com.sceneTransition("buyItemMenu.fxml", event);
+            	CommonFunction.sceneTransition("/view/buyItemMenu.fxml", event);
             }
         });
 	}

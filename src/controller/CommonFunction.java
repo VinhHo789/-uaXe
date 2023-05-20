@@ -1,4 +1,4 @@
-package application;
+package controller;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,15 +17,15 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 public class CommonFunction {
-	protected Properties config = new Properties();
+	protected static Properties config = new Properties();
     public static double volume = 0.5;
-    public String scenePath = "DangNhap.fxml";
-	protected String CONFIG_FILE_PATH = "config.properties";
-    protected String VOLUME_KEY = "volume";
+    public static String scenePath = "DangNhap.fxml";
+	protected static String CONFIG_FILE_PATH = "config.properties";
+    protected static String VOLUME_KEY = "volume";
     public static String musicFilePath = "src/music/LND.mp3";
     public static Media media = new Media(new File(musicFilePath).toURI().toString());
     public static MediaPlayer mediaPlayer;
-    protected int money = 0;
+    protected static int money = 0;
     
     
 
@@ -36,7 +36,7 @@ public class CommonFunction {
     public static void changeVolume(double vol) {
     	mediaPlayer.setVolume(vol);
     }
-    public void changeMusic(String path){
+    public static void changeMusic(String path){
         try {
             media = new Media(new File(path).toURI().toString());
             mediaPlayer = new MediaPlayer(media);
@@ -48,9 +48,9 @@ public class CommonFunction {
         }
     	
     }
-    public void sceneTransition (String path, ActionEvent event){
+    public static void sceneTransition (String path, ActionEvent event){
     	try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+            FXMLLoader loader = new FXMLLoader(CommonFunction.class.getResource(path));
             AnchorPane root = loader.load();
             Scene scene = new Scene(root);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -61,7 +61,7 @@ public class CommonFunction {
         }
     }
     
-    protected void loadConfig() {
+    public static void loadConfig() {
 	    try (FileInputStream in = new FileInputStream(CONFIG_FILE_PATH)) {
 	        config.load(in);
 	        String volumeString = config.getProperty(VOLUME_KEY);

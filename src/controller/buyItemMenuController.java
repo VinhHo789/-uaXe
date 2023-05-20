@@ -1,4 +1,4 @@
-package application;
+package controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -43,7 +43,6 @@ public class buyItemMenuController implements Initializable{
 	@FXML
     protected Label kietSucLabel;
 	
-	Main main = new Main();
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -51,7 +50,7 @@ public class buyItemMenuController implements Initializable{
 	    backButton.setOnAction(new EventHandler<ActionEvent>() {
 	        @Override
 	        public void handle(ActionEvent event) {
-	            main.com.sceneTransition("betMenu.fxml", event);
+	            CommonFunction.sceneTransition("/view/betMenu.fxml", event);
 	        }
 	    });
 	    

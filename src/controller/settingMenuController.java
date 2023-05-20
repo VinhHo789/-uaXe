@@ -1,4 +1,4 @@
-package application;
+package controller;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -29,12 +29,11 @@ public class settingMenuController implements Initializable{
 	@FXML
 	protected Button backButton;
 	
-	Main main = new Main();
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		main.com.loadConfig();
-        volumeSlider.setValue(main.com.volume);
+		CommonFunction.loadConfig();
+        volumeSlider.setValue(CommonFunction.volume);
         volumeSlider.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -47,7 +46,7 @@ public class settingMenuController implements Initializable{
         backButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-            	main.com.sceneTransition("GiaodienUI.fxml", event);
+            	CommonFunction.sceneTransition("/view/GiaodienUI.fxml", event);
             }
         });
 	}

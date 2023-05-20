@@ -1,4 +1,4 @@
-package application;
+package controller;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -17,8 +17,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
@@ -32,19 +35,20 @@ public class GiaodienUI implements Initializable{
 	@FXML
 	protected Button quitButton;
 	
-	Main main = new Main();
+	@FXML
+	protected AnchorPane mainAnchorPane;
 
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
         playButton.setOnAction((event)-> {
-        	main.com.sceneTransition("ChooseCar.fxml", event);
+        	CommonFunction.sceneTransition("/view/ChooseCar.fxml", event);
         });
 
         // Create the Setting button
         settingButton.setOnAction((event)-> {
-        	main.com.sceneTransition("settingMenu.fxml", event);
+        	CommonFunction.sceneTransition("/view/settingMenu.fxml", event);
         });
 
         // Create the Quit button
@@ -55,6 +59,8 @@ public class GiaodienUI implements Initializable{
                 stg.close();
             }
         });
+        mainAnchorPane.setBackground(new Background(new BackgroundImage(new Image(getClass().getResource("/img/asset/background.jpg").toExternalForm())
+        		, null, null, null, null)));
 	}
 	
 	

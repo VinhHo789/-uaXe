@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GiaodienUI">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="888.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GiaodienUI">
    <children>
-      <AnchorPane layoutX="-136.0" layoutY="-149.0" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-image: url('background.jpg');;">
-      	<stylesheets>
-    		<URL value="@application.css" />
- 		</stylesheets>
+      <AnchorPane fx:id="mainAnchorPane" layoutX="-136.0" layoutY="-149.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="888.0" style="-fx-background-image: url('../img/asset/background.jpg');" stylesheets="@../application/application.css">
          <children>
+            <ImageView fitHeight="619.0" fitWidth="888.0" layoutX="136.0" layoutY="149.0">
+               <image>
+                  <Image url="@../img/asset/background.jpg" />
+               </image>
+            </ImageView>
             <Text fill="#f97b22" layoutX="675.0" layoutY="220.0" scaleX="4.0" scaleY="4.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ĐUA XE ĐẶT CƯỢC 2.0">
                <effect>
                   <Glow level="0.79" />

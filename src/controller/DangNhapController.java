@@ -1,4 +1,4 @@
-package application;
+package controller;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -88,10 +88,10 @@ public class DangNhapController implements Initializable {
                 if (selectedUsername != null) {
                     try {
                         // Load the DangNhapUI.fxml file
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("GiaodienUI.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/GiaodienUI.fxml"));
                         Parent root = loader.load();
                         Scene scene = new Scene(root);
-                        String css = getClass().getResource("application.css").toExternalForm();
+                        String css = getClass().getResource("/application/application.css").toExternalForm();
                         scene.getStylesheets().add(css);
                         // Set up the event handlers for the DangNhapUI
                         Stage stg = (Stage)((Button)event.getSource()).getScene().getWindow();

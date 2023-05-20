@@ -1,4 +1,3 @@
-
 package application;
 	
 
@@ -14,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Scanner;
 
+import controller.CommonFunction;
 import javafx.scene.Node;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -49,27 +49,26 @@ public class Main extends Application {
 	//Dat dep trai
 
 	//Bien com chua cac bien va ham common
-    CommonFunction com = new CommonFunction();
+	public CommonFunction com = new CommonFunction();
     
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource(com.scenePath));
+            Parent root = FXMLLoader.load(getClass().getResource("/view/DangNhap.fxml"));
             Scene scene = new Scene(root);
 
             // Load configuration file
             //loadConfig();
 
             // Create media and media player objects
-            String musicFilePath = "src/music/LND.mp3";
-            Media media = new Media(new File(musicFilePath).toURI().toString());
+
 
            
             try {
             	CommonFunction.play();
             	CommonFunction.changeVolume(CommonFunction.volume);
                 
-                com.mediaPlayer.setOnError(() -> System.out.println("Error occurred while playing media"));
-                com.mediaPlayer.play();
+                CommonFunction.mediaPlayer.setOnError(() -> System.out.println("Error occurred while playing media"));
+                CommonFunction.mediaPlayer.play();
             } catch (Exception e) {
                 e.printStackTrace();
             }

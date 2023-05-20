@@ -62,7 +62,9 @@
 }
 
 
-
+.countdown-text {
+    -fx-text-alignment: center;
+}
 
 
 
