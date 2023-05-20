@@ -21,6 +21,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -31,6 +32,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.layout.*;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 
 public class gamePlayController implements Initializable {
 	@FXML
@@ -50,6 +53,18 @@ public class gamePlayController implements Initializable {
 	
 	@FXML
 	private ImageView car1ImageView;
+	
+	@FXML
+	private ImageView car2ImageView;
+	
+	@FXML
+	private ImageView car3ImageView;
+	
+	@FXML
+	private ImageView car4ImageView;
+	
+	@FXML
+	private Button btn;
 
 	@FXML
 	private Text countdownText;
@@ -59,11 +74,14 @@ public class gamePlayController implements Initializable {
 	private double startTimeroad2 = 0;
 	private double duration_second = 1;
 	private double speed = 4;
-	private int loop_rounds = 3;
+	private int loop_rounds = 6;
 	private int countdown = 4;
 	
 	private double widthImage = 880;
-	private double originalX;
+	private double originalX1;
+	private double originalX2;
+	private double originalX3;
+	private double originalX4;
 	private Random random = new Random();
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -78,9 +96,68 @@ public class gamePlayController implements Initializable {
 		startingRoadImageView.setImage(startingroadImage);
 		endingRoadImageView.setImage(endingroadImage);
 		car1ImageView.setImage(car1Image);
+		car2ImageView.setImage(car1Image);
+		car3ImageView.setImage(car1Image);
+		car4ImageView.setImage(car1Image);
 		roadImageView2.setVisible(false);
 		endingRoadImageView.setVisible(false);
 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		Timeline starttimeline = new Timeline();
 
@@ -94,6 +171,7 @@ public class gamePlayController implements Initializable {
 		        new KeyValue(startingRoadImageView.translateXProperty(), -widthImage*2)); // Move to the left edge of the pane
 		starttimeline.getKeyFrames().add(endstartKeyFrame);
 		// Create a timeline with two KeyFrames
+		
 		
 		
 		
@@ -162,31 +240,46 @@ public class gamePlayController implements Initializable {
 //	    initialDelay.play();
 	    
 	    
-	    originalX = car1ImageView.getTranslateX();
+	    originalX1 = car1ImageView.getTranslateX();
+	    originalX2 = car2ImageView.getTranslateX();
+	    originalX3 = car3ImageView.getTranslateX();
+	    originalX4 = car4ImageView.getTranslateX();
 
-	    TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(1), car1ImageView);
-	    translateTransition.setCycleCount(Animation.INDEFINITE);
+	    TranslateTransition translateTransition1 = new TranslateTransition(Duration.seconds(2), car1ImageView);
+	    TranslateTransition translateTransition2 = new TranslateTransition(Duration.seconds(2), car2ImageView);
+	    TranslateTransition translateTransition3 = new TranslateTransition(Duration.seconds(2), car3ImageView);
+	    TranslateTransition translateTransition4 = new TranslateTransition(Duration.seconds(2), car4ImageView);
+	    
+	    randomSpeed(originalX1,translateTransition1);
+	    randomSpeed(originalX2,translateTransition2);
+	    randomSpeed(originalX3,translateTransition3);
+	    randomSpeed(originalX4,translateTransition4);
+	    //translateTransition.setAutoReverse(true);
+	    
+	    
 
-	    KeyFrame keyFrameCar1 = new KeyFrame(Duration.seconds(2), event -> {
-	        double newX = originalX + random.nextDouble() * 200; // Generate a random X position
-	        if (newX > car1ImageView.getTranslateX()) {
-	            translateTransition.setToX(newX); // Move forward
-	        }
-	    });
+	    
 
-	    Timeline timelineCar1 = new Timeline(keyFrameCar1);
-	    timelineCar1.setCycleCount(Animation.INDEFINITE);
+	    car1ImageView.setTranslateX(originalX1);
+	    car1ImageView.setTranslateX(originalX2);
+	    car1ImageView.setTranslateX(originalX3);
+	    car1ImageView.setTranslateX(originalX4);// Set the initial X position
 
-	    translateTransition.setAutoReverse(true);
-	    translateTransition.setOnFinished(event -> {
-	        double currentX = car1ImageView.getTranslateX();
-	        if (currentX <= originalX) {
-	            translateTransition.setToX(originalX); // Prevent moving backward beyond original X position
-	        }
-	        timelineCar1.play();
-	    });
+	    
+	    
+	    
 
-	    car1ImageView.setTranslateX(originalX); // Set the initial X position
+
+
+
+	    
+
+
+
+
+
+
+
 		
 		
 		starttimeline.setCycleCount(1); 
@@ -199,8 +292,10 @@ public class gamePlayController implements Initializable {
 		countdownBeforeStart.setOnFinished(event -> {
 			starttimeline.play();
 			timeline.play();
-			timelineCar1.play();
-		    translateTransition.play();
+			translateTransition1.play();
+		    translateTransition2.play();
+		    translateTransition3.play();
+		    translateTransition4.play();
 		});
 		delay.setOnFinished(event -> {
 			roadImageView2.setVisible(true);
@@ -209,11 +304,43 @@ public class gamePlayController implements Initializable {
 		enddelay.setOnFinished(event -> {
 			endingRoadImageView.setVisible(true);
 		    endtimeline.play();
+		    translateTransition1.stop();
+		    translateTransition2.stop();
+		    translateTransition3.stop();
+		    translateTransition4.stop();
 		});
 		countdownBeforeStart.play();
 		delay.play();
 		enddelay.play();
+		
+		btn.setOnAction(new EventHandler<ActionEvent>() {
 
+	        private double duration = timeline.getCycleDuration().toSeconds();
+
+	        @Override
+	        public void handle(ActionEvent event) {
+	            if (duration > 1) {
+	                duration--;
+	                starttimeline.setRate(timeline.getCycleDuration().toSeconds() / duration);
+	                timeline.setRate(timeline.getCycleDuration().toSeconds() / duration);
+	                timeline2.setRate(timeline.getCycleDuration().toSeconds() / duration);
+	                endtimeline.setRate(timeline.getCycleDuration().toSeconds() / duration);
+	            }
+	        }
+	    });
+
+	}
+	public void randomSpeed(double originalX, TranslateTransition translateTransition) {
+		translateTransition.setOnFinished(event -> {
+	        double newX = originalX + random.nextDouble() * 200; // Generate a random X position
+	        if (newX > originalX) {
+	            translateTransition.setToX(newX - originalX); // Move forward
+	        } else {
+	            translateTransition.setToX(originalX - newX); // Move backward
+	        }
+	        translateTransition.setDuration(Duration.seconds(random.nextInt(3) + 1));
+	        translateTransition.play();
+	    });
 	}
 
 }
