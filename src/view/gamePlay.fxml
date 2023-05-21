@@ -13,7 +13,7 @@
             <ImageView fx:id="roadImageView1" fitHeight="359.0" fitWidth="888.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="roadImageView2" fitHeight="359.0" fitWidth="888.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="startingRoadImageView" fitHeight="359.0" fitWidth="888.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true" />
-            <Text fx:id="countdownText" fill="#1925c3" layoutX="354.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start" wrappingWidth="228.13671875">
+            <Text fx:id="countdownText" fill="#1925c3" layoutX="330.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start" wrappingWidth="228.13671875">
                <font>
                   <Font name="Consolas" size="77.0" />
                </font>
@@ -22,9 +22,9 @@
             <ImageView fx:id="car2ImageView" fitHeight="36.0" fitWidth="62.0" layoutX="14.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="car3ImageView" fitHeight="36.0" fitWidth="62.0" layoutX="14.0" layoutY="330.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="car4ImageView" fitHeight="36.0" fitWidth="62.0" layoutX="14.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="tocBienImageView" fitHeight="88.0" fitWidth="102.0" layoutX="171.0" layoutY="531.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="tocHanhImageView" fitHeight="88.0" fitWidth="102.0" layoutX="417.0" layoutY="525.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="kietSucImageView" fitHeight="88.0" fitWidth="102.0" layoutX="617.0" layoutY="525.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="tocBienImageView" fitHeight="60.0" fitWidth="80.0" layoutX="174.0" layoutY="531.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="tocHanhImageView" fitHeight="60.0" fitWidth="80.0" layoutX="404.0" layoutY="531.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="kietSucImageView" fitHeight="60.0" fitWidth="80.0" layoutX="634.0" layoutY="531.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
    </children>

@@ -25,6 +25,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -93,10 +94,13 @@ public class gamePlayController implements Initializable {
 	private double originalX2;
 	private double originalX3;
 	private double originalX4;
+	ColorAdjust fadeEffect = new ColorAdjust();
+     // Set saturation to 0 for grayscale effect
 	private Random random = new Random();
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		// Load the road image
+		
 		Image roadImage1 = new Image(getClass().getResourceAsStream("/img/map/map2.jpg"));
 		Image roadImage2 = new Image(getClass().getResourceAsStream("/img/map/map3.jpg"));
 		Image startingroadImage = new Image(getClass().getResourceAsStream("/img/map/startingmap.jpg"));
@@ -118,12 +122,18 @@ public class gamePlayController implements Initializable {
 		kietSucImageView.setImage(kietSucImage);
 		roadImageView2.setVisible(false);
 		endingRoadImageView.setVisible(false);
-		
 		CommonFunction.vatPham[1] = true;
 		CommonFunction.vatPham[0] = true;
-		CommonFunction.vatPham[2] = true;
-		
+		CommonFunction.vatPham[2] = false;
 		checkVatPhamStatus();
+		tocBienImageView.setDisable(true);
+		tocHanhImageView.setDisable(true);
+		kietSucImageView.setDisable(true);
+
+		fadeEffect.setBrightness(-0.7); // Adjust the brightness value as desired
+	    fadeEffect.setSaturation(0.0);
+		
+		
 
 		
 		
@@ -368,6 +378,7 @@ public class gamePlayController implements Initializable {
 		countdownTimeline.play();
 		PauseTransition countdownBeforeStart = new PauseTransition(Duration.seconds(countdown));
 		countdownBeforeStart.setOnFinished(event -> {
+			checkVatPhamStatus();
 			starttimeline.play();
 			timeline.play();
 			translateTransition1.play();
@@ -397,8 +408,31 @@ public class gamePlayController implements Initializable {
 		vatPhamImageViewSetUp(tocHanhImageView);
 		vatPhamImageViewSetUp(kietSucImageView);
 		
-	
+		tocBienImageView.disableProperty().addListener((obs, oldValue, newValue) -> {
+            if (newValue) {
+            	tocBienImageView.setEffect(fadeEffect);
+            } else {
+            	tocBienImageView.setEffect(null); // Clear the effect when enabled
+            }
+        });
+		
+		tocHanhImageView.disableProperty().addListener((obs, oldValue, newValue) -> {
+            if (newValue) {
+            	tocHanhImageView.setEffect(fadeEffect);
+            } else {
+            	tocHanhImageView.setEffect(null); // Clear the effect when enabled
+            }
+        });
+		
+		kietSucImageView.disableProperty().addListener((obs, oldValue, newValue) -> {
+            if (newValue) {
+            	kietSucImageView.setEffect(fadeEffect);
+            } else {
+            	kietSucImageView.setEffect(null); // Clear the effect when enabled
+            }
+        });
 		tocBienImageView.setOnMouseClicked((MouseEvent event) -> {
+			tocBienImageView.setDisable(true);
 			translateTransition1.stop(); // Stop the current transition
 		    double currentX = car1ImageView.getTranslateX(); // Get the current X position
 	    	double newX = currentX + 100;
@@ -411,6 +445,7 @@ public class gamePlayController implements Initializable {
         });
 		
 		tocHanhImageView.setOnMouseClicked((MouseEvent mouseevent) -> {
+			tocHanhImageView.setDisable(true);
 			translateTransition1.stop(); // Stop the current transition
 		    double currentX = car1ImageView.getTranslateX(); // Get the current X position
 	    	double newX = currentX + 120;
@@ -425,6 +460,7 @@ public class gamePlayController implements Initializable {
         });
 		
 		kietSucImageView.setOnMouseClicked((MouseEvent mouseevent) -> {
+			kietSucImageView.setDisable(true);
 			translateTransition2.stop();
 			translateTransition3.stop();
 			translateTransition4.stop();// Stop the current transition// Get the current X position
@@ -564,8 +600,11 @@ public class gamePlayController implements Initializable {
 	}
 	
 	public void checkVatPhamStatus() {
+		fadeEffect.setBrightness(-0.7); // Adjust the brightness value as desired
+	    fadeEffect.setSaturation(0.0);
 		if(CommonFunction.vatPham[0] == false) {
 			tocBienImageView.setDisable(true);
+			tocBienImageView.setEffect(fadeEffect);
 		}
 		else {
 			tocBienImageView.setDisable(false);
@@ -573,6 +612,7 @@ public class gamePlayController implements Initializable {
 		
 		if(CommonFunction.vatPham[1] == false) {
 			tocHanhImageView.setDisable(true);
+			tocHanhImageView.setEffect(fadeEffect);
 		}
 		else {
 			tocHanhImageView.setDisable(false);
@@ -580,6 +620,7 @@ public class gamePlayController implements Initializable {
 		
 		if(CommonFunction.vatPham[2] == false) {
 			kietSucImageView.setDisable(true);
+			kietSucImageView.setEffect(fadeEffect);
 		}
 		else {
 			kietSucImageView.setDisable(false);
