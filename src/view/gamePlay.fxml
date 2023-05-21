@@ -18,7 +18,13 @@
                   <Font name="Consolas" size="77.0" />
                </font>
             </Text>
-            <ImageView fx:id="car1ImageView" fitHeight="36.0" fitWidth="62.0" layoutX="23.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="car1ImageView" fitHeight="36.0" fitWidth="62.0" layoutX="14.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="car2ImageView" fitHeight="36.0" fitWidth="62.0" layoutX="14.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="car3ImageView" fitHeight="36.0" fitWidth="62.0" layoutX="14.0" layoutY="330.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="car4ImageView" fitHeight="36.0" fitWidth="62.0" layoutX="14.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="tocBienImageView" fitHeight="88.0" fitWidth="102.0" layoutX="171.0" layoutY="531.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="tocHanhImageView" fitHeight="88.0" fitWidth="102.0" layoutX="417.0" layoutY="525.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="kietSucImageView" fitHeight="88.0" fitWidth="102.0" layoutX="617.0" layoutY="525.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
    </children>
