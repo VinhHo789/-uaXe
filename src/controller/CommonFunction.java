@@ -26,6 +26,8 @@ public class CommonFunction {
     public static Media media = new Media(new File(musicFilePath).toURI().toString());
     public static MediaPlayer mediaPlayer;
     protected static int money = 0;
+    public static boolean []vatPham = new boolean[3]; //1: TocBien, 2: TocHanh, 3: KietSuc
+    
     
     
 

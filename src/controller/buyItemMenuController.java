@@ -47,6 +47,9 @@ public class buyItemMenuController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+		CommonFunction.vatPham[0] = false;
+		CommonFunction.vatPham[1] = false;
+		CommonFunction.vatPham[2] = false;
 	    backButton.setOnAction(new EventHandler<ActionEvent>() {
 	        @Override
 	        public void handle(ActionEvent event) {
