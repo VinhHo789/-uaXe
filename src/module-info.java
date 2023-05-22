@@ -3,6 +3,7 @@ module Game {
     requires javafx.fxml;
     requires javafx.media;
 	requires javafx.graphics;
+	requires com.jfoenix;
 
     opens application to javafx.graphics, javafx.fxml, javafx.media;
     opens controller to javafx.graphics, javafx.fxml, javafx.media;

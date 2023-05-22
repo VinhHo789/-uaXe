@@ -49,11 +49,10 @@ public class Main extends Application {
 	//Dat dep trai
 
 	//Bien com chua cac bien va ham common
-	public CommonFunction com = new CommonFunction();
     
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/DangNhap.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/view/introVid.fxml"));
             Scene scene = new Scene(root);
 
             // Load configuration file
@@ -63,15 +62,7 @@ public class Main extends Application {
 
 
            
-            try {
-            	CommonFunction.play();
-            	CommonFunction.changeVolume(CommonFunction.volume);
-                
-                CommonFunction.mediaPlayer.setOnError(() -> System.out.println("Error occurred while playing media"));
-                CommonFunction.mediaPlayer.play();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            
             primaryStage.setScene(scene);
             primaryStage.show();
 
