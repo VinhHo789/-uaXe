@@ -17,8 +17,10 @@
 
 */
 
+/*#6B3D68
+ * #FF1145 */
 .button{
-	-fx-background-color: linear-gradient(to bottom, #FF8C00, #FF8C00); 
+	-fx-background-color: linear-gradient(to bottom, #FF1145, #FF1145); 
     -fx-background-radius: 20px; 
     -fx-text-fill: white;
     -fx-font-size: 16px;
@@ -27,7 +29,7 @@
 }
 
 .button:hover{
-	-fx-background-color: linear-gradient(to bottom, #FF8C00, #FFA500); 
+	-fx-background-color: linear-gradient(to bottom, #FF1145, #FFA500); 
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 8, 0, 0, 2); 
     -fx-cursor: hand;
 }
@@ -38,7 +40,7 @@
 }
 
 .slider .thumb {
-    -fx-background-color: linear-gradient(to bottom, #FFA500, #FF8C00); 
+    -fx-background-color: linear-gradient(to bottom, #FF1145, #FF1145); 
     -fx-background-radius: 20px; 
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 5, 0, 0, 1); 
 }
@@ -64,6 +66,19 @@
 
 .countdown-text {
     -fx-text-alignment: center;
+}
+
+#volumeButton{
+	-fx-background-color: linear-gradient(to bottom, #FF1145, #FF1145); 
+     -fx-background-radius: 0px;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 0 5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 5, 0, 0, 1); 
+}
+#volumeButton:hover{
+	-fx-background-color: linear-gradient(to bottom, #FF1145, #FF1145); 
+	-fx-cursor: none;
 }
 
 

@@ -28,6 +28,8 @@ public class settingMenuController implements Initializable{
 	
 	@FXML
 	protected Button backButton;
+	@FXML
+	protected Button volumeButton;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
