@@ -1,31 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="888.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.gamePlayController">
    <children>
-      <AnchorPane fx:id="giaoDienAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="888.0" stylesheets="@../css/application.css">
+      <StackPane fx:id="stackPane" prefHeight="150.0" prefWidth="200.0">
          <children>
-            <ImageView fx:id="endingRoadImageView" fitHeight="359.0" fitWidth="888.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="roadImageView1" fitHeight="359.0" fitWidth="888.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="roadImageView2" fitHeight="359.0" fitWidth="888.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="startingRoadImageView" fitHeight="359.0" fitWidth="888.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true" />
-            <Text fx:id="countdownText" fill="#1925c3" layoutX="330.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start" wrappingWidth="228.13671875">
-               <font>
-                  <Font name="Consolas" size="77.0" />
-               </font>
-            </Text>
-            <ImageView fx:id="car1ImageView" fitHeight="36.0" fitWidth="62.0" layoutX="14.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="car2ImageView" fitHeight="36.0" fitWidth="62.0" layoutX="14.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="car3ImageView" fitHeight="36.0" fitWidth="62.0" layoutX="14.0" layoutY="330.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="car4ImageView" fitHeight="36.0" fitWidth="62.0" layoutX="14.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="tocBienImageView" fitHeight="60.0" fitWidth="80.0" layoutX="174.0" layoutY="531.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="tocHanhImageView" fitHeight="60.0" fitWidth="80.0" layoutX="404.0" layoutY="531.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="kietSucImageView" fitHeight="60.0" fitWidth="80.0" layoutX="634.0" layoutY="531.0" pickOnBounds="true" preserveRatio="true" />
+            <AnchorPane fx:id="giaoDienAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="888.0" stylesheets="@../application/application.css">
+               <children>
+                  <ImageView fx:id="endingRoadImageView" fitHeight="359.0" fitWidth="888.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="roadImageView1" fitHeight="359.0" fitWidth="888.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="roadImageView2" fitHeight="359.0" fitWidth="888.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="startingRoadImageView" fitHeight="359.0" fitWidth="888.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true" />
+                  <Text fx:id="countdownText" fill="#1925c3" layoutX="330.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start" wrappingWidth="228.13671875">
+                     <font>
+                        <Font name="Consolas" size="77.0" />
+                     </font>
+                  </Text>
+                  <ImageView fx:id="car1ImageView" fitHeight="36.0" fitWidth="62.0" layoutX="14.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="car2ImageView" fitHeight="36.0" fitWidth="62.0" layoutX="8.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="car3ImageView" fitHeight="36.0" fitWidth="62.0" layoutX="8.0" layoutY="307.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="car4ImageView" fitHeight="36.0" fitWidth="62.0" layoutX="8.0" layoutY="345.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="car5ImageView" fitHeight="36.0" fitWidth="62.0" layoutX="8.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="tocBienImageView" fitHeight="60.0" fitWidth="80.0" layoutX="174.0" layoutY="531.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="tocHanhImageView" fitHeight="60.0" fitWidth="80.0" layoutX="404.0" layoutY="531.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="kietSucImageView" fitHeight="60.0" fitWidth="80.0" layoutX="634.0" layoutY="531.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="car4ImageView1" fitHeight="36.0" fitWidth="62.0" layoutX="8.0" layoutY="299.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="firstCarPositionImageView" fitHeight="60.0" fitWidth="86.0" layoutX="89.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="thirdCarPositionImageView" fitHeight="60.0" fitWidth="86.0" layoutX="748.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="secondCarPositionImageView" fitHeight="60.0" fitWidth="86.0" layoutX="413.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                  <Text fx:id="firstText" fill="#3826bf" layoutX="39.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1st: " wrappingWidth="50.13671875">
+                     <font>
+                        <Font name="Consolas" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="secondText" fill="#3826bf" layoutX="362.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2nd: " wrappingWidth="50.13671875">
+                     <font>
+                        <Font name="Consolas" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="thirdText" fill="#3826bf" layoutX="697.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3rd: " wrappingWidth="50.13671875">
+                     <font>
+                        <Font name="Consolas" size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="podiumAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="529.0">
+               <children>
+                  <ImageView fx:id="podiumImageView" fitHeight="251.0" fitWidth="529.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="podiumFirstPlaceImageView" fitHeight="71.0" fitWidth="93.0" layoutX="218.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="podiumSecondPlaceImageView" fitHeight="71.0" fitWidth="93.0" layoutX="56.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="podiumThirdPlaceImageView" fitHeight="71.0" fitWidth="93.0" layoutX="388.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="thongTinAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="165.0" prefWidth="500.0" StackPane.alignment="BOTTOM_CENTER">
+               <children>
+                  <Text fx:id="soTienAnDuocText" layoutX="14.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số tiền ăn được : 100" wrappingWidth="228.13671875">
+                     <font>
+                        <Font name="Consolas" size="19.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="soTienHienCoText" layoutX="14.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số tiền hiện có : 100" wrappingWidth="228.13671875">
+                     <font>
+                        <Font name="Consolas" size="19.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="tiepTucChoiButton" layoutX="60.0" layoutY="112.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="136.0" text="Tiếp tục chơi" />
+                  <Button fx:id="thoatGameButton" layoutX="286.0" layoutY="112.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="136.0" text="Thoát game" />
+                  <Text fx:id="thongBaoText" fill="#e81515" layoutX="10.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chúc mừng, bạn đã về nhất" textAlignment="CENTER" wrappingWidth="480.13671875">
+                     <font>
+                        <Font name="Consolas" size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
          </children>
-      </AnchorPane>
+      </StackPane>
    </children>
 </AnchorPane>
