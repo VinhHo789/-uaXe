@@ -34,6 +34,16 @@ public class CommonFunction {
    
     public static void play() {
     	mediaPlayer = new MediaPlayer(media);
+
+        
+        try {
+        	CommonFunction.changeVolume(CommonFunction.volume);
+            
+            mediaPlayer.setOnError(() -> System.out.println("Error occurred while playing media"));
+            mediaPlayer.play();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     public static void changeVolume(double vol) {
     	mediaPlayer.setVolume(vol);
