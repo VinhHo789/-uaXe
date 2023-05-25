@@ -23,7 +23,7 @@ public class CommonFunction {
 	protected static String CONFIG_FILE_PATH = "config.properties";
     protected static String VOLUME_KEY = "volume";
     public static String musicFilePath = "src/music/LND.mp3";
-    public static Media media = new Media(new File(musicFilePath).toURI().toString());
+    public static Media media; 
     public static MediaPlayer mediaPlayer;
     protected static int money = 0;
     public static boolean []vatPham = new boolean[3]; //1: TocBien, 2: TocHanh, 3: KietSuc
@@ -33,6 +33,7 @@ public class CommonFunction {
 
    
     public static void play() {
+    	media =  new Media(new File(musicFilePath).toURI().toString());
     	mediaPlayer = new MediaPlayer(media);
 
         
@@ -44,6 +45,10 @@ public class CommonFunction {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    public static void stop() {
+    	mediaPlayer.stop();
     }
     public static void changeVolume(double vol) {
     	mediaPlayer.setVolume(vol);

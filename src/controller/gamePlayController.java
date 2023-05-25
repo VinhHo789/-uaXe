@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import javafx.util.Duration;
@@ -44,6 +45,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -131,6 +135,9 @@ public class gamePlayController implements Initializable {
 	
 	@FXML
 	private AnchorPane thongTinAnchorPane;
+	
+	@FXML
+	private AnchorPane congratEffectAnchorPane;
 	
 	@FXML
 	private Text soTienAnDuocText;
@@ -543,10 +550,14 @@ public class gamePlayController implements Initializable {
 		endtimeline.setCycleCount(1);
 		timeline.setCycleCount(loop_rounds); 
 		timeline2.setCycleCount(loop_rounds);
-
+		CommonFunction.musicFilePath="src/music/countdown.mp3";
+		CommonFunction.play();
 		countdownTimeline.play();
+		
 		PauseTransition countdownBeforeStart = new PauseTransition(Duration.seconds(countdown));
 		countdownBeforeStart.setOnFinished(event -> {
+			CommonFunction.musicFilePath="src/music/raceSound.mp3";
+			CommonFunction.play();
 			checkVatPhamStatus();
 			starttimeline.play();
 			timeline.play();
@@ -565,6 +576,7 @@ public class gamePlayController implements Initializable {
 		    endtimeline.play();
 		});
 		endtimeline.setOnFinished(event -> {
+			CommonFunction.stop();
 			translateTransition1.stop();
 		    translateTransition2.stop();
 		    translateTransition3.stop();
@@ -589,7 +601,9 @@ public class gamePlayController implements Initializable {
 		    	giaoDienAnchorPane.setEffect(blur);
 		    	podiumAnchorPane.setVisible(true);
 		    	podiumAnchorPane.toFront();
+		    	congratEffectAnchorPane.toFront();
 		    	setPodiumPlaceImageViews();
+			    playCongratEffect();
 		    	thongTinAnchorPane.setVisible(true);
 		    	thongTinAnchorPane.setStyle("-fx-background-color: white;");
 		    	thongTinAnchorPane.setOpacity(0.8);
@@ -892,6 +906,31 @@ public class gamePlayController implements Initializable {
 	    } else {
 	    	thongBaoText.setText("Không sao, cố gắng cải thiện hơn bạn nhé! ");
 	    }
+	}
+	
+	public void playCongratEffect() {
+		// Create a File object with the path to the video file
+        String videoPath = "src/music/congratEffect.mp4";
+        File videoFile = new File(videoPath);
+
+        // Convert the File object to a file URI
+        String fileUri = videoFile.toURI().toString();
+
+        // Create a Media object with the file URI
+        Media media = new Media(fileUri);
+
+        // Create a MediaPlayer and associate it with the Media object
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+
+        // Create a MediaView and bind it to the MediaPlayer
+        MediaView mediaView = new MediaView(mediaPlayer);
+
+        // Create an AnchorPane and add the MediaView to it
+        congratEffectAnchorPane.getChildren().add(mediaView);
+
+        // Set the size and position of the MediaView within the AnchorPane
+        mediaPlayer.play();
+ 
 	}
 
 

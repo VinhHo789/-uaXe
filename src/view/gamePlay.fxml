@@ -11,6 +11,7 @@
    <children>
       <StackPane fx:id="stackPane" prefHeight="150.0" prefWidth="200.0">
          <children>
+            <AnchorPane fx:id="congratEffectAnchorPane" prefHeight="200.0" prefWidth="200.0" StackPane.alignment="CENTER" />
             <AnchorPane fx:id="giaoDienAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="888.0" stylesheets="@../application/application.css">
                <children>
                   <ImageView fx:id="endingRoadImageView" fitHeight="359.0" fitWidth="888.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true" />
