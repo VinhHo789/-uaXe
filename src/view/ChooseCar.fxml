@@ -7,7 +7,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ChooseCarController">
    <children>
-      <AnchorPane layoutX="-136.0" layoutY="-149.0" prefHeight="768.0" prefWidth="1024.0" stylesheets="@../application/application.css">
+      <AnchorPane layoutX="-136.0" layoutY="-149.0" prefHeight="768.0" prefWidth="1024.0" stylesheets="@../css/application.css">
          <children>
             <Text layoutX="145.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MỘT SẢN PHẨM CỦA PMGS" />
             <Button id="backButton" fx:id="backButton" layoutX="145.0" layoutY="712.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="95.0" text="QUAY LẠI" textFill="#f97b22" />
