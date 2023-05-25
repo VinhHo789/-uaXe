@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -57,12 +58,22 @@ public class TrangChuController {
     @FXML
     private Button TiepTuc_ItemChoosing;
     
+    @FXML
+    private Button playGameButton;
     
 
     public void initialize() {
         readAccountDataFromFile();
         HomePage.setVisible(true);
         Map_Choosing.setVisible(false);
+        
+        playGameButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+            	CommonFunction.sceneTransition("/view/gamePlay.fxml", event);
+            }
+        });
+		
     }
 
     public void setPlayerName(String playerName) {
@@ -123,5 +134,7 @@ public class TrangChuController {
     	Car_Choosing.setVisible(false);
     	Item_Chosing.setVisible(true);
     }
+    
+    
 }
 

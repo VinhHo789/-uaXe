@@ -359,6 +359,7 @@ public class loginController implements Initializable {
     		Scene scene = ((Node)event.getSource()).getScene();
     		Parent root = FXMLLoader.load(getClass().getResource("/view/GiaodienUI.fxml"));
     		scene.setRoot(root);
+    		CommonFunction.play();
     	}else {
     		loginErr.setVisible(true);
     		loginShowPassWord.clear();

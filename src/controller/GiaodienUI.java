@@ -43,7 +43,6 @@ public class GiaodienUI implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		CommonFunction.play();
         playButton.setOnAction((event)-> {
         	try {
                 FXMLLoader loader = new FXMLLoader(CommonFunction.class.getResource("/view/TrangchuView.fxml"));

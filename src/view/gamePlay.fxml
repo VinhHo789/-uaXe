@@ -11,14 +11,14 @@
    <children>
       <StackPane fx:id="stackPane" prefHeight="150.0" prefWidth="200.0">
          <children>
-            <AnchorPane fx:id="congratEffectAnchorPane" prefHeight="200.0" prefWidth="200.0" StackPane.alignment="CENTER" />
+            <AnchorPane fx:id="congratEffectAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="888.0" StackPane.alignment="CENTER" />
             <AnchorPane fx:id="giaoDienAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="888.0" stylesheets="@../application/application.css">
                <children>
                   <ImageView fx:id="endingRoadImageView" fitHeight="359.0" fitWidth="888.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="roadImageView1" fitHeight="359.0" fitWidth="888.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="roadImageView2" fitHeight="359.0" fitWidth="888.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="roadImageView1" fitHeight="359.0" fitWidth="888.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="startingRoadImageView" fitHeight="359.0" fitWidth="888.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true" />
-                  <Text fx:id="countdownText" fill="#1925c3" layoutX="330.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start" wrappingWidth="228.13671875">
+                  <Text fx:id="countdownText" fill="#1925c3" layoutX="330.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start" textAlignment="CENTER" wrappingWidth="228.13671875">
                      <font>
                         <Font name="Consolas" size="77.0" />
                      </font>
@@ -62,12 +62,12 @@
             </AnchorPane>
             <AnchorPane fx:id="thongTinAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="165.0" prefWidth="500.0" StackPane.alignment="BOTTOM_CENTER">
                <children>
-                  <Text fx:id="soTienAnDuocText" layoutX="14.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số tiền ăn được : 100" wrappingWidth="228.13671875">
+                  <Text fx:id="soTienAnDuocText" layoutX="14.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số tiền ăn được : 100" wrappingWidth="442.13671875">
                      <font>
                         <Font name="Consolas" size="19.0" />
                      </font>
                   </Text>
-                  <Text fx:id="soTienHienCoText" layoutX="14.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số tiền hiện có : 100" wrappingWidth="228.13671875">
+                  <Text fx:id="soTienHienCoText" layoutX="14.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số tiền hiện có : 100" wrappingWidth="448.13671875">
                      <font>
                         <Font name="Consolas" size="19.0" />
                      </font>

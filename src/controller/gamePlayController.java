@@ -5,15 +5,8 @@ import java.io.IOException;
 import java.net.URL;
 import javafx.util.Duration;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.ResourceBundle;
-import java.util.TreeMap;
-import java.util.stream.Collectors;
+import java.util.*;
+
 
 import javafx.beans.property.DoubleProperty;
 
@@ -37,14 +30,12 @@ import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.effect.Blend;
 import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.ColorInput;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -54,7 +45,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.layout.*;
 import javafx.event.*;
-import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
 public class gamePlayController implements Initializable {
@@ -153,6 +143,7 @@ public class gamePlayController implements Initializable {
 	
 	@FXML
 	private Button thoatGameButton;
+	
 	
 	
 	private double startTimeroad1 = 0;
@@ -603,7 +594,17 @@ public class gamePlayController implements Initializable {
 		    	podiumAnchorPane.toFront();
 		    	congratEffectAnchorPane.toFront();
 		    	setPodiumPlaceImageViews();
-			    playCongratEffect();
+		    	if(random.nextBoolean()) {
+		    		CommonFunction.musicFilePath="src/music/cheeringsound.mp3";
+					CommonFunction.play();
+		    	}
+		    	else {
+		    		CommonFunction.musicFilePath="src/music/cheeringsound2.mp3";
+					CommonFunction.play();
+		    	}
+		    		
+		    	
+			    //playCongratEffect();
 		    	thongTinAnchorPane.setVisible(true);
 		    	thongTinAnchorPane.setStyle("-fx-background-color: white;");
 		    	thongTinAnchorPane.setOpacity(0.8);
@@ -716,6 +717,48 @@ public class gamePlayController implements Initializable {
 	            translateTransition5.setDuration(Duration.seconds(0));
 	            translateTransition5.play();
 	        });
+        });
+		
+		thoatGameButton.setOnMouseEntered((MouseEvent event) -> {
+			thoatGameButton.getScene().setCursor(Cursor.HAND);
+        });
+
+        // Set event handler for mouse exit
+		thoatGameButton.setOnMouseExited((MouseEvent event) -> {
+			thoatGameButton.getScene().setCursor(Cursor.DEFAULT);
+        });
+		
+		tiepTucChoiButton.setOnMouseEntered((MouseEvent event) -> {
+			tiepTucChoiButton.getScene().setCursor(Cursor.HAND);
+        });
+
+        // Set event handler for mouse exit
+		tiepTucChoiButton.setOnMouseExited((MouseEvent event) -> {
+			tiepTucChoiButton.getScene().setCursor(Cursor.DEFAULT);
+        });
+		
+		thoatGameButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Stage stg = (Stage)((Node)event.getSource()).getScene().getWindow();
+                stg.close();
+            }
+        });
+		
+		tiepTucChoiButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+            	try {
+                    FXMLLoader loader = new FXMLLoader(CommonFunction.class.getResource("/view/TrangchuView.fxml"));
+                    StackPane root = loader.load();
+                    Scene scene = new Scene(root);
+                    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    window.setScene(scene);
+                    window.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         });
 	}
 	
@@ -896,15 +939,16 @@ public class gamePlayController implements Initializable {
 	    
 	    if (carImageViews.get(0) == car1ImageView) {
 	        thongBaoText.setText("Chúc mừng, bạn đã về nhất và chiến thắng!");
-	        soTienAnDuocText.setText("Tien cuoc * 4");
+	        soTienAnDuocText.setText("Số tiền ăn được: Tien cuoc * 4");
 	    } else if(carImageViews.get(1) == car1ImageView){
 	        thongBaoText.setText("Rất tiếc, bạn đã về nhì, chỉ 1 chút nữa thôi!");
-	        soTienAnDuocText.setText("Tien cuoc * 0.5");
+	        soTienAnDuocText.setText("Số tiền ăn được: Tien cuoc * 0.5");
 	    } else if (carImageViews.get(2) == car1ImageView) {
 	    	thongBaoText.setText("Thật đáng tiếc, bạn đã về ba, cố hơn nữa nhé!");
-	    	soTienAnDuocText.setText("Tien cuoc * 0.5");
+	    	soTienAnDuocText.setText("Số tiền ăn được: Tien cuoc * 0.5");
 	    } else {
 	    	thongBaoText.setText("Không sao, cố gắng cải thiện hơn bạn nhé! ");
+	    	soTienAnDuocText.setText("Số tiền ăn được: 0");
 	    }
 	}
 	
@@ -925,12 +969,22 @@ public class gamePlayController implements Initializable {
         // Create a MediaView and bind it to the MediaPlayer
         MediaView mediaView = new MediaView(mediaPlayer);
 
-        // Create an AnchorPane and add the MediaView to it
-        congratEffectAnchorPane.getChildren().add(mediaView);
+        Color greenScreenColor = Color.GREEN;
 
-        // Set the size and position of the MediaView within the AnchorPane
+        // Create a ColorInput with the green screen color
+        ColorInput colorInput = new ColorInput();
+        colorInput.setPaint(greenScreenColor);
+
+        // Create a Blend effect with the ColorInput
+        Blend blend = new Blend();
+        blend.setTopInput(colorInput);
+
+        // Apply the Blend effect to the MediaView
+        mediaView.setEffect(blend);
+        
+        congratEffectAnchorPane.getChildren().add(mediaView);
         mediaPlayer.play();
- 
+
 	}
 
 

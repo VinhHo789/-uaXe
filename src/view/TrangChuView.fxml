@@ -417,7 +417,7 @@
                   <Insets />
                </VBox.margin>
             </AnchorPane>
-            <Button graphicTextGap="3.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="198.0" text="BẮT ĐẦU">
+            <Button fx:id="playGameButton" graphicTextGap="3.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="198.0" text="BẮT ĐẦU">
                <font>
                   <Font size="34.0" />
                </font>
