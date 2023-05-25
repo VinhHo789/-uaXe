@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 
 public class CommonFunction {
 	protected static Properties config = new Properties();
-    public static double volume = 0.5;
+    public static double volume = 0.6;
     public static String scenePath = "DangNhap.fxml";
 	protected static String CONFIG_FILE_PATH = "config.properties";
     protected static String VOLUME_KEY = "volume";
@@ -38,10 +38,11 @@ public class CommonFunction {
 
         
         try {
-        	CommonFunction.changeVolume(CommonFunction.volume);
+        	//CommonFunction.changeVolume(CommonFunction.volume);
             
             mediaPlayer.setOnError(() -> System.out.println("Error occurred while playing media"));
             mediaPlayer.play();
+            mediaPlayer.setVolume(volume);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -83,7 +84,7 @@ public class CommonFunction {
 	        config.load(in);
 	        String volumeString = config.getProperty(VOLUME_KEY);
 	        if (volumeString != null) {
-	            volume = Double.parseDouble(volumeString);
+	            // volume = Double.parseDouble(volumeString);
 	        }
 	    } catch (IOException e) {
 	        // ignore, use default values

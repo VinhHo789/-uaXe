@@ -42,9 +42,11 @@ public class GiaodienUI implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
 		// TODO Auto-generated method stub
         playButton.setOnAction((event)-> {
         	try {
+        		
                 FXMLLoader loader = new FXMLLoader(CommonFunction.class.getResource("/view/TrangchuView.fxml"));
                 StackPane root = loader.load();
                 Scene scene = new Scene(root);
@@ -58,7 +60,9 @@ public class GiaodienUI implements Initializable{
 
         // Create the Setting button
         settingButton.setOnAction((event)-> {
+    		System.out.println("after move from ui -> setting: " + CommonFunction.volume);
         	CommonFunction.sceneTransition("/view/settingMenu.fxml", event);
+        	
         });
 
         // Create the Quit button
