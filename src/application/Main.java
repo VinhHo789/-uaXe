@@ -54,7 +54,7 @@ public class Main extends Application {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/view/introVid.fxml"));
             Scene scene = new Scene(root);
-
+            
             // Load configuration file
             //loadConfig();
 

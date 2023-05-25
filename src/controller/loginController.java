@@ -360,6 +360,7 @@ public class loginController implements Initializable {
     		Parent root = FXMLLoader.load(getClass().getResource("/view/GiaodienUI.fxml"));
     		scene.setRoot(root);
     		CommonFunction.play();
+    		CommonFunction.volume = 0.5;
     	}else {
     		loginErr.setVisible(true);
     		loginShowPassWord.clear();
