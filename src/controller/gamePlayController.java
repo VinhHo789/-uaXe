@@ -25,10 +25,13 @@ import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.effect.Blend;
 import javafx.scene.effect.ColorAdjust;
@@ -36,6 +39,7 @@ import javafx.scene.effect.ColorInput;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -63,20 +67,7 @@ public class gamePlayController implements Initializable {
 	@FXML
 	private ImageView endingRoadImageView;
 	
-	@FXML
-	private ImageView car1ImageView;
 	
-	@FXML
-	private ImageView car2ImageView;
-	
-	@FXML
-	private ImageView car3ImageView;
-	
-	@FXML
-	private ImageView car4ImageView;
-	
-	@FXML
-	private ImageView car5ImageView;
 	
 	@FXML
 	private ImageView tocBienImageView;
@@ -112,13 +103,13 @@ public class gamePlayController implements Initializable {
 	private ImageView podiumImageView;
 	
 	@FXML
-	private ImageView podiumFirstPlaceImageView;
+	private StackPane podiumFirstPlaceStackPane;
 	
 	@FXML
-	private ImageView podiumSecondPlaceImageView;
+	private StackPane podiumSecondPlaceStackPane;
 	
 	@FXML
-	private ImageView podiumThirdPlaceImageView;
+	private StackPane podiumThirdPlaceStackPane;
 	
 	@FXML
 	private AnchorPane podiumAnchorPane;
@@ -143,6 +134,48 @@ public class gamePlayController implements Initializable {
 	
 	@FXML
 	private Button thoatGameButton;
+	
+	@FXML
+	private StackPane firstCarPositionStackPane;
+	
+	@FXML
+	private StackPane secondCarPositionStackPane;
+	
+	@FXML
+	private StackPane thirdCarPositionStackPane;
+	
+	@FXML
+	private StackPane car1StackPane;
+	
+	@FXML
+	private StackPane car2StackPane;
+	
+	@FXML
+	private StackPane car3StackPane;
+	
+	@FXML
+	private StackPane car4StackPane;
+	
+	@FXML
+	private StackPane car5StackPane;
+	
+	@FXML 
+	private ImageView car1ImageView;
+	
+	@FXML 
+	private ImageView car2ImageView;
+	
+	
+	@FXML 
+	private ImageView car3ImageView;
+
+	@FXML 
+	private ImageView car4ImageView;
+	
+	
+	@FXML 
+	private ImageView car5ImageView;
+	
 	
 	
 	
@@ -179,12 +212,16 @@ public class gamePlayController implements Initializable {
 	Image tocBienImage = new Image(getClass().getResourceAsStream("/img/asset/TocBien.jpg"));
 	Image tocHanhImage = new Image(getClass().getResourceAsStream("/img/asset/TocHanh.jpg"));
 	Image kietSucImage = new Image(getClass().getResourceAsStream("/img/asset/KietSuc.jpg"));
+	Image head1Image = new Image(getClass().getResourceAsStream("/img/asset/chars/head1.png"));
+	Image head2Image = new Image(getClass().getResourceAsStream("/img/asset/chars/head2.png"));
+	Image head3Image = new Image(getClass().getResourceAsStream("/img/asset/chars/head3.png"));
+	
 
 	Image podiumImage = new Image(getClass().getResourceAsStream("/img/asset/podium.png"));
 	
 	
 	Map<Double, ImageView> carMap = new TreeMap<>(Comparator.reverseOrder());
-	private double[] xepHang = new double[5];
+
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		// Load the road image
@@ -206,6 +243,9 @@ public class gamePlayController implements Initializable {
 		tocHanhImageView.setImage(tocHanhImage);
 		kietSucImageView.setImage(kietSucImage);
 		podiumImageView.setImage(podiumImage);
+		ImageView head1ImageView = new ImageView(head1Image);
+		ImageView head2ImageView = new ImageView(head2Image);
+		ImageView head3ImageView = new ImageView(head3Image);
 		
 		
 		roadImageView2.setVisible(false);
@@ -319,33 +359,95 @@ public class gamePlayController implements Initializable {
 //
 //	    initialDelay.play();
 	    
-	    
-	    
-	    
-	    originalX1 = car1ImageView.getTranslateX();
-	    originalX2 = car2ImageView.getTranslateX();
-	    originalX3 = car3ImageView.getTranslateX();
-	    originalX4 = car4ImageView.getTranslateX();
-	    originalX5 = car5ImageView.getTranslateX();
-	    
-	    TranslateTransition translateTransition1 = new TranslateTransition(Duration.seconds(0.5), car1ImageView);
-	    TranslateTransition translateTransition2 = new TranslateTransition(Duration.seconds(0.5), car2ImageView);
-	    TranslateTransition translateTransition3 = new TranslateTransition(Duration.seconds(0.5), car3ImageView);
-	    TranslateTransition translateTransition4 = new TranslateTransition(Duration.seconds(0.5), car4ImageView);
-	    TranslateTransition translateTransition5 = new TranslateTransition(Duration.seconds(0.5), car5ImageView);
+	    head1ImageView.setFitWidth(30); // Set the desired fit width
+	    head1ImageView.setFitHeight(30); // Set the desired fit height
 
-	    translateTransition1.setToX(50);
-	    translateTransition2.setToX(40);
-	    translateTransition3.setToX(20);
-	    translateTransition4.setToX(30);
-	    translateTransition5.setToX(50);
+	    head2ImageView.setFitWidth(30); // Set the desired fit width
+	    head2ImageView.setFitHeight(30); // Set the desired fit height
+
+	    
+	    head3ImageView.setFitWidth(30); // Set the desired fit width
+	    head3ImageView.setFitHeight(30); // Set the desired fit height
+	    
+	    if (settingMenuController.charID == 1) {
+	        car1StackPane.getChildren().setAll(car1ImageView, head1ImageView);
+
+	        if (random.nextBoolean()) {
+	            car2StackPane.getChildren().setAll(car2ImageView);
+	            car3StackPane.getChildren().setAll(car3ImageView, head2ImageView);
+	            car4StackPane.getChildren().setAll(car4ImageView, head3ImageView);
+	            car5StackPane.getChildren().setAll(car5ImageView);
+	        } else {
+	            car2StackPane.getChildren().setAll(car2ImageView, head3ImageView);
+	            car3StackPane.getChildren().setAll(car3ImageView);
+	            car4StackPane.getChildren().setAll(car4ImageView);
+	            car5StackPane.getChildren().setAll(car5ImageView, head2ImageView);
+	        }
+	    } else if (settingMenuController.charID == 2) {
+	        car1StackPane.getChildren().setAll(car1ImageView, head2ImageView);
+	        
+	        if (random.nextBoolean()) {
+	            car2StackPane.getChildren().setAll(car2ImageView, head3ImageView);
+	            car3StackPane.getChildren().setAll(car3ImageView);
+	            car4StackPane.getChildren().setAll(car4ImageView);
+	            car5StackPane.getChildren().setAll(car5ImageView, head1ImageView);
+	        } else {
+	            car2StackPane.getChildren().setAll(car2ImageView);
+	            car3StackPane.getChildren().setAll(car3ImageView, head1ImageView);
+	            car4StackPane.getChildren().setAll(car4ImageView, head3ImageView);
+	            car5StackPane.getChildren().setAll(car5ImageView);
+	        }
+	    } else {
+	        if (random.nextBoolean()) {
+	            car2StackPane.getChildren().setAll(car2ImageView, head2ImageView);
+	            car3StackPane.getChildren().setAll(car3ImageView);
+	            car4StackPane.getChildren().setAll(car4ImageView);
+	            car5StackPane.getChildren().setAll(car5ImageView, head1ImageView);
+	        } else {
+	            car2StackPane.getChildren().setAll(car2ImageView);
+	            car3StackPane.getChildren().setAll(car3ImageView, head2ImageView);
+	            car4StackPane.getChildren().setAll(car4ImageView, head1ImageView);
+	            car5StackPane.getChildren().setAll(car5ImageView);
+	        }
+	        car1StackPane.getChildren().setAll(car1ImageView, head3ImageView);
+	    }
+//	    AnchorPane.setTopAnchor(car1StackPane, AnchorPane.getTopAnchor(car1ImageView));
+//	    AnchorPane.setLeftAnchor(car1StackPane, AnchorPane.getLeftAnchor(car1ImageView));
+//	    AnchorPane.setRightAnchor(car1StackPane, AnchorPane.getRightAnchor(car1ImageView));
+//	    AnchorPane.setBottomAnchor(car1StackPane, AnchorPane.getBottomAnchor(car1ImageView));
+
+
+
 	    
 
-	    car1ImageView.setTranslateX(originalX1);
-	    car2ImageView.setTranslateX(originalX2);
-	    car3ImageView.setTranslateX(originalX3);
-	    car4ImageView.setTranslateX(originalX4);// Set the initial X position
-	    car5ImageView.setTranslateX(originalX5);// Set the initial X position
+
+
+	 originalX1 = car1StackPane.getTranslateX();
+	 originalX2 = car2StackPane.getTranslateX();
+	 originalX3 = car3StackPane.getTranslateX();
+	 originalX4 = car4StackPane.getTranslateX();
+	 originalX5 = car5StackPane.getTranslateX();
+
+	 TranslateTransition translateTransition1 = new TranslateTransition(Duration.seconds(0.5), car1StackPane);
+	 TranslateTransition translateTransition2 = new TranslateTransition(Duration.seconds(0.5), car2StackPane);
+	 TranslateTransition translateTransition3 = new TranslateTransition(Duration.seconds(0.5), car3StackPane);
+	 TranslateTransition translateTransition4 = new TranslateTransition(Duration.seconds(0.5), car4StackPane);
+	 TranslateTransition translateTransition5 = new TranslateTransition(Duration.seconds(0.5), car5StackPane);
+
+	 translateTransition1.setToX(50);
+	 translateTransition2.setToX(40);
+	 translateTransition3.setToX(20);
+	 translateTransition4.setToX(30);
+	 translateTransition5.setToX(50);
+
+	 car1StackPane.setTranslateX(originalX1);
+	 car2StackPane.setTranslateX(originalX2);
+	 car3StackPane.setTranslateX(originalX3);
+	 car4StackPane.setTranslateX(originalX4);// Set the initial X position
+	 car5StackPane.setTranslateX(originalX5);// Set the initial X position
+	 
+	 
+
 
 	    translateTransition1.setOnFinished(event -> {
 	        double newX;
@@ -469,44 +571,43 @@ public class gamePlayController implements Initializable {
 	    
 	    
 	    
-	    car1ImageView.translateXProperty().addListener((obs, oldValue, newValue) -> {
+	    car1StackPane.translateXProperty().addListener((obs, oldValue, newValue) -> {
 	        currentX1 = newValue.doubleValue();
 	        updatePlaceImageViews();
 
 	    });
 
-	    // Listener for car2ImageView position
-	    car2ImageView.translateXProperty().addListener((obs, oldValue, newValue) -> {
+	    // Listener for car2StackPane position
+	    car2StackPane.translateXProperty().addListener((obs, oldValue, newValue) -> {
 	        currentX2 = newValue;
 	        updatePlaceImageViews();
 	    });
 
-	    // Listener for car3ImageView position
-	    car3ImageView.translateXProperty().addListener((obs, oldValue, newValue) -> {
+	    // Listener for car3StackPane position
+	    car3StackPane.translateXProperty().addListener((obs, oldValue, newValue) -> {
 	        currentX3 = newValue;
 	        updatePlaceImageViews();
 	    });
 
-	    // Listener for car4ImageView position
-	    car4ImageView.translateXProperty().addListener((obs, oldValue, newValue) -> {
+	    // Listener for car4StackPane position
+	    car4StackPane.translateXProperty().addListener((obs, oldValue, newValue) -> {
 	        currentX4 = newValue;
 	        updatePlaceImageViews();
 	    });
 
-	    // Listener for car5ImageView position
-	    car5ImageView.translateXProperty().addListener((obs, oldValue, newValue) -> {
+	    // Listener for car5StackPane position
+	    car5StackPane.translateXProperty().addListener((obs, oldValue, newValue) -> {
 	        currentX5 = newValue;
 	        updatePlaceImageViews();
 	    });
 
 	    
-	    TranslateTransition endTranslateTransition1 = new TranslateTransition(Duration.seconds(1), car1ImageView);
-	    TranslateTransition endTranslateTransition2 = new TranslateTransition(Duration.seconds(1), car2ImageView);
-	    TranslateTransition endTranslateTransition3 = new TranslateTransition(Duration.seconds(1), car3ImageView);
-	    TranslateTransition endTranslateTransition4 = new TranslateTransition(Duration.seconds(1), car4ImageView);
-	    TranslateTransition endTranslateTransition5 = new TranslateTransition(Duration.seconds(1), car5ImageView);
+	    TranslateTransition endTranslateTransition1 = new TranslateTransition(Duration.seconds(1), car1StackPane);
+	    TranslateTransition endTranslateTransition2 = new TranslateTransition(Duration.seconds(1), car2StackPane);
+	    TranslateTransition endTranslateTransition3 = new TranslateTransition(Duration.seconds(1), car3StackPane);
+	    TranslateTransition endTranslateTransition4 = new TranslateTransition(Duration.seconds(1), car4StackPane);
+	    TranslateTransition endTranslateTransition5 = new TranslateTransition(Duration.seconds(1), car5StackPane);
 	    
-	    double initialDuration = 3.0; // Initial duration of the transition in seconds
 	    double decelerationRate = 0.8; // Rate at which the transition slows down
 	    Interpolator deceleratingInterpolator = new Interpolator() {
 	        @Override
@@ -649,7 +750,7 @@ public class gamePlayController implements Initializable {
 			translateTransition1.stop(); // Stop the current transition
 		    double currentX = car1ImageView.getTranslateX(); // Get the current X position
 	    	double newX = currentX + 100;
-	    	car1ImageView.setTranslateX(newX);
+	    	car1StackPane.setTranslateX(newX);
 	    	originalX1 = newX;
 
 	        
@@ -660,9 +761,9 @@ public class gamePlayController implements Initializable {
 		tocHanhImageView.setOnMouseClicked((MouseEvent mouseevent) -> {
 			tocHanhImageView.setDisable(true);
 			translateTransition1.stop(); // Stop the current transition
-		    double currentX = car1ImageView.getTranslateX(); // Get the current X position
+		    double currentX = car1StackPane.getTranslateX(); // Get the current X position
 	    	double newX = currentX + 120;
-	    	TranslateTransition newTransition = new TranslateTransition(Duration.seconds(3), car1ImageView);
+	    	TranslateTransition newTransition = new TranslateTransition(Duration.seconds(3), car1StackPane);
 	    	originalX1 = newX;
 	        newTransition.setToX(newX);
 	        newTransition.play();
@@ -682,10 +783,10 @@ public class gamePlayController implements Initializable {
 	    	double newX3 = originalX3 - 80;
 	    	double newX4 = originalX4 - 80;
 	    	double newX5 = originalX5 - 80;
-	    	TranslateTransition newTransition2 = new TranslateTransition(Duration.seconds(1), car2ImageView);
-	    	TranslateTransition newTransition3 = new TranslateTransition(Duration.seconds(1), car3ImageView);
-	    	TranslateTransition newTransition4 = new TranslateTransition(Duration.seconds(1), car4ImageView);
-	    	TranslateTransition newTransition5 = new TranslateTransition(Duration.seconds(1), car5ImageView);
+	    	TranslateTransition newTransition2 = new TranslateTransition(Duration.seconds(1), car2StackPane);
+	    	TranslateTransition newTransition3 = new TranslateTransition(Duration.seconds(1), car3StackPane);
+	    	TranslateTransition newTransition4 = new TranslateTransition(Duration.seconds(1), car4StackPane);
+	    	TranslateTransition newTransition5 = new TranslateTransition(Duration.seconds(1), car5StackPane);
 	    	
 	    	originalX2 = newX2;
 	    	originalX3 = newX3;
@@ -818,39 +919,6 @@ public class gamePlayController implements Initializable {
 		this.originalX4 = originalX4;
 	}
 
-	public void useItem(double originalX, TranslateTransition translateTransition, int item, ImageView imageView) {
-	    if(item == 1) {
-	    	
-
-	    }
-	    
-	    if(item == 2) {
-	    	translateTransition.stop(); // Stop the current transition
-		    double currentX = imageView.getTranslateX(); // Get the current X position
-	    	double newX = currentX + 150;
-	    	TranslateTransition newTransition = new TranslateTransition(Duration.seconds(3), imageView);
-	        newTransition.setToX(newX);
-	        newTransition.play();
-	        newTransition.setOnFinished(event -> {
-	            translateTransition.setDuration(Duration.seconds(random.nextInt(3) + 1));
-	            translateTransition.play();
-	        });
-	    }
-	    
-	    if(item == 3) {
-	    	translateTransition.stop(); // Stop the current transition
-		    double currentX = imageView.getTranslateX(); // Get the current X position
-	    	double newX = currentX - 50;
-	    	TranslateTransition newTransition = new TranslateTransition(Duration.seconds(2), imageView);
-	        newTransition.setToX(newX);
-	        newTransition.play();
-	        newTransition.setOnFinished(event -> {
-	            translateTransition.setDuration(Duration.seconds(random.nextInt(3) + 1));
-	            translateTransition.play();
-	        });
-	    }
-		
-	}
 	
 	public void vatPhamImageViewSetUp(ImageView imageView) {
         // Set event handler for mouse hover
@@ -895,63 +963,90 @@ public class gamePlayController implements Initializable {
 	
 	
 	private void updatePlaceImageViews() {
-		List<ImageView> placeImageViews = Arrays.asList(firstCarPositionImageView, secondCarPositionImageView, thirdCarPositionImageView);
+	    List<StackPane> placeStackPanes = Arrays.asList(firstCarPositionStackPane, secondCarPositionStackPane, thirdCarPositionStackPane);
 
 	    // Create a list of the ImageView objects
-	    List<ImageView> carImageViews = Arrays.asList(car1ImageView, car2ImageView, car3ImageView, car4ImageView, car5ImageView);
+	    List<StackPane> carStackPanes = Arrays.asList(car1StackPane, car2StackPane, car3StackPane, car4StackPane, car5StackPane);
 
-	    // Sort the carImageViews based on the currentX values in descending order
-	    carImageViews.sort(Comparator.comparingDouble(ImageView::getTranslateX).reversed());
+	    // Sort the carStackPanes based on the translateX values in descending order
+	    carStackPanes.sort(Comparator.comparingDouble(StackPane::getTranslateX).reversed());
 
-	    // Clear the placeImageViews
-	    for (ImageView imageView : placeImageViews) {
-	        imageView.setImage(null);
+	    // Clear the placeStackPanes
+	    for (StackPane stackPane : placeStackPanes) {
+	        stackPane.getChildren().clear();
 	    }
 
-	    // Update the placeImageViews with the top three carImageViews
-	    for (int i = 0; i < Math.min(carImageViews.size(), placeImageViews.size()); i++) {
-	        ImageView carImageView = carImageViews.get(i);
-	        ImageView placeImageView = placeImageViews.get(i);
-	        placeImageView.setImage(carImageView.getImage());
+	    // Update the placeStackPanes with the top three carStackPanes
+	    for (int i = 0; i < Math.min(carStackPanes.size(), placeStackPanes.size()); i++) {
+	        StackPane carStackPane = carStackPanes.get(i);
+	        StackPane placeStackPane = placeStackPanes.get(i);
+
+	        // Create new ImageView instances and add them to the placeStackPane
+	        for (Node child : carStackPane.getChildren()) {
+	            if (child instanceof ImageView) {
+	                ImageView originalImageView = (ImageView) child;
+	                ImageView newImageView = new ImageView(originalImageView.getImage());
+	                newImageView.setFitWidth(originalImageView.getFitWidth() * 1.2);
+	                newImageView.setFitHeight(originalImageView.getFitHeight() * 1.2);
+	                placeStackPane.getChildren().add(newImageView);
+	            }
+	        }
 	    }
 	}
+
+
+	
+
+
+
 	
 	private void setPodiumPlaceImageViews() {
-		List<ImageView> placeImageViews = Arrays.asList(podiumFirstPlaceImageView, podiumSecondPlaceImageView, podiumThirdPlaceImageView);
+	    List<StackPane> placeStackPanes = Arrays.asList(podiumFirstPlaceStackPane, podiumSecondPlaceStackPane, podiumThirdPlaceStackPane);
 
 	    // Create a list of the ImageView objects
-	    List<ImageView> carImageViews = Arrays.asList(car1ImageView, car2ImageView, car3ImageView, car4ImageView, car5ImageView);
+	    List<StackPane> carStackPanes = Arrays.asList(car1StackPane, car2StackPane, car3StackPane, car4StackPane, car5StackPane);
 
-	    // Sort the carImageViews based on the currentX values in descending order
-	    carImageViews.sort(Comparator.comparingDouble(ImageView::getTranslateX).reversed());
+	    // Sort the carStackPanes based on the translateX values in descending order
+	    carStackPanes.sort(Comparator.comparingDouble(StackPane::getTranslateX).reversed());
 
-	    // Clear the placeImageViews
-	    for (ImageView imageView : placeImageViews) {
-	        imageView.setImage(null);
+	    // Clear the placeStackPanes
+	    for (StackPane stackPane : placeStackPanes) {
+	        stackPane.getChildren().clear();
 	    }
 
-	    // Update the placeImageViews with the top three carImageViews
-	    for (int i = 0; i < Math.min(carImageViews.size(), placeImageViews.size()); i++) {
-	        ImageView carImageView = carImageViews.get(i);
-	        ImageView placeImageView = placeImageViews.get(i);
-	        placeImageView.setImage(carImageView.getImage());
+	    // Update the placeStackPanes with the top three carStackPanes
+	    for (int i = 0; i < Math.min(carStackPanes.size(), placeStackPanes.size()); i++) {
+	    	StackPane carStackPane = carStackPanes.get(i);
+	        StackPane placeStackPane = placeStackPanes.get(i);
+
+	        // Create new ImageView instances and add them to the placeStackPane
+	        for (Node child : carStackPane.getChildren()) {
+	            if (child instanceof ImageView) {
+	                ImageView originalImageView = (ImageView) child;
+	                ImageView newImageView = new ImageView(originalImageView.getImage());
+	                newImageView.setFitWidth(originalImageView.getFitWidth() * 1.5);
+	                newImageView.setFitHeight(originalImageView.getFitHeight() * 1.5);
+	                placeStackPane.getChildren().add(newImageView);
+	            }
+	        }
 	    }
-	    
-	    if (carImageViews.get(0) == car1ImageView) {
-	        thongBaoText.setText("Chúc mừng, bạn đã về nhất và chiến thắng!");
-	        soTienAnDuocText.setText("Số tiền ăn được: Tien cuoc * 4");
-	    } else if(carImageViews.get(1) == car1ImageView){
-	        thongBaoText.setText("Rất tiếc, bạn đã về nhì, chỉ 1 chút nữa thôi!");
-	        soTienAnDuocText.setText("Số tiền ăn được: Tien cuoc * 0.5");
-	    } else if (carImageViews.get(2) == car1ImageView) {
-	    	thongBaoText.setText("Thật đáng tiếc, bạn đã về ba, cố hơn nữa nhé!");
-	    	soTienAnDuocText.setText("Số tiền ăn được: Tien cuoc * 0.5");
+
+	    // Check the position of car1StackPane and update the UI accordingly
+	    if (carStackPanes.indexOf(car1StackPane) == 0) {
+	        thongBaoText.setText("Chúc mừng, bạn đã về nhất và chiến thắng!");
+	        soTienAnDuocText.setText("Số tiền ăn được: Tiền cược * 4");
+	    } else if (carStackPanes.indexOf(car1StackPane) == 1) {
+	        thongBaoText.setText("Rất tiếc, bạn đã về nhì, chỉ 1 chút nữa thôi!");
+	        soTienAnDuocText.setText("Số tiền ăn được: Tiền cược * 0.5");
+	    } else if (carStackPanes.indexOf(car1StackPane) == 2) {
+	        thongBaoText.setText("Thật đáng tiếc, bạn đã về ba, cố hơn nữa nhé!");
+	        soTienAnDuocText.setText("Số tiền ăn được: Tiền cược * 0.5");
 	    } else {
-	    	thongBaoText.setText("Không sao, cố gắng cải thiện hơn bạn nhé! ");
-	    	soTienAnDuocText.setText("Số tiền ăn được: 0");
+	        thongBaoText.setText("Không sao, cố gắng cải thiện hơn bạn nhé!");
+	        soTienAnDuocText.setText("Số tiền ăn được: 0");
 	    }
 	}
-	
+
 	public void playCongratEffect() {
 		// Create a File object with the path to the video file
         String videoPath = "src/music/congratEffect.mp4";
