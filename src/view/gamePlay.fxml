@@ -66,7 +66,7 @@
                   <StackPane fx:id="car2StackPane" layoutX="14.0" layoutY="269.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="62.0" />
                   <StackPane fx:id="car3StackPane" layoutX="14.0" layoutY="307.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="62.0" />
                   <StackPane fx:id="car4StackPane" layoutX="14.0" layoutY="345.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="62.0" />
-                  <StackPane fx:id="car5StackPane" layoutX="14.0" layoutY="391.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="62.0" />
+                  <StackPane fx:id="car5StackPane" layoutX="14.0" layoutY="380.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="62.0" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="podiumAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="529.0">

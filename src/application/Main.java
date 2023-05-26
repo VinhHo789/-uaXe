@@ -52,7 +52,7 @@ public class Main extends Application {
     
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/GiaodienUI.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/view/login.fxml"));
             Scene scene = new Scene(root);
             
             // Load configuration file

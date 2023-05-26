@@ -183,7 +183,7 @@ public class gamePlayController implements Initializable {
 	private double startTimeroad2 = 0;
 	private double duration_second = 1;
 	private double speed = 4;
-	private int loop_rounds = 1;
+	private int loop_rounds = 2;
 	private int countdown = 4;
 	
 	private double widthImage = 880;
@@ -225,11 +225,13 @@ public class gamePlayController implements Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		// Load the road image
-		
-		Image roadImage1 = new Image(getClass().getResourceAsStream("/img/map/map2.jpg"));
-		Image roadImage2 = new Image(getClass().getResourceAsStream("/img/map/map3.jpg"));
-		Image startingroadImage = new Image(getClass().getResourceAsStream("/img/map/startingmap.jpg"));
-		Image endingroadImage = new Image(getClass().getResourceAsStream("/img/map/endingmap.jpg"));
+		if(true) {
+			
+		}
+		Image roadImage1 = new Image(getClass().getResourceAsStream("/img/map/3-map2.png"));
+		Image roadImage2 = new Image(getClass().getResourceAsStream("/img/map/3-map1.png"));
+		Image startingroadImage = new Image(getClass().getResourceAsStream("/img/map/3-startingmap.png"));
+		Image endingroadImage = new Image(getClass().getResourceAsStream("/img/map/3-endingmap.png"));
 		roadImageView1.setImage(roadImage1);
 		roadImageView2.setImage(roadImage2);
 		startingRoadImageView.setImage(startingroadImage);
@@ -642,6 +644,7 @@ public class gamePlayController implements Initializable {
 		endtimeline.setCycleCount(1);
 		timeline.setCycleCount(loop_rounds); 
 		timeline2.setCycleCount(loop_rounds);
+		CommonFunction.stop();
 		CommonFunction.musicFilePath="src/music/countdown.mp3";
 		CommonFunction.play();
 		countdownTimeline.play();

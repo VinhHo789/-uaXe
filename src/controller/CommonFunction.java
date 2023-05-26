@@ -23,8 +23,8 @@ public class CommonFunction {
 	protected static String CONFIG_FILE_PATH = "config.properties";
     protected static String VOLUME_KEY = "volume";
     public static String musicFilePath = "src/music/LND.mp3";
-    public static Media media; 
-    public static MediaPlayer mediaPlayer;
+    public static Media media = new Media(new File(musicFilePath).toURI().toString());; 
+    public static MediaPlayer mediaPlayer = new MediaPlayer(media);
     protected static int money = 0;
     public static boolean []vatPham = new boolean[3]; //1: TocBien, 2: TocHanh, 3: KietSuc
     
