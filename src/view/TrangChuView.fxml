@@ -205,7 +205,7 @@
                            <children>
                               <Label text="Ít Nhất: 1 vàng " textFill="WHITE" />
                               <Label text="Nhiều Nhất: Không giới hạn" textFill="WHITE" />
-                              <TextField promptText="Nhập số tiền muốn cược vào" />
+                              <TextField fx:id="nhapTienCuocTextField" onAction="#handleNhapTienCuocTextFieldAction" promptText="Nhập số tiền muốn cược vào" />
                            </children>
                         </VBox>
                         <Button fx:id="QuayLaiMap_Choosing" layoutX="252.0" layoutY="451.0" mnemonicParsing="false" onAction="#QuayLaiMap_Choosing" prefHeight="46.0" prefWidth="104.0" text="Quay Lại" />
@@ -218,7 +218,7 @@
       </BorderPane>
       <VBox id="Item_Chosing" fx:id="Item_Chosing" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="888.0" visible="false">
          <children>
-            <Label alignment="CENTER" prefHeight="94.0" prefWidth="1441.0" text="CHÀO MỪNG BẠN ĐÃ ĐẾN TRƯỜNG ĐUA" textAlignment="CENTER">
+            <Label fx:id="doDaiDuongDuaText" alignment="CENTER" prefHeight="90.0" prefWidth="888.0" text="CHÀO MỪNG BẠN ĐÃ ĐẾN TRƯỜNG ĐUA" textAlignment="CENTER">
                <font>
                   <Font size="38.0" />
                </font>
@@ -226,7 +226,7 @@
                   <Insets top="60.0" />
                </VBox.margin>
             </Label>
-            <Label alignment="CENTER" prefHeight="18.0" prefWidth="1443.0" text="ĐƯỜNG ĐUA MẪU X">
+            <Label fx:id="mauDuongDua" alignment="CENTER" prefHeight="18.0" prefWidth="1443.0" text="ĐƯỜNG ĐUA MẪU X">
                <font>
                   <Font size="60.0" />
                </font>
@@ -239,8 +239,7 @@
                   <Insets top="30.0" />
                </VBox.margin>
             </Label>
-            <Label />
-            <AnchorPane prefHeight="226.0" prefWidth="888.0">
+            <AnchorPane prefHeight="330.0" prefWidth="888.0">
                <children>
                   <Line endX="426.26336669921875" layoutX="368.0" layoutY="16.0" startX="-238.0" startY="-1.1444091796875E-5" strokeWidth="3.0">
                      <effect>
@@ -255,52 +254,61 @@
                   </Label>
                   <HBox layoutX="146.0" layoutY="63.0" prefHeight="126.0" prefWidth="647.0" spacing="130.0">
                      <children>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
+                        <VBox fx:id="kietSuc" prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <ImageView fitHeight="110.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../img/asset/KietSuc.jpg" />
                                  </image>
                               </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vật Phẩm 1" textAlignment="CENTER" wrappingWidth="109.33667373657227" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="30 vàng" textAlignment="CENTER" wrappingWidth="109.33667373657227" />
                            </children>
                         </VBox>
-                        <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                        <VBox fx:id="tocBien" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <ImageView fitHeight="110.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../img/asset/TocBien.jpg" />
                                  </image>
                               </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vật Phẩm 2" textAlignment="CENTER" wrappingWidth="109.33667373657227" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="15 vàng" textAlignment="CENTER" wrappingWidth="109.33667373657227" />
                            </children>
                         </VBox>
-                        <VBox layoutX="240.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                        <VBox fx:id="tocHanh" layoutX="240.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <ImageView fitHeight="110.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../img/asset/TocHanh.jpg" />
                                  </image>
                               </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vật Phẩm 3" textAlignment="CENTER" wrappingWidth="109.33667373657227" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="10 vàng" textAlignment="CENTER" wrappingWidth="109.33667373657227" />
                            </children>
                         </VBox>
                      </children>
                   </HBox>
+                  <Text layoutX="571.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số Vàng của bạn:" wrappingWidth="185.18340301513672">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Label fx:id="goldAmount_value" layoutX="756.0" layoutY="204.0" text=".">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
                </children>
                <VBox.margin>
                   <Insets />
                </VBox.margin>
             </AnchorPane>
-            <Button fx:id="playGameButton" graphicTextGap="3.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="198.0" text="BẮT ĐẦU">
+            <Button fx:id="playGameButton" graphicTextGap="3.0" mnemonicParsing="false" prefHeight="94.0" prefWidth="198.0" text="BẮT ĐẦU">
                <font>
                   <Font size="34.0" />
                </font>
                <VBox.margin>
-                  <Insets left="350.0" />
+                  <Insets bottom="20.0" left="350.0" />
                </VBox.margin>
             </Button>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Số tiền người chơi " textAlignment="RIGHT" wrappingWidth="1334.9366455078125" />
          </children>
       </VBox>
 	</children>

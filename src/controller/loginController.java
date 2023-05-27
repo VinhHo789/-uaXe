@@ -361,6 +361,10 @@ public class loginController implements Initializable {
     		scene.setRoot(root);
     		CommonFunction.play();
     		CommonFunction.volume = 0.5;
+    		CommonFunction.gold = accounts_gold.get(username);
+    		CommonFunction.username = username;
+    		CommonFunction.accounts_gold = accounts_gold;
+    		CommonFunction.accounts = accounts;
     	}else {
     		loginErr.setVisible(true);
     		loginShowPassWord.clear();
