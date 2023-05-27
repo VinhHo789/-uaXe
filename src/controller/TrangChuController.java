@@ -13,12 +13,15 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.control.Alert;
 
@@ -73,6 +76,22 @@ public class TrangChuController {
     private Button playGameButton;
     
     @FXML
+    private Button ngan;
+    @FXML
+    private Button trungbinh;
+    @FXML
+    private Button dai;
+    
+    @FXML
+    private Tab duongnhua;
+    
+    @FXML
+    private Tab duongdat;
+    
+    @FXML
+    private Tab duongbaron;
+    
+    @FXML
     private VBox kietSuc;
     @FXML
     private VBox tocBien;
@@ -80,8 +99,21 @@ public class TrangChuController {
     private VBox tocHanh;
     @FXML
     private Label goldAmount_value;
-
     
+    @FXML
+    private ImageView xedo;
+    @FXML
+    private ImageView xecam;
+    @FXML
+    private ImageView xevang;
+    @FXML
+    private ImageView xexanhla;
+    @FXML
+    private ImageView xexanhduong;
+
+    private Tab selectedMap;
+    private Button selectedLength;
+    private ImageView selectedCar;
 
     public void initialize() {
         HomePage.setVisible(true);
@@ -95,10 +127,63 @@ public class TrangChuController {
         });
         setPlayerName(CommonFunction.username);
         setGoldAmount(CommonFunction.gold);
-        handleItem_chosing_kietSuc ();
+        handleItem_chosing (kietSuc,50);
+        handleItem_chosing(tocBien,30);
+        handleItem_chosing(tocHanh,40);
+        setButtonAnimation(ngan);
+        setButtonAnimation(dai);
+        setButtonAnimation(trungbinh);
+        
+        duongdat.setOnSelectionChanged(event -> handleMapSelection(duongdat));
+        duongnhua.setOnSelectionChanged(event -> handleMapSelection(duongnhua));
+        duongbaron.setOnSelectionChanged(event -> handleMapSelection(duongbaron));
+
+        ngan.setOnAction(event -> handleLengthSelection(ngan));
+        trungbinh.setOnAction(event -> handleLengthSelection(trungbinh));
+        dai.setOnAction(event -> handleLengthSelection(dai));
+        
+        xedo.setOnMouseClicked(event -> handleCarSelection(xedo));
+        xecam.setOnMouseClicked(event -> handleCarSelection(xecam));
+        xevang.setOnMouseClicked(event -> handleCarSelection(xevang));
+        xexanhduong.setOnMouseClicked(event -> handleCarSelection(xexanhduong));
+        xexanhla.setOnMouseClicked(event -> handleCarSelection(xexanhla));
+    }
+    
+    private void handleMapSelection(Tab tab) {
+        if (tab.isSelected()) {
+            selectedMap = tab;
+        }
     }
 
-    public void setPlayerName(String playerName) {
+    private void handleLengthSelection(Button button) {
+        selectedLength = button;
+    }
+    
+    private void handleCarSelection(ImageView carImageView) {
+        if (selectedCar != null) {
+            // Đặt lại hiệu ứng của xe trước đó (nếu có)
+            selectedCar.setEffect(null);
+        }
+
+        // Đặt hiệu ứng cho xe đang được chọn
+        carImageView.setEffect(new DropShadow(10, Color.YELLOW));
+
+        // Cập nhật biến selectedCar với xe đang được chọn
+        selectedCar = carImageView;
+    }
+
+    private void setButtonAnimation(Button ButtonName) {
+    	ButtonName.setStyle("-fx-background-color: linear-gradient(#ff5400, #be1d00); -fx-background-radius: 30; -fx-text-fill: white; -fx-font-size: 24px; -fx-padding: 10px 20px; -fx-border-color: white; -fx-border-radius: 30; -fx-font-weight: bold; -fx-effect: innershadow(gaussian, #333333, 10, 0.5, 0, 5);");
+
+    	ButtonName.setOnMouseEntered(e -> {
+    		ButtonName.setStyle("-fx-background-color: linear-gradient(#be1d00, #ff5400); -fx-background-radius: 30; -fx-text-fill: white; -fx-font-size: 24px; -fx-padding: 10px 20px; -fx-border-color: white; -fx-border-radius: 30; -fx-font-weight: bold; -fx-effect: innershadow(gaussian, #333333, 10, 0.5, 0, 5);");
+    	});
+    	ButtonName.setOnMouseExited(e -> {
+    		ButtonName.setStyle("-fx-background-color: linear-gradient(#ff5400, #be1d00); -fx-background-radius: 30; -fx-text-fill: white; -fx-font-size: 24px; -fx-padding: 10px 20px; -fx-border-color: white; -fx-border-radius: 30; -fx-font-weight: bold; -fx-effect: innershadow(gaussian, #333333, 10, 0.5, 0, 5);");
+    	});
+	}
+
+	public void setPlayerName(String playerName) {
         playerNameField.setText(playerName);
     }
 
@@ -128,9 +213,22 @@ public class TrangChuController {
     }
     @FXML
     private void TiepTucCarChoosing() {
-        Map_Choosing.setVisible(false);
-        Car_Choosing.setVisible(true);
+        if (selectedMap != null && selectedLength != null) {
+            String selectedMapId = selectedMap.getId();
+            String selectedLengthId = selectedLength.getId();
+
+            // Xử lý dựa trên map và độ dài đã chọn
+            Map_Choosing.setVisible(false);
+            Car_Choosing.setVisible(true);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Lỗi");
+            alert.setHeaderText(null);
+            alert.setContentText("Vui lòng chọn map và độ dài trước khi tiếp tục!");
+            alert.showAndWait();
+        }
     }
+    
     @FXML 
     private void QuayLaiMap_Choosing() {
     //dang ở carchosing, quay lại map choosing
@@ -152,10 +250,21 @@ public class TrangChuController {
                 int soVangConLai = soVangHienCo - soTienDatCuoc;
                 setGoldAmount(soVangConLai);
                 CommonFunction.gold-=soTienDatCuoc;
+                
 
+                if(selectedCar!= null) {
                 // Hiển thị giao diện của Item Choosing
                 HomePage1.setVisible(false);
                 Item_Chosing.setVisible(true);
+                }
+                else {
+                	// Người chơi chưa chọn xe, hiển thị thông báo lỗi
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Lỗi");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Vui lòng chọn một xe trước khi bắt đầu cuộc đua!");
+                    alert.showAndWait();
+                }
             }
         } catch (NumberFormatException e) {
             // Xử lý lỗi nếu người dùng nhập kí tự không phải số
@@ -206,15 +315,14 @@ public class TrangChuController {
         }
     }
     
-    public void handleItem_chosing_kietSuc () {
+    public void handleItem_chosing (VBox itemName, int giaTriVatPham) {
     // Gắn sự kiện click chuột cho VBox "kietSuc"
-    kietSuc.setOnMouseClicked(new EventHandler<MouseEvent>() {
+    itemName.setOnMouseClicked(new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
             try {
+            	goldAmount_value.setText(String.valueOf(CommonFunction.gold));
                 int soVangHienCo =  CommonFunction.gold;
-                int giaTriVatPham = 50;
-
                 if (soVangHienCo < giaTriVatPham) {
                     Alert alert = new Alert(AlertType.WARNING, "Bạn không đủ số vàng để mua vật phẩm này!", ButtonType.OK);
                     alert.showAndWait();
@@ -222,7 +330,9 @@ public class TrangChuController {
                     // Trừ tiền và ẩn VBox
                     goldAmount_value.setText(String.valueOf(soVangHienCo - giaTriVatPham));
                     CommonFunction.gold-=giaTriVatPham;
-                    kietSuc.setVisible(false);
+                    //Xử lí thêm Vật Phẩm vào mảng.
+                    
+                    itemName.setVisible(false);
                 }
             } catch (NumberFormatException e) {
                 Alert alert = new Alert(AlertType.ERROR, "Số vàng không hợp lệ!", ButtonType.OK);
@@ -231,5 +341,6 @@ public class TrangChuController {
         }
     });
     }
+    
 }
 
