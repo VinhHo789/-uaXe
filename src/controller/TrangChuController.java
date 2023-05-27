@@ -11,9 +11,11 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 public class TrangChuController {
 
@@ -32,19 +34,28 @@ public class TrangChuController {
     private TextField goldAmountField;
     
     @FXML
-    private BorderPane HomePage; 
-
-    @FXML
-    private BorderPane Map_Choosing;
+    private ImageView setting;
     
     @FXML
-    private BorderPane Car_Choosing;
+    private Text thoatgame;
+    
+    @FXML
+    private BorderPane HomePage1;
+    
+    @FXML
+    private AnchorPane HomePage; 
+
+    @FXML
+    private AnchorPane Map_Choosing;
+    
+    @FXML
+    private AnchorPane Car_Choosing;
     
     @FXML
     private VBox Item_Chosing;
     
     @FXML
-    private Button VaoDua;
+    private Button VaoDua;//button home
     
     @FXML
     private Button QuayLai;
@@ -63,7 +74,6 @@ public class TrangChuController {
     
 
     public void initialize() {
-        readAccountDataFromFile();
         HomePage.setVisible(true);
         Map_Choosing.setVisible(false);
         
@@ -84,28 +94,6 @@ public class TrangChuController {
         goldAmountField.setText(String.valueOf(goldAmount));
     }
     
-//hàm đọc dữ liệu từ file --để là tên đăng nhập đầu tiên trong mảng
-    private void readAccountDataFromFile() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
-            String line;
-            String playerName = null;
-            int goldAmount = 0;
-
-            while ((line = reader.readLine()) != null) {
-                if (line.startsWith(USERNAME)) {
-                    playerName = line.substring(line.indexOf(":") + 1).trim();
-                } else if (line.startsWith(GOLD)) {
-                    goldAmount = Integer.parseInt(line.substring(line.indexOf(":") + 1).trim());
-                    break; // Stop reading after finding the first gold amount
-                }
-            }
-
-            setPlayerName(playerName);
-            setGoldAmount(goldAmount);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
     @FXML
     private void handleVaoDuaButtonClick() {
     		HomePage.setVisible(false);
@@ -130,11 +118,9 @@ public class TrangChuController {
     }
     @FXML
     private void TiepTuc_ItemChoosing() {
-    	//dang ơi car choosing->Itemchoosing
-    	Car_Choosing.setVisible(false);
+    	//dang ở car choosing->Itemchoosing
+    	HomePage1.setVisible(false);
     	Item_Chosing.setVisible(true);
     }
-    
-    
 }
 

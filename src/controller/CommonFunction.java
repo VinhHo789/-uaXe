@@ -30,8 +30,6 @@ public class CommonFunction {
     
     
     
-
-   
     public static void play() {
     	media =  new Media(new File(musicFilePath).toURI().toString());
     	mediaPlayer = new MediaPlayer(media);
