@@ -9,21 +9,23 @@ import java.util.Map;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.scene.control.Alert;
 
 public class TrangChuController {
-
-    public static Map<String, String> accounts = new HashMap<>();
-    public static Map<String, Integer> accounts_gold = new HashMap<>();
-    final String FILE_PATH = "src/data/accountData";
-    final String USERNAME = "Username";
-    final String PASSWORD = "Password";
-    final String GOLD = "Gold";
-    final Integer INIT_GOLD = 1000;
 
     @FXML
     private TextField playerNameField;
@@ -32,19 +34,31 @@ public class TrangChuController {
     private TextField goldAmountField;
     
     @FXML
-    private BorderPane HomePage; 
-
-    @FXML
-    private BorderPane Map_Choosing;
+    private ImageView setting;
     
     @FXML
-    private BorderPane Car_Choosing;
+    private Text thoatgame;
+    
+    @FXML
+    private TextField nhapTienCuocTextField;
+    
+    @FXML
+    private BorderPane HomePage1;
+    
+    @FXML
+    private AnchorPane HomePage; 
+
+    @FXML
+    private AnchorPane Map_Choosing;
+    
+    @FXML
+    private AnchorPane Car_Choosing;
     
     @FXML
     private VBox Item_Chosing;
     
     @FXML
-    private Button VaoDua;
+    private Button VaoDua;//button home
     
     @FXML
     private Button QuayLai;
@@ -61,9 +75,47 @@ public class TrangChuController {
     @FXML
     private Button playGameButton;
     
+    @FXML
+    private Button ngan;
+    @FXML
+    private Button trungbinh;
+    @FXML
+    private Button dai;
+    
+    @FXML
+    private Tab duongnhua;
+    
+    @FXML
+    private Tab duongdat;
+    
+    @FXML
+    private Tab duongbaron;
+    
+    @FXML
+    private VBox kietSuc;
+    @FXML
+    private VBox tocBien;
+    @FXML
+    private VBox tocHanh;
+    @FXML
+    private Label goldAmount_value;
+    
+    @FXML
+    private ImageView xedo;
+    @FXML
+    private ImageView xecam;
+    @FXML
+    private ImageView xevang;
+    @FXML
+    private ImageView xexanhla;
+    @FXML
+    private ImageView xexanhduong;
+
+    private Tab selectedMap;
+    private Button selectedLength;
+    private ImageView selectedCar;
 
     public void initialize() {
-        readAccountDataFromFile();
         HomePage.setVisible(true);
         Map_Choosing.setVisible(false);
         
@@ -73,10 +125,65 @@ public class TrangChuController {
             	CommonFunction.sceneTransition("/view/gamePlay.fxml", event);
             }
         });
-		
+        setPlayerName(CommonFunction.username);
+        setGoldAmount(CommonFunction.gold);
+        handleItem_chosing (kietSuc,50);
+        handleItem_chosing(tocBien,30);
+        handleItem_chosing(tocHanh,40);
+        setButtonAnimation(ngan);
+        setButtonAnimation(dai);
+        setButtonAnimation(trungbinh);
+        
+        duongdat.setOnSelectionChanged(event -> handleMapSelection(duongdat));
+        duongnhua.setOnSelectionChanged(event -> handleMapSelection(duongnhua));
+        duongbaron.setOnSelectionChanged(event -> handleMapSelection(duongbaron));
+
+        ngan.setOnAction(event -> handleLengthSelection(ngan));
+        trungbinh.setOnAction(event -> handleLengthSelection(trungbinh));
+        dai.setOnAction(event -> handleLengthSelection(dai));
+        
+        xedo.setOnMouseClicked(event -> handleCarSelection(xedo));
+        xecam.setOnMouseClicked(event -> handleCarSelection(xecam));
+        xevang.setOnMouseClicked(event -> handleCarSelection(xevang));
+        xexanhduong.setOnMouseClicked(event -> handleCarSelection(xexanhduong));
+        xexanhla.setOnMouseClicked(event -> handleCarSelection(xexanhla));
+    }
+    
+    private void handleMapSelection(Tab tab) {
+        if (tab.isSelected()) {
+            selectedMap = tab;
+        }
     }
 
-    public void setPlayerName(String playerName) {
+    private void handleLengthSelection(Button button) {
+        selectedLength = button;
+    }
+    
+    private void handleCarSelection(ImageView carImageView) {
+        if (selectedCar != null) {
+            // Đặt lại hiệu ứng của xe trước đó (nếu có)
+            selectedCar.setEffect(null);
+        }
+
+        // Đặt hiệu ứng cho xe đang được chọn
+        carImageView.setEffect(new DropShadow(10, Color.YELLOW));
+
+        // Cập nhật biến selectedCar với xe đang được chọn
+        selectedCar = carImageView;
+    }
+
+    private void setButtonAnimation(Button ButtonName) {
+    	ButtonName.setStyle("-fx-background-color: linear-gradient(#ff5400, #be1d00); -fx-background-radius: 30; -fx-text-fill: white; -fx-font-size: 24px; -fx-padding: 10px 20px; -fx-border-color: white; -fx-border-radius: 30; -fx-font-weight: bold; -fx-effect: innershadow(gaussian, #333333, 10, 0.5, 0, 5);");
+
+    	ButtonName.setOnMouseEntered(e -> {
+    		ButtonName.setStyle("-fx-background-color: linear-gradient(#be1d00, #ff5400); -fx-background-radius: 30; -fx-text-fill: white; -fx-font-size: 24px; -fx-padding: 10px 20px; -fx-border-color: white; -fx-border-radius: 30; -fx-font-weight: bold; -fx-effect: innershadow(gaussian, #333333, 10, 0.5, 0, 5);");
+    	});
+    	ButtonName.setOnMouseExited(e -> {
+    		ButtonName.setStyle("-fx-background-color: linear-gradient(#ff5400, #be1d00); -fx-background-radius: 30; -fx-text-fill: white; -fx-font-size: 24px; -fx-padding: 10px 20px; -fx-border-color: white; -fx-border-radius: 30; -fx-font-weight: bold; -fx-effect: innershadow(gaussian, #333333, 10, 0.5, 0, 5);");
+    	});
+	}
+
+	public void setPlayerName(String playerName) {
         playerNameField.setText(playerName);
     }
 
@@ -84,32 +191,19 @@ public class TrangChuController {
         goldAmountField.setText(String.valueOf(goldAmount));
     }
     
-//hàm đọc dữ liệu từ file --để là tên đăng nhập đầu tiên trong mảng
-    private void readAccountDataFromFile() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
-            String line;
-            String playerName = null;
-            int goldAmount = 0;
-
-            while ((line = reader.readLine()) != null) {
-                if (line.startsWith(USERNAME)) {
-                    playerName = line.substring(line.indexOf(":") + 1).trim();
-                } else if (line.startsWith(GOLD)) {
-                    goldAmount = Integer.parseInt(line.substring(line.indexOf(":") + 1).trim());
-                    break; // Stop reading after finding the first gold amount
-                }
-            }
-
-            setPlayerName(playerName);
-            setGoldAmount(goldAmount);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
     @FXML
     private void handleVaoDuaButtonClick() {
-    		HomePage.setVisible(false);
+        int goldAmount =CommonFunction.gold;
+        if (goldAmount < 1) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Số vàng không đủ");
+            alert.setHeaderText(null);
+            alert.setContentText("Bạn cần tối thiểu 1 vàng để vào đua!");
+            alert.showAndWait();
+        } else {
+            HomePage.setVisible(false);
             Map_Choosing.setVisible(true);
+        }
     }
     
     @FXML 
@@ -119,9 +213,22 @@ public class TrangChuController {
     }
     @FXML
     private void TiepTucCarChoosing() {
-        Map_Choosing.setVisible(false);
-        Car_Choosing.setVisible(true);
+        if (selectedMap != null && selectedLength != null) {
+            String selectedMapId = selectedMap.getId();
+            String selectedLengthId = selectedLength.getId();
+
+            // Xử lý dựa trên map và độ dài đã chọn
+            Map_Choosing.setVisible(false);
+            Car_Choosing.setVisible(true);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Lỗi");
+            alert.setHeaderText(null);
+            alert.setContentText("Vui lòng chọn map và độ dài trước khi tiếp tục!");
+            alert.showAndWait();
+        }
     }
+    
     @FXML 
     private void QuayLaiMap_Choosing() {
     //dang ở carchosing, quay lại map choosing
@@ -130,11 +237,110 @@ public class TrangChuController {
     }
     @FXML
     private void TiepTuc_ItemChoosing() {
-    	//dang ơi car choosing->Itemchoosing
-    	Car_Choosing.setVisible(false);
-    	Item_Chosing.setVisible(true);
+        try {
+        	goldAmount_value.setText(Integer.toString(CommonFunction.gold));
+            int soTienDatCuoc = Integer.parseInt(nhapTienCuocTextField.getText());
+            int soVangHienCo = CommonFunction.gold;
+
+            if (soTienDatCuoc > soVangHienCo) {
+                Alert alert = new Alert(AlertType.WARNING, "Bạn không đủ số vàng để đặt cược!", ButtonType.OK);
+                alert.showAndWait();
+            } else {
+                // Trừ số tiền đặt cược khỏi số tiền hiện có
+                int soVangConLai = soVangHienCo - soTienDatCuoc;
+                setGoldAmount(soVangConLai);
+                CommonFunction.gold-=soTienDatCuoc;
+                
+
+                if(selectedCar!= null) {
+                // Hiển thị giao diện của Item Choosing
+                HomePage1.setVisible(false);
+                Item_Chosing.setVisible(true);
+                }
+                else {
+                	// Người chơi chưa chọn xe, hiển thị thông báo lỗi
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Lỗi");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Vui lòng chọn một xe trước khi bắt đầu cuộc đua!");
+                    alert.showAndWait();
+                }
+            }
+        } catch (NumberFormatException e) {
+            // Xử lý lỗi nếu người dùng nhập kí tự không phải số
+            Alert alert = new Alert(AlertType.ERROR, "Số vàng không hợp lệ!", ButtonType.OK);
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void handleNhapTienCuocTextFieldAction() {
+        try {
+            int soTienDatCuoc = Integer.parseInt(nhapTienCuocTextField.getText());
+            int soVangHienCo = CommonFunction.gold;
+
+            if (soTienDatCuoc > soVangHienCo) {
+                Alert alert = new Alert(AlertType.WARNING, "Số vàng vượt quá số vàng hiện tại, Vui lòng nhập lại số vàng đặt cược", ButtonType.OK);
+                alert.showAndWait();
+            }
+        } catch (NumberFormatException e) {
+            // Xử lý lỗi nếu người dùng nhập kí tự không phải số
+            Alert alert = new Alert(AlertType.ERROR, "Số vàng không hợp lệ!", ButtonType.OK);
+            alert.showAndWait();
+        }
     }
     
+    //coi lại có bị thừa không.
+    @FXML
+    private void handleTiepTucItemChoosingButtonAction() {
+        try {
+            int soTienDatCuoc = Integer.parseInt(nhapTienCuocTextField.getText());
+            int soVangHienCo = CommonFunction.gold;
+
+            if (soTienDatCuoc > soVangHienCo) {
+                Alert alert = new Alert(AlertType.WARNING, "Bạn không đủ số vàng để đặt cược!", ButtonType.OK);
+                alert.showAndWait();
+            } else {
+                // Trừ số tiền đặt cược khỏi số tiền hiện có
+                int soVangConLai = soVangHienCo - soTienDatCuoc;
+                setGoldAmount(soVangConLai);
+                
+                // Thực thi xử lý tiếp theo tại đây
+                // ...
+            }
+        } catch (NumberFormatException e) {
+            // Xử lý lỗi nếu người dùng nhập kí tự không phải số
+            Alert alert = new Alert(AlertType.ERROR, "Số vàng không hợp lệ!", ButtonType.OK);
+            alert.showAndWait();
+        }
+    }
+    
+    public void handleItem_chosing (VBox itemName, int giaTriVatPham) {
+    // Gắn sự kiện click chuột cho VBox "kietSuc"
+    itemName.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            try {
+            	goldAmount_value.setText(String.valueOf(CommonFunction.gold));
+                int soVangHienCo =  CommonFunction.gold;
+                if (soVangHienCo < giaTriVatPham) {
+                    Alert alert = new Alert(AlertType.WARNING, "Bạn không đủ số vàng để mua vật phẩm này!", ButtonType.OK);
+                    alert.showAndWait();
+                } else {
+                    // Trừ tiền và ẩn VBox
+                    goldAmount_value.setText(String.valueOf(soVangHienCo - giaTriVatPham));
+                    CommonFunction.gold-=giaTriVatPham;
+                    //Xử lí thêm Vật Phẩm vào mảng.
+                    
+                    itemName.setVisible(false);
+                }
+            } catch (NumberFormatException e) {
+                Alert alert = new Alert(AlertType.ERROR, "Số vàng không hợp lệ!", ButtonType.OK);
+                alert.showAndWait();
+            }
+        }
+    });
+    }
     
 }
 

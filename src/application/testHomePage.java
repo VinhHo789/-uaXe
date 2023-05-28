@@ -11,7 +11,6 @@ public class testHomePage extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/view/TrangChuView.fxml"));
-        //primaryStage.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         primaryStage.setTitle("Test Game Interface");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

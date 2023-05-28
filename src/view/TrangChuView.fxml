@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -15,13 +16,16 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="888.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TrangChuController">
 	<children>
-      <BorderPane id="HomePage" fx:id="HomePage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="888.0" styleClass="background-image" stylesheets="@../value/style.css" visible="false">
+      <BorderPane id="HomePage" fx:id="HomePage1" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="888.0" styleClass="background-image" stylesheets="@../value/style.css">
          <top>
             <HBox prefHeight="77.0" prefWidth="888.0" styleClass="top-bar" stylesheets="@../value/style.css" BorderPane.alignment="CENTER">
                <children>
@@ -30,228 +34,24 @@
                         <Image url="@../img/asset/fake_avatar.png" />
                      </image>
                   </ImageView>
-                  <TextField fx:id="playerNameField" editable="false" prefHeight="42.0" prefWidth="246.0" style="-fx-background-color: #420137;" styleClass="top-bar" stylesheets="@../value/style.css" text="Tên Người Chơi">
+                  <TextField fx:id="playerNameField" editable="false" prefHeight="42.0" prefWidth="246.0" stylesheets="@../value/style.css" text="Tên Người Chơi">
                      <HBox.margin>
                         <Insets top="30.0" />
                      </HBox.margin>
-                  </TextField>
-                  <Separator orientation="VERTICAL" prefHeight="114.0" prefWidth="46.0" />
-                  <TextField fx:id="goldAmountField" editable="false" prefHeight="43.0" prefWidth="207.0" style="-fx-background-color: #420137;" stylesheets="@../value/style.css" text="Số Vàng">
-                     <HBox.margin>
-                        <Insets top="30.0" />
-                     </HBox.margin>
-                  </TextField>
-                  <ImageView fitHeight="51.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/asset/icons8-coin-50.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets top="30.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <ImageView fitHeight="44.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../setting.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets left="20.0" top="30.0" />
-                     </HBox.margin></ImageView>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Thoát Game">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="20.0" right="6.0" top="30.0" />
-                     </HBox.margin>
-                  </Text>
-               </children></HBox>
-         </top>
-         <center>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <children>
-                  <VBox layoutX="103.0" layoutY="103.0" prefHeight="396.0" prefWidth="308.0" styleClass="offer-background" stylesheets="@../value/style.css">
-                     <children>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Kiếm Tiền" textAlignment="CENTER" wrappingWidth="306.26173400878906">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Text>
-                        <ImageView fitHeight="264.0" fitWidth="308.0" pickOnBounds="true" preserveRatio="true" />
-                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="227.0" text="Vào Kiếm Tiền" textAlignment="CENTER">
-                           <VBox.margin>
-                              <Insets left="50.0" top="20.0" />
-                           </VBox.margin>
-                        </Button>
-                     </children>
-                  </VBox>
-                  <VBox layoutX="459.0" layoutY="101.0" prefHeight="398.0" prefWidth="305.0" styleClass="offer-background" stylesheets="@../value/style.css">
-                     <children>
-                        <Text fill="#eaeaea" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Đường  Đua Sinh Tử" textAlignment="CENTER" wrappingWidth="312.7125244140625">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Text>
-                        <ImageView fitHeight="264.0" fitWidth="308.0" pickOnBounds="true" preserveRatio="true" />
-                        <Button id="VaoDua" fx:id="VaoDua" mnemonicParsing="false" onAction="#handleVaoDuaButtonClick" prefHeight="60.0" prefWidth="227.0" text="Vào Đua">
-                           <VBox.margin>
-                              <Insets left="50.0" top="20.0" />
-                           </VBox.margin>
-                        </Button>
-                     </children>
-                  </VBox>
-               </children>
-            </AnchorPane>
-         </center>
-      </BorderPane>
-      <BorderPane id="Map_Choosing" fx:id="Map_Choosing" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="888.0" styleClass="background-image" stylesheets="@../value/style.css">
-         <top>
-            <HBox prefHeight="77.0" prefWidth="888.0" styleClass="top-bar" stylesheets="@../value/style.css" BorderPane.alignment="CENTER">
-               <children>
-                  <ImageView fitHeight="91.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/asset/fake_avatar.png" />
-                     </image>
-                  </ImageView>
-                  <TextField editable="false" prefHeight="42.0" prefWidth="246.0" text="Tên Người Chơi">
-                     <HBox.margin>
-                        <Insets top="30.0" />
-                     </HBox.margin>
-                  </TextField>
-                  <Separator orientation="VERTICAL" prefHeight="114.0" prefWidth="46.0" />
-                  <TextField editable="false" prefHeight="43.0" prefWidth="207.0" text="Số Vàng">
-                     <HBox.margin>
-                        <Insets top="30.0" />
-                     </HBox.margin>
-                  </TextField>
-                  <ImageView fitHeight="51.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/asset/icons8-coin-50.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets top="30.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <ImageView fitHeight="43.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/asset/setting.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets left="20.0" top="30.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Thoát Game">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="20.0" right="6.0" top="30.0" />
-                     </HBox.margin>
-                  </Text>
-               </children>
-            </HBox>
-         </top>
-         <center>
-            <AnchorPane prefHeight="554.0" prefWidth="888.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Text fill="WHITE" layoutX="60.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Đường Đua Sinh Tử" textAlignment="CENTER" wrappingWidth="768.6618194580078">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Text>
-                  <HBox layoutX="168.0" layoutY="105.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="326.0" prefWidth="544.0" styleClass="top-bar" stylesheets="@../value/style.css">
-                     <children>
-                        <TabPane prefHeight="336.0" prefWidth="544.0" stylesheets="@../value/style.css" tabClosingPolicy="UNAVAILABLE">
-                          <tabs>
-                            <Tab text="Mẫu 1">
-                              <content>
-                                <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="576.0">
-                                       <children>
-                                          <ImageView fitHeight="320.0" fitWidth="542.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../img/asset/Đường%20Nhựa.jpg" />
-                                             </image>
-                                          </ImageView>
-                                       </children>
-                                    </AnchorPane>
-                              </content>
-                            </Tab>
-                            <Tab text="Mẫu 2">
-                              <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="262.0" prefWidth="535.0">
-                                       <children>
-                                          <ImageView fitHeight="300.0" fitWidth="549.0" layoutX="2.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../img/asset/Đường%20Đất.jpg" />
-                                             </image>
-                                          </ImageView>
-                                       </children>
-                                    </AnchorPane>
-                              </content>
-                            </Tab>
-                              <Tab text="Mẫu 3">
-                                 <content>
-                                    <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="200.0">
-                                       <children>
-                                          <ImageView fitHeight="307.0" fitWidth="544.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../img/asset/Đường%20Baron.jpg" />
-                                             </image>
-                                          </ImageView>
-                                       </children>
-                                    </AnchorPane>
-                                 </content>
-                              </Tab>
-                          </tabs>
-                        </TabPane>
-                     </children>
-                  </HBox>
-                  <VBox layoutX="740.0" layoutY="164.0" prefHeight="266.0" prefWidth="110.0">
-                     <children>
-                        <Button mnemonicParsing="false" prefHeight="64.0" prefWidth="106.0" text="Nước Rút" textAlignment="CENTER" />
-                        <Button mnemonicParsing="false" prefHeight="85.0" prefWidth="106.0" text="Bình Thường" textAlignment="CENTER" />
-                        <Button mnemonicParsing="false" prefHeight="78.0" prefWidth="106.0" text="Đường Dài" textAlignment="CENTER" />
-                     </children>
-                  </VBox>
-               </children>
-            </AnchorPane>
-         </center>
-         <bottom>
-            <HBox prefHeight="81.0" prefWidth="888.0" spacing="100.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Button fx:id="QuayLai" mnemonicParsing="false" onAction="#QuayLaiHome" prefHeight="92.0" prefWidth="142.0" text="Quay Lại">
-                     <HBox.margin>
-                        <Insets bottom="10.0" top="10.0" />
-                     </HBox.margin></Button>
-                  <Button fx:id="TiepTucCarChoosing" mnemonicParsing="false" onAction="#TiepTucCarChoosing" prefHeight="85.0" prefWidth="130.0" text="Tiếp Tục">
-                     <HBox.margin>
-                        <Insets bottom="10.0" top="10.0" />
-                     </HBox.margin></Button>
-               </children>
-               <padding>
-                  <Insets left="250.0" />
-               </padding>
-            </HBox>
-         </bottom>
-      </BorderPane>
-      <BorderPane id="Map_Choosing" fx:id="Car_Choosing" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="888.0" styleClass="background-image" stylesheets="@../value/style.css" visible="false">
-         <top>
-            <HBox prefHeight="77.0" prefWidth="888.0" styleClass="top-bar" stylesheets="@../value/style.css" BorderPane.alignment="CENTER">
-               <children>
-                  <ImageView fitHeight="91.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/asset/fake_avatar.png" />
-                     </image>
-                  </ImageView>
-                  <TextField fx:id="playerNameField" editable="false" prefHeight="42.0" prefWidth="246.0" text="Tên Người Chơi">
-                     <HBox.margin>
-                        <Insets top="30.0" />
-                     </HBox.margin>
+                     <styleClass>
+                        <String fx:value="transparent-button" />
+                        <String fx:value="text" />
+                     </styleClass>
                   </TextField>
                   <Separator orientation="VERTICAL" prefHeight="114.0" prefWidth="46.0" />
                   <TextField fx:id="goldAmountField" editable="false" prefHeight="43.0" prefWidth="207.0" text="Số Vàng">
                      <HBox.margin>
                         <Insets top="30.0" />
                      </HBox.margin>
+                     <styleClass>
+                        <String fx:value="transparent-button" />
+                        <String fx:value="text" />
+                     </styleClass>
                   </TextField>
                   <ImageView fitHeight="51.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -261,15 +61,15 @@
                         <Insets top="30.0" />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView fitHeight="43.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="setting" fitHeight="44.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/asset/setting.png" />
+                        <Image url="@../../../../setting.png" />
                      </image>
                      <HBox.margin>
                         <Insets left="20.0" top="30.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Thoát Game">
+                  <Text fx:id="thoatgame" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Thoát Game">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -281,69 +81,191 @@
             </HBox>
          </top>
          <center>
-            <AnchorPane prefHeight="554.0" prefWidth="888.0" BorderPane.alignment="CENTER">
+            <StackPane BorderPane.alignment="CENTER">
                <children>
-                  <Label layoutX="326.0" layoutY="14.0" text="CHỌN XE ĐUA " textFill="WHITE">
-                     <font>
-                        <Font size="48.0" />
-                     </font>
-                  </Label>
-                  <HBox layoutX="3.0" layoutY="93.0" prefHeight="293.0" prefWidth="535.0" styleClass="top-bar" stylesheets="@../value/style.css">
+                  <AnchorPane fx:id="HomePage" prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="245.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="298.0" fitWidth="332.0" layoutX="81.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../img/asset/demo_coin.png" />
+                              <Image url="@../img/asset/Game_Kiếm_Tiền.jpg" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="297.0" fitWidth="137.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../img/asset/demo_coin.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="297.0" fitWidth="137.0" layoutX="148.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../img/asset/demo_coin.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="297.0" fitWidth="137.0" layoutX="285.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../img/asset/icons8-coin-50.png" />
-                           </image>
-                        </ImageView>
-                     </children></HBox>
-                  <VBox layoutX="626.0" layoutY="96.0" prefHeight="286.0" prefWidth="219.0" styleClass="top-bar" stylesheets="@../value/style.css">
-                     <children>
-                        <Label text="Ít Nhất: 1 vàng " textFill="WHITE" />
-                        <Label text="Nhiều Nhất: Không giới hạn" textFill="WHITE" />
-                        <TextField promptText="Nhập số tiền muốn cược vào" />
+                        <Button layoutX="144.0" layoutY="403.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="171.0" style="-fx-background-radius: 100; -fx-background-color: #fff454;" styleClass="transparent-button" text="Vào Kiếm Tiền" textAlignment="CENTER" />
+                        <AnchorPane layoutX="434.0" layoutY="100.0" prefHeight="355.0" prefWidth="430.0">
+                           <children>
+                              <ImageView fitHeight="319.0" fitWidth="381.0" layoutX="28.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/asset/Home_car.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="115.0" layoutY="50.0" prefHeight="74.0" prefWidth="198.0" styleClass="text" stylesheets="@../value/style.css" text="ĐƯỜNG ĐUA SINH TỬ">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Button id="VaoDua" fx:id="VaoDua" layoutX="150.0" layoutY="298.0" mnemonicParsing="false" onAction="#handleVaoDuaButtonClick" prefHeight="35.0" prefWidth="128.0" stylesheets="@../value/style.css" text="Vào Đua">
+                                 <styleClass>
+                                    <String fx:value="transparent-button" />
+                                    <String fx:value="button" />
+                                 </styleClass>
+                                 <textFill>
+                                    <LinearGradient endX="1.0" endY="1.0">
+                                       <stops>
+                                          <Stop>
+                                             <color>
+                                                <Color red="1.0" green="0.385185182094574" blue="0.385185182094574" />
+                                             </color>
+                                          </Stop>
+                                          <Stop offset="1.0">
+                                             <color>
+                                                <Color red="1.0" green="1.0" blue="1.0" />
+                                             </color>
+                                          </Stop>
+                                       </stops>
+                                    </LinearGradient>
+                                 </textFill></Button>
+                           </children>
+                        </AnchorPane>
                      </children>
-                  </VBox>
+                  </AnchorPane>
+                  <AnchorPane fx:id="Map_Choosing" prefHeight="554.0" prefWidth="888.0" visible="false">
+                     <children>
+                        <Text fill="WHITE" layoutX="218.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Đường Đua Sinh Tử" textAlignment="CENTER" wrappingWidth="443.8617706298828">
+                           <font>
+                              <Font size="48.0" />
+                           </font>
+                        </Text>
+                        <HBox layoutX="168.0" layoutY="105.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="326.0" prefWidth="544.0" styleClass="top-bar" stylesheets="@../value/style.css">
+                           <children>
+                              <TabPane prefHeight="336.0" prefWidth="544.0" stylesheets="@../value/style.css" tabClosingPolicy="UNAVAILABLE">
+                                 <tabs>
+                                    <Tab fx:id="duongnhua" text="Chinh Phục Tương Lại">
+                                       <content>
+                                          <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="576.0">
+                                             <children>
+                                                <ImageView fitHeight="320.0" fitWidth="542.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../img/asset/Đường%20Nhựa.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </Tab>
+                                    <Tab fx:id="duongdat" text="Phiêu Lưu Bụi Bặm">
+                                       <content>
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="262.0" prefWidth="535.0">
+                                             <children>
+                                                <ImageView fitHeight="300.0" fitWidth="549.0" layoutX="2.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../img/asset/Đường%20Đất.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </Tab>
+                                    <Tab fx:id="duongbaron" text="Vùng Đất Hư Không">
+                                       <content>
+                                          <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="200.0">
+                                             <children>
+                                                <ImageView fitHeight="307.0" fitWidth="544.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../img/asset/Đường%20Baron.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </Tab>
+                                 </tabs>
+                              </TabPane>
+                           </children>
+                        </HBox>
+                        <VBox layoutX="740.0" layoutY="164.0" prefHeight="266.0" prefWidth="145.0">
+                           <children>
+                              <Button fx:id="ngan" mnemonicParsing="false" prefHeight="64.0" prefWidth="154.0" stylesheets="@../value/style.css" text="Nước Rút" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="6.0" />
+                                 </font></Button>
+                              <Button fx:id="trungbinh" mnemonicParsing="false" prefHeight="86.0" prefWidth="150.0" styleClass="button1" stylesheets="@../value/style.css" text="Trung Bình" textAlignment="CENTER" />
+                              <Button fx:id="dai" mnemonicParsing="false" prefHeight="78.0" prefWidth="150.0" styleClass="button1" stylesheets="@../value/style.css" text="Đường Dài" textAlignment="CENTER" />
+                           </children>
+                        </VBox>
+                        <Button fx:id="QuayLai" layoutX="264.0" layoutY="457.0" mnemonicParsing="false" onAction="#QuayLaiHome" prefHeight="39.0" prefWidth="132.0" styleClass="transparent-button" text="Quay Lai" textFill="WHITE" />
+                        <Button fx:id="TiepTucCarChoosing" layoutX="486.0" layoutY="457.0" mnemonicParsing="false" onAction="#TiepTucCarChoosing" prefHeight="39.0" prefWidth="132.0" styleClass="transparent-button" text="Tiếp Tục" textFill="WHITE" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="Car_Choosing" prefHeight="554.0" prefWidth="888.0" visible="false">
+                     <children>
+                        <Label layoutX="405.0" layoutY="14.0" prefHeight="82.0" prefWidth="121.0" text="CHỌN XE ĐUA " textFill="WHITE">
+                           <font>
+                              <Font size="48.0" />
+                           </font>
+                        </Label>
+                        <HBox layoutX="132.0" layoutY="146.0" prefHeight="222.0" prefWidth="482.0" styleClass="top-bar" stylesheets="@../value/style.css">
+                           <children>
+                              <ImageView fitHeight="180.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true" fx:id="xedo">
+                                 <image>
+                                    <Image url="@../img/asset/cars/car1%20(7).png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="184.0" fitWidth="137.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" fx:id="xecam">
+                                 <image>
+                                    <Image url="@../img/asset/cars/car1%20(8).png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="183.0" fitWidth="109.0" layoutX="148.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" fx:id="xevang">
+                                 <image>
+                                    <Image url="@../img/asset/cars/car1%20(12).png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="180.0" fitWidth="137.0" layoutX="285.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" fx:id="xexanhla">
+                                 <image>
+                                    <Image url="@../img/asset/cars/car1%20(9).png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="180.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true" fx:id="xexanhduong">
+                                 <image>
+                                    <Image url="@../img/asset/cars/car1%20(11).png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                        <VBox layoutX="614.0" layoutY="131.0" prefHeight="274.0" prefWidth="229.0" styleClass="top-bar" stylesheets="@../value/style.css">
+                           <children>
+                              <Label prefHeight="0.0" prefWidth="219.0" text="Ít Nhất: 1 vàng " textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font></Label>
+                              <Label text="Nhiều Nhất: Không giới hạn" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font></Label>
+                              <TextField fx:id="nhapTienCuocTextField" onAction="#handleNhapTienCuocTextFieldAction" prefHeight="34.0" prefWidth="234.0" promptText="Nhập số tiền muốn cược vào" stylesheets="@../value/style.css">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets top="200.0" />
+                                 </VBox.margin>
+                                 <styleClass>
+                                    <String fx:value="transparent-button" />
+                                    <String fx:value="text" />
+                                 </styleClass></TextField>
+                           </children>
+                        </VBox>
+                        <Button fx:id="QuayLaiMap_Choosing" layoutX="295.0" layoutY="451.0" mnemonicParsing="false" onAction="#QuayLaiMap_Choosing" prefHeight="46.0" prefWidth="104.0" styleClass="transparent-button" stylesheets="@../value/style.css" text="Quay Lại" textFill="WHITE" />
+                        <Button fx:id="TiepTuc_ItemChoosing" layoutX="504.0" layoutY="451.0" mnemonicParsing="false" onAction="#TiepTuc_ItemChoosing" prefHeight="46.0" prefWidth="110.0" styleClass="transparent-button" text="Tiếp Tục" textFill="WHITE" />
+                     </children>
+                  </AnchorPane>
                </children>
-            </AnchorPane>
+            </StackPane>
          </center>
-         <bottom>
-            <HBox prefHeight="82.0" prefWidth="888.0" spacing="100.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Button fx:id="QuayLaiMap_Choosing" mnemonicParsing="false" onAction="#QuayLaiMap_Choosing" prefHeight="92.0" prefWidth="142.0" text="Quay Lại">
-                     <HBox.margin>
-                        <Insets bottom="10.0" top="10.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button fx:id="TiepTuc_ItemChoosing" mnemonicParsing="false" onAction="#TiepTuc_ItemChoosing" prefHeight="85.0" prefWidth="130.0" text="Tiếp Tục">
-                     <HBox.margin>
-                        <Insets bottom="10.0" top="10.0" />
-                     </HBox.margin>
-                  </Button>
-               </children>
-               <padding>
-                  <Insets left="250.0" />
-               </padding>
-            </HBox>
-         </bottom>
       </BorderPane>
       <VBox id="Item_Chosing" fx:id="Item_Chosing" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="888.0" visible="false">
          <children>
-            <Label alignment="CENTER" prefHeight="94.0" prefWidth="1441.0" text="CHÀO MỪNG BẠN ĐÃ ĐẾN TRƯỜNG ĐUA" textAlignment="CENTER">
+            <Label fx:id="doDaiDuongDuaText" alignment="CENTER" prefHeight="90.0" prefWidth="888.0" text="CHÀO MỪNG BẠN ĐÃ ĐẾN TRƯỜNG ĐUA" textAlignment="CENTER">
                <font>
                   <Font size="38.0" />
                </font>
@@ -351,7 +273,7 @@
                   <Insets top="60.0" />
                </VBox.margin>
             </Label>
-            <Label alignment="CENTER" prefHeight="18.0" prefWidth="1443.0" text="ĐƯỜNG ĐUA MẪU X">
+            <Label fx:id="mauDuongDua" alignment="CENTER" prefHeight="18.0" prefWidth="1443.0" text="ĐƯỜNG ĐUA MẪU X">
                <font>
                   <Font size="60.0" />
                </font>
@@ -364,8 +286,7 @@
                   <Insets top="30.0" />
                </VBox.margin>
             </Label>
-            <Label />
-            <AnchorPane prefHeight="226.0" prefWidth="888.0">
+            <AnchorPane prefHeight="330.0" prefWidth="888.0">
                <children>
                   <Line endX="426.26336669921875" layoutX="368.0" layoutY="16.0" startX="-238.0" startY="-1.1444091796875E-5" strokeWidth="3.0">
                      <effect>
@@ -380,52 +301,61 @@
                   </Label>
                   <HBox layoutX="146.0" layoutY="63.0" prefHeight="126.0" prefWidth="647.0" spacing="130.0">
                      <children>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
+                        <VBox fx:id="kietSuc" prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <ImageView fitHeight="110.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../img/asset/KietSuc.jpg" />
                                  </image>
                               </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vật Phẩm 1" textAlignment="CENTER" wrappingWidth="109.33667373657227" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="50 vàng" textAlignment="CENTER" wrappingWidth="109.33667373657227" />
                            </children>
                         </VBox>
-                        <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                        <VBox fx:id="tocBien" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <ImageView fitHeight="110.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../img/asset/TocBien.jpg" />
                                  </image>
                               </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vật Phẩm 2" textAlignment="CENTER" wrappingWidth="109.33667373657227" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="30 vàng" textAlignment="CENTER" wrappingWidth="109.33667373657227" />
                            </children>
                         </VBox>
-                        <VBox layoutX="240.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                        <VBox fx:id="tocHanh" layoutX="240.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <ImageView fitHeight="110.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../img/asset/TocHanh.jpg" />
                                  </image>
                               </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vật Phẩm 3" textAlignment="CENTER" wrappingWidth="109.33667373657227" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="40 vàng" textAlignment="CENTER" wrappingWidth="109.33667373657227" />
                            </children>
                         </VBox>
                      </children>
                   </HBox>
+                  <Text layoutX="571.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số Vàng của bạn:" wrappingWidth="185.18340301513672">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Label fx:id="goldAmount_value" layoutX="756.0" layoutY="204.0" text=".">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
                </children>
                <VBox.margin>
                   <Insets />
                </VBox.margin>
             </AnchorPane>
-            <Button fx:id="playGameButton" graphicTextGap="3.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="198.0" text="BẮT ĐẦU">
+            <Button fx:id="playGameButton" graphicTextGap="3.0" mnemonicParsing="false" prefHeight="94.0" prefWidth="198.0" text="BẮT ĐẦU">
                <font>
                   <Font size="34.0" />
                </font>
                <VBox.margin>
-                  <Insets left="350.0" />
+                  <Insets bottom="20.0" left="350.0" />
                </VBox.margin>
             </Button>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Số tiền người chơi " textAlignment="RIGHT" wrappingWidth="1334.9366455078125" />
          </children>
       </VBox>
 	</children>

@@ -3,7 +3,10 @@ package controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Properties;
 
 import javafx.event.ActionEvent;
@@ -25,13 +28,17 @@ public class CommonFunction {
     public static String musicFilePath = "src/music/LND.mp3";
     public static Media media = new Media(new File(musicFilePath).toURI().toString());; 
     public static MediaPlayer mediaPlayer = new MediaPlayer(media);
-    protected static int money = 0;
     public static boolean []vatPham = new boolean[3]; //1: TocBien, 2: TocHanh, 3: KietSuc
+    public static int gold;
+    public static String username;
+    public static Map<String,Integer> accounts_gold; 
+    public static Map<String,String> accounts;
+    public static final String FILE_ACCOUNTDATA = "src/data/accountData";
+    public static final String USERNAME = "Username"; 
+    public static final String PASSWORD = "Password";
+	public static final String GOLD = "Gold";
     
     
-    
-
-   
     public static void play() {
     	media =  new Media(new File(musicFilePath).toURI().toString());
     	mediaPlayer = new MediaPlayer(media);
@@ -101,5 +108,27 @@ public class CommonFunction {
 	        // ignore, unable to save config
 	    }
 	}
+	
+	public static void saveAccountData() {
+    	try {
+    		FileWriter fw = new FileWriter(new File(FILE_ACCOUNTDATA));
+    		for(Map.Entry<String, String> entry : accounts.entrySet()) {
+    			String username = entry.getKey();
+    			String password = entry.getValue();
+    			String gold = accounts_gold.get(username).toString();
+	    		fw.write(USERNAME + ": " + username);
+	    		fw.write(System.getProperty("line.separator"));
+	    		fw.write(PASSWORD + ": " + password);
+	    		fw.write(System.getProperty("line.separator"));
+	    		fw.write(GOLD + ": " + gold);
+	    		fw.write(System.getProperty("line.separator"));
+	    		fw.write(System.getProperty("line.separator"));
+    		}
+    		fw.close();
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    	}
+	}
+	
 	
 }
