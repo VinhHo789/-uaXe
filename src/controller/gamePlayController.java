@@ -47,6 +47,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.scene.layout.*;
 import javafx.event.*;
 import javafx.scene.input.MouseEvent;
@@ -204,11 +205,7 @@ public class gamePlayController implements Initializable {
 	private Random random = new Random();
 	
 	
-	Image car1Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car1.png"));
-	Image car2Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car2.png"));
-	Image car3Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car3.png"));
-	Image car4Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car4.png"));
-	Image car5Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car5.png"));
+	
 	Image tocBienImage = new Image(getClass().getResourceAsStream("/img/asset/TocBien.jpg"));
 	Image tocHanhImage = new Image(getClass().getResourceAsStream("/img/asset/TocHanh.jpg"));
 	Image kietSucImage = new Image(getClass().getResourceAsStream("/img/asset/KietSuc.jpg"));
@@ -216,22 +213,91 @@ public class gamePlayController implements Initializable {
 	Image head2Image = new Image(getClass().getResourceAsStream("/img/asset/chars/head2.png"));
 	Image head3Image = new Image(getClass().getResourceAsStream("/img/asset/chars/head3.png"));
 	
-
+	
+	Image car1Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car1.png"));
+	Image car2Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car2.png"));
+	Image car3Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car3.png"));
+	Image car4Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car4.png"));
+	Image car5Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car5.png"));
 	Image podiumImage = new Image(getClass().getResourceAsStream("/img/asset/podium.png"));
+	Image roadImage1 = new Image(getClass().getResourceAsStream("/img/map/3-map2.png"));
+	Image roadImage2 = new Image(getClass().getResourceAsStream("/img/map/3-map1.png"));
+	Image startingroadImage = new Image(getClass().getResourceAsStream("/img/map/3-startingmap.png"));
+	Image endingroadImage = new Image(getClass().getResourceAsStream("/img/map/3-endingmap.png"));
 	
-	
-	Map<Double, ImageView> carMap = new TreeMap<>(Comparator.reverseOrder());
+
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		// Load the road image
-		if(true) {
-			
+		
+		if(CommonFunction.carID.equals("xe1")) {
+		car1Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car1.png"));
+		car2Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car2.png"));
+		car3Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car3.png"));
+		car4Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car4.png"));
+		car5Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car5.png"));
 		}
-		Image roadImage1 = new Image(getClass().getResourceAsStream("/img/map/3-map2.png"));
-		Image roadImage2 = new Image(getClass().getResourceAsStream("/img/map/3-map1.png"));
-		Image startingroadImage = new Image(getClass().getResourceAsStream("/img/map/3-startingmap.png"));
-		Image endingroadImage = new Image(getClass().getResourceAsStream("/img/map/3-endingmap.png"));
+		
+		if(CommonFunction.carID.equals("xe1")) {
+			car1Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car1.png"));
+			car2Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car2.png"));
+			car3Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car3.png"));
+			car4Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car4.png"));
+			car5Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car5.png"));
+		} else if(CommonFunction.carID.equals("xe2")) {
+			car1Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car2.png"));
+			car2Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car1.png"));
+			car3Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car3.png"));
+			car4Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car4.png"));
+			car5Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car5.png"));
+		} else if(CommonFunction.carID.equals("xe3")) {
+			car1Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car3.png"));
+			car2Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car1.png"));
+			car3Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car2.png"));
+			car4Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car5.png"));
+			car5Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car4.png"));
+		} else if(CommonFunction.carID.equals("xe4")) {
+			car1Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car4.png"));
+			car2Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car2.png"));
+			car3Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car1.png"));
+			car4Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car3.png"));
+			car5Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car5.png"));
+		} else if(CommonFunction.carID.equals("xe5")) {
+			car1Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car5.png"));
+			car2Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car4.png"));
+			car3Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car2.png"));
+			car4Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car3.png"));
+			car5Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car1.png"));
+		}
+		// Load the road image
+		if(CommonFunction.mapID.equals("duongnhua")) {
+			roadImage1 = new Image(getClass().getResourceAsStream("/img/map/1-map2.png"));
+			roadImage2 = new Image(getClass().getResourceAsStream("/img/map/1-map1.png"));
+			startingroadImage = new Image(getClass().getResourceAsStream("/img/map/1-startingmap.png"));
+			endingroadImage = new Image(getClass().getResourceAsStream("/img/map/1-endingmap.png"));
+		}
+		else if (CommonFunction.mapID.equals("duongdat")) {
+			roadImage1 = new Image(getClass().getResourceAsStream("/img/map/2-map2.png"));
+			roadImage2 = new Image(getClass().getResourceAsStream("/img/map/2-map1.png"));
+			startingroadImage = new Image(getClass().getResourceAsStream("/img/map/2-startingmap.png"));
+			endingroadImage = new Image(getClass().getResourceAsStream("/img/map/2-endingmap.png"));
+		}else if(CommonFunction.mapID.equals("duongbaron")){
+			roadImage1 = new Image(getClass().getResourceAsStream("/img/map/3-map2.png"));
+			roadImage2 = new Image(getClass().getResourceAsStream("/img/map/3-map1.png"));
+			startingroadImage = new Image(getClass().getResourceAsStream("/img/map/3-startingmap.png"));
+			endingroadImage = new Image(getClass().getResourceAsStream("/img/map/3-endingmap.png"));
+		}
+		
+		if(CommonFunction.mapLength.equals("ngan")) {
+			loop_rounds = 4;
+		} else if (CommonFunction.mapLength.equals("trungbinh")) {
+			loop_rounds = 8;
+			
+		} else {
+			loop_rounds = 12;
+		}
+			
+		
 		roadImageView1.setImage(roadImage1);
 		roadImageView2.setImage(roadImage2);
 		startingRoadImageView.setImage(startingroadImage);
@@ -254,9 +320,7 @@ public class gamePlayController implements Initializable {
 		endingRoadImageView.setVisible(false);
 		podiumAnchorPane.setVisible(false);
 		thongTinAnchorPane.setVisible(false);
-		CommonFunction.vatPham[1] = true;
-		CommonFunction.vatPham[0] = true;
-		CommonFunction.vatPham[2] = true;
+		
 		checkVatPhamStatus();
 		tocBienImageView.setDisable(true);
 		tocHanhImageView.setDisable(true);
@@ -751,8 +815,8 @@ public class gamePlayController implements Initializable {
 		tocBienImageView.setOnMouseClicked((MouseEvent event) -> {
 			tocBienImageView.setDisable(true);
 			translateTransition1.stop(); // Stop the current transition
-		    double currentX = car1ImageView.getTranslateX(); // Get the current X position
-	    	double newX = currentX + 100;
+		    double currentX = car1StackPane.getTranslateX(); // Get the current X position
+	    	double newX = currentX + 90;
 	    	car1StackPane.setTranslateX(newX);
 	    	originalX1 = newX;
 
@@ -765,7 +829,7 @@ public class gamePlayController implements Initializable {
 			tocHanhImageView.setDisable(true);
 			translateTransition1.stop(); // Stop the current transition
 		    double currentX = car1StackPane.getTranslateX(); // Get the current X position
-	    	double newX = currentX + 120;
+	    	double newX = currentX + 130;
 	    	TranslateTransition newTransition = new TranslateTransition(Duration.seconds(3), car1StackPane);
 	    	originalX1 = newX;
 	        newTransition.setToX(newX);
@@ -782,10 +846,10 @@ public class gamePlayController implements Initializable {
 			translateTransition3.stop();
 			translateTransition4.stop();
 			translateTransition5.stop();// Stop the current transition// Get the current X position
-	    	double newX2 = originalX2 - 80;
-	    	double newX3 = originalX3 - 80;
-	    	double newX4 = originalX4 - 80;
-	    	double newX5 = originalX5 - 80;
+	    	double newX2 = originalX2 - 50;
+	    	double newX3 = originalX3 - 50;
+	    	double newX4 = originalX4 - 50;
+	    	double newX5 = originalX5 - 50;
 	    	TranslateTransition newTransition2 = new TranslateTransition(Duration.seconds(1), car2StackPane);
 	    	TranslateTransition newTransition3 = new TranslateTransition(Duration.seconds(1), car3StackPane);
 	    	TranslateTransition newTransition4 = new TranslateTransition(Duration.seconds(1), car4StackPane);
@@ -845,7 +909,9 @@ public class gamePlayController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 Stage stg = (Stage)((Node)event.getSource()).getScene().getWindow();
-                stg.close();
+                stg.getOnCloseRequest().handle(new WindowEvent(stg, WindowEvent.WINDOW_CLOSE_REQUEST));;
+               
+                
             }
         });
 		
@@ -1037,16 +1103,23 @@ public class gamePlayController implements Initializable {
 	    // Check the position of car1StackPane and update the UI accordingly
 	    if (carStackPanes.indexOf(car1StackPane) == 0) {
 	        thongBaoText.setText("Chúc mừng, bạn đã về nhất và chiến thắng!");
-	        soTienAnDuocText.setText("Số tiền ăn được: Tiền cược * 4");
+	        soTienAnDuocText.setText("Số tiền ăn được: " + CommonFunction.betGold * 4);
+	        CommonFunction.gold += CommonFunction.betGold * 4;
+	        soTienHienCoText.setText("Số tiến hiện có: " + CommonFunction.gold);
 	    } else if (carStackPanes.indexOf(car1StackPane) == 1) {
 	        thongBaoText.setText("Rất tiếc, bạn đã về nhì, chỉ 1 chút nữa thôi!");
-	        soTienAnDuocText.setText("Số tiền ăn được: Tiền cược * 0.5");
+	        soTienAnDuocText.setText("Số tiền ăn được: "+ CommonFunction.betGold * 0.5);
+	        CommonFunction.gold += CommonFunction.betGold * 0.5;
+	        soTienHienCoText.setText("Số tiến hiện có: " + CommonFunction.gold);
 	    } else if (carStackPanes.indexOf(car1StackPane) == 2) {
 	        thongBaoText.setText("Thật đáng tiếc, bạn đã về ba, cố hơn nữa nhé!");
-	        soTienAnDuocText.setText("Số tiền ăn được: Tiền cược * 0.5");
+	        soTienAnDuocText.setText("Số tiền ăn được: "+ CommonFunction.betGold * 0.5);
+	        CommonFunction.gold += CommonFunction.betGold * 0.5;
+	        soTienHienCoText.setText("Số tiến hiện có: " + CommonFunction.gold);
 	    } else {
 	        thongBaoText.setText("Không sao, cố gắng cải thiện hơn bạn nhé!");
 	        soTienAnDuocText.setText("Số tiền ăn được: 0");
+	        soTienHienCoText.setText("Số tiến hiện có: " + CommonFunction.gold);
 	    }
 	}
 

@@ -52,8 +52,9 @@ public class Main extends Application {
     
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/login.fxml"));
-            Scene scene = new Scene(root);
+            Parent root = FXMLLoader.load(getClass().getResource("/view/introVid.fxml"));
+            Scene scene = new Scene(root, 888, 619);
+            
             
             // Load configuration file
             //loadConfig();
@@ -65,6 +66,13 @@ public class Main extends Application {
             
             primaryStage.setScene(scene);
             primaryStage.show();
+            primaryStage.setResizable(false);
+            primaryStage.setOnCloseRequest((event)->{
+            	CommonFunction.saveAccountData();
+            	System.out.println("hello");
+            	//primaryStage.close();
+            });
+            
 
         } catch(Exception e) {
             e.printStackTrace();

@@ -1,5 +1,5 @@
 .background-image {
-    -fx-background-image: url("file:/D:/Documents/GitHub/DuaXe/src/img/asset/background_Home.jpg");
+    /*-fx-background-image: url("file:/img/asset/background_Home.jpg");*/
     -fx-background-repeat: stretch;
 }
 

@@ -29,6 +29,9 @@ public class CommonFunction {
     public static Media media = new Media(new File(musicFilePath).toURI().toString());; 
     public static MediaPlayer mediaPlayer = new MediaPlayer(media);
     public static boolean []vatPham = new boolean[3]; //1: TocBien, 2: TocHanh, 3: KietSuc
+    public static String mapID;
+    public static String mapLength;
+    public static String carID;
     public static int gold;
     public static String username;
     public static Map<String,Integer> accounts_gold; 
@@ -37,6 +40,8 @@ public class CommonFunction {
     public static final String USERNAME = "Username"; 
     public static final String PASSWORD = "Password";
 	public static final String GOLD = "Gold";
+	public static int betGold;
+	
     
     
     public static void play() {
@@ -110,6 +115,9 @@ public class CommonFunction {
 	}
 	
 	public static void saveAccountData() {
+		if(accounts_gold != null && accounts !=null) {
+			accounts_gold.put(username, gold);
+		}
     	try {
     		FileWriter fw = new FileWriter(new File(FILE_ACCOUNTDATA));
     		for(Map.Entry<String, String> entry : accounts.entrySet()) {

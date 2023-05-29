@@ -25,7 +25,7 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="888.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TrangChuController">
 	<children>
-      <BorderPane id="HomePage" fx:id="HomePage1" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="888.0" styleClass="background-image" stylesheets="@../value/style.css">
+      <BorderPane id="HomePage" fx:id="HomePage1" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="888.0" stylesheets="@../value/style.css">
          <top>
             <HBox prefHeight="77.0" prefWidth="888.0" styleClass="top-bar" stylesheets="@../value/style.css" BorderPane.alignment="CENTER">
                <children>
@@ -63,7 +63,7 @@
                   </ImageView>
                   <ImageView fx:id="setting" fitHeight="44.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../setting.png" />
+                        <Image url="@../img/asset/setting.png" />
                      </image>
                      <HBox.margin>
                         <Insets left="20.0" top="30.0" />
@@ -139,7 +139,7 @@
                            <children>
                               <TabPane prefHeight="336.0" prefWidth="544.0" stylesheets="@../value/style.css" tabClosingPolicy="UNAVAILABLE">
                                  <tabs>
-                                    <Tab fx:id="duongnhua" text="Chinh Phục Tương Lại">
+                                    <Tab fx:id="duongnhua" text="Chinh Phục Tương Lai">
                                        <content>
                                           <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="576.0">
                                              <children>
@@ -165,7 +165,7 @@
                                           </AnchorPane>
                                        </content>
                                     </Tab>
-                                    <Tab fx:id="duongbaron" text="Vùng Đất Hư Không">
+                                    <Tab fx:id="duongbaron" text="Cầu Vượt Tử Thần">
                                        <content>
                                           <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="200.0">
                                              <children>
@@ -203,31 +203,31 @@
                               <Font size="48.0" />
                            </font>
                         </Label>
-                        <HBox layoutX="132.0" layoutY="146.0" prefHeight="222.0" prefWidth="482.0" styleClass="top-bar" stylesheets="@../value/style.css">
+                        <HBox layoutX="60.0" layoutY="146.0" prefHeight="222.0" prefWidth="482.0" styleClass="top-bar" stylesheets="@../value/style.css">
                            <children>
-                              <ImageView fitHeight="180.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true" fx:id="xedo">
+                              <ImageView fitHeight="180.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true" fx:id="xe1">
                                  <image>
-                                    <Image url="@../img/asset/cars/car1%20(7).png" />
+                                    <Image url="@../img/asset/cars/modelcar1.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="184.0" fitWidth="137.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" fx:id="xecam">
+                              <ImageView fitHeight="184.0" fitWidth="137.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" fx:id="xe2">
                                  <image>
-                                    <Image url="@../img/asset/cars/car1%20(8).png" />
+                                    <Image url="@../img/asset/cars/modelcar2.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="183.0" fitWidth="109.0" layoutX="148.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" fx:id="xevang">
+                              <ImageView fitHeight="183.0" fitWidth="109.0" layoutX="148.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" fx:id="xe3">
                                  <image>
-                                    <Image url="@../img/asset/cars/car1%20(12).png" />
+                                    <Image url="@../img/asset/cars/modelcar3.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="180.0" fitWidth="137.0" layoutX="285.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" fx:id="xexanhla">
+                              <ImageView fitHeight="180.0" fitWidth="137.0" layoutX="285.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" fx:id="xe4">
                                  <image>
-                                    <Image url="@../img/asset/cars/car1%20(9).png" />
+                                    <Image url="@../img/asset/cars/modelcar4.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="180.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true" fx:id="xexanhduong">
+                              <ImageView fitHeight="180.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true" fx:id="xe5">
                                  <image>
-                                    <Image url="@../img/asset/cars/car1%20(11).png" />
+                                    <Image url="@../img/asset/cars/modelcar5.png" />
                                  </image>
                               </ImageView>
                            </children>
