@@ -26,6 +26,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 
 public class TrangChuController {
@@ -159,6 +162,17 @@ public class TrangChuController {
 		xe3.setOnMouseClicked(event -> handleCarSelection(xe3));
 		xe4.setOnMouseClicked(event -> handleCarSelection(xe4));
 		xe5.setOnMouseClicked(event -> handleCarSelection(xe5));
+		
+		playerNameField.setCursor(Cursor.DEFAULT);
+		goldAmountField.setCursor(Cursor.DEFAULT);
+		
+		playerNameField.selectedTextProperty().addListener((observableVal,oldVal,newVal)->{
+			playerNameField.deselect();
+		});
+
+		goldAmountField.selectedTextProperty().addListener((observableVal,oldVal,newVal)->{
+			goldAmountField.deselect();
+		});
 	}
 
 	private void handleMapSelection(Tab tab) {
@@ -366,6 +380,12 @@ public class TrangChuController {
 				}
 			}
 		});
+	}
+	
+	@FXML
+	public void vaoKiemTienAction(ActionEvent event) {
+		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+		new minigame(stage);
 	}
 
 }

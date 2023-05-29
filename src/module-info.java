@@ -1,15 +1,21 @@
 module Game {
-    requires javafx.controls;
-    requires javafx.fxml;
-    requires javafx.media;
-	requires javafx.graphics;
-	requires com.jfoenix;
 
-    opens application to javafx.graphics, javafx.fxml, javafx.media;
-    opens controller to javafx.graphics, javafx.fxml, javafx.media;
-    opens music to javafx.graphics, javafx.fxml, javafx.media;
-    opens view to javafx.graphics, javafx.fxml, javafx.media;
-    opens img.asset to javafx.graphics, javafx.fxml, javafx.media;
-    opens img.map to javafx.graphics, javafx.fxml, javafx.media;
-    opens value to javafx.graphics, javafx.fxml, javafx.media;
+	requires com.jfoenix;
+	requires javafx.base;
+	requires javafx.controls;
+	requires javafx.fxml;
+	requires javafx.graphics;
+	requires javafx.media;
+	
+	opens application;
+	opens controller;
+	opens css;
+	opens data;
+	opens img.asset;
+	opens img.asset.cars;
+	opens img.asset.chars;
+	opens img.map;
+	opens music;
+	opens value;
+	opens view;
 }
