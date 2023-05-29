@@ -212,6 +212,8 @@ public class gamePlayController implements Initializable {
 	Image head1Image = new Image(getClass().getResourceAsStream("/img/asset/chars/head1.png"));
 	Image head2Image = new Image(getClass().getResourceAsStream("/img/asset/chars/head2.png"));
 	Image head3Image = new Image(getClass().getResourceAsStream("/img/asset/chars/head3.png"));
+	Image flashEffectImage = new Image(getClass().getResourceAsStream("/img/asset/flashEffect.png"));
+	Image tocHanhEffectImage = new Image(getClass().getResourceAsStream("/img/asset/tocHanhEffect.png"));
 	
 	
 	Image car1Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car1.png"));
@@ -314,6 +316,8 @@ public class gamePlayController implements Initializable {
 		ImageView head1ImageView = new ImageView(head1Image);
 		ImageView head2ImageView = new ImageView(head2Image);
 		ImageView head3ImageView = new ImageView(head3Image);
+		ImageView flashEffectImageView = new ImageView(flashEffectImage);
+		ImageView tocHanhEffectImageView = new ImageView(tocHanhEffectImage);
 		
 		
 		roadImageView2.setVisible(false);
@@ -424,6 +428,11 @@ public class gamePlayController implements Initializable {
 //	    });
 //
 //	    initialDelay.play();
+	    flashEffectImageView.setFitWidth(40);
+	    flashEffectImageView.setFitHeight(40);
+	    
+	    tocHanhEffectImageView.setFitWidth(80);
+	    tocHanhEffectImageView.setFitHeight(40);
 	    
 	    head1ImageView.setFitWidth(30); // Set the desired fit width
 	    head1ImageView.setFitHeight(30); // Set the desired fit height
@@ -817,26 +826,53 @@ public class gamePlayController implements Initializable {
 			translateTransition1.stop(); // Stop the current transition
 		    double currentX = car1StackPane.getTranslateX(); // Get the current X position
 	    	double newX = currentX + 90;
+	    	
+	    	
+	    	
+	    	TranslateTransition flashTranslateTransition5 = new TranslateTransition(Duration.seconds(0.5), flashEffectImageView);
+	    	flashEffectImageView.setTranslateX(car1StackPane.getTranslateX());
+	    	flashEffectImageView.setTranslateY(car1StackPane.getTranslateY() + car1StackPane.getLayoutY());
+	    	flashTranslateTransition5.setToX(car1StackPane.getTranslateX());
+	    	flashTranslateTransition5.setToY(car1StackPane.getTranslateY() + car1StackPane.getLayoutY());
+	    	giaoDienAnchorPane.getChildren().add(flashEffectImageView);
+	    	
 	    	car1StackPane.setTranslateX(newX);
 	    	originalX1 = newX;
+	    	translateTransition1.setDuration(Duration.seconds(0));
+		    translateTransition1.play();
+	    	flashTranslateTransition5.play();
+	    	flashTranslateTransition5.setOnFinished(translateevent -> {
+	    		giaoDienAnchorPane.getChildren().remove(flashEffectImageView);
+	        });
+	    	
+	    	
+	    	
+
 
 	        
-	        translateTransition1.setDuration(Duration.seconds(0));
-	        translateTransition1.play();
+	       
         });
 		
 		tocHanhImageView.setOnMouseClicked((MouseEvent mouseevent) -> {
-			tocHanhImageView.setDisable(true);
+			//tocHanhImageView.setDisable(true);
 			translateTransition1.stop(); // Stop the current transition
 		    double currentX = car1StackPane.getTranslateX(); // Get the current X position
 	    	double newX = currentX + 130;
 	    	TranslateTransition newTransition = new TranslateTransition(Duration.seconds(3), car1StackPane);
+	    	TranslateTransition newTocHanhTransition = new TranslateTransition(Duration.seconds(3), tocHanhEffectImageView);
+	    	tocHanhEffectImageView.setTranslateX(car1StackPane.getTranslateX());
+	    	tocHanhEffectImageView.setTranslateY(car1StackPane.getTranslateY() + car1StackPane.getLayoutY());
+	    	giaoDienAnchorPane.getChildren().add(tocHanhEffectImageView);
 	    	originalX1 = newX;
 	        newTransition.setToX(newX);
+	        newTocHanhTransition.setToX(newX);
 	        newTransition.play();
+	        newTocHanhTransition.play();
+	        
 	        newTransition.setOnFinished(event -> {
 	            translateTransition1.setDuration(Duration.seconds(0));
 	            translateTransition1.play();
+	            giaoDienAnchorPane.getChildren().remove(tocHanhEffectImageView);
 	        });
         });
 		

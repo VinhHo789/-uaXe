@@ -139,9 +139,9 @@ public class TrangChuController {
 		});
 		setPlayerName(CommonFunction.username);
 		setGoldAmount(CommonFunction.gold);
-		handleItem_chosing(kietSuc, 50, 2);
-		handleItem_chosing(tocBien, 30, 0);
-		handleItem_chosing(tocHanh, 40, 1);
+		handleItem_chosing(kietSuc, 400, 2);
+		handleItem_chosing(tocBien, 500, 0);
+		handleItem_chosing(tocHanh, 200, 1);
 		setButtonAnimation(ngan);
 		setButtonAnimation(dai);
 		setButtonAnimation(trungbinh);
@@ -260,7 +260,9 @@ public class TrangChuController {
 			goldAmount_value.setText(Integer.toString(CommonFunction.gold));
 			int soTienDatCuoc = Integer.parseInt(nhapTienCuocTextField.getText());
 			int soVangHienCo = CommonFunction.gold;
-
+			if (soTienDatCuoc < 100) {
+	            throw new NumberFormatException();
+			}
 			if (soTienDatCuoc > soVangHienCo) {
 				Alert alert = new Alert(AlertType.WARNING, "Bạn không đủ số vàng để đặt cược!", ButtonType.OK);
 				alert.showAndWait();
@@ -312,7 +314,7 @@ public class TrangChuController {
 		try {
 			int soTienDatCuoc = Integer.parseInt(nhapTienCuocTextField.getText());
 			int soVangHienCo = CommonFunction.gold;
-			if (soTienDatCuoc < 1) {
+			if (soTienDatCuoc < 100) {
 	            throw new NumberFormatException();
 			}
 			if (soTienDatCuoc > soVangHienCo) {

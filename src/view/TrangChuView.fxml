@@ -234,7 +234,7 @@
                         </HBox>
                         <VBox layoutX="614.0" layoutY="131.0" prefHeight="274.0" prefWidth="229.0" styleClass="top-bar" stylesheets="@../value/style.css">
                            <children>
-                              <Label prefHeight="0.0" prefWidth="219.0" text="Ít Nhất: 1 vàng " textFill="WHITE">
+                              <Label prefHeight="0.0" prefWidth="219.0" text="Ít Nhất: 100 vàng " textFill="WHITE">
                                  <font>
                                     <Font size="24.0" />
                                  </font></Label>
@@ -308,7 +308,7 @@
                                     <Image url="@../img/asset/KietSuc.jpg" />
                                  </image>
                               </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="50 vàng" textAlignment="CENTER" wrappingWidth="109.33667373657227" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="400 vàng" textAlignment="CENTER" wrappingWidth="109.33667373657227" />
                            </children>
                         </VBox>
                         <VBox fx:id="tocBien" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
@@ -318,7 +318,7 @@
                                     <Image url="@../img/asset/TocBien.jpg" />
                                  </image>
                               </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="30 vàng" textAlignment="CENTER" wrappingWidth="109.33667373657227" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="500 vàng" textAlignment="CENTER" wrappingWidth="109.33667373657227" />
                            </children>
                         </VBox>
                         <VBox fx:id="tocHanh" layoutX="240.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
@@ -328,7 +328,7 @@
                                     <Image url="@../img/asset/TocHanh.jpg" />
                                  </image>
                               </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="40 vàng" textAlignment="CENTER" wrappingWidth="109.33667373657227" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="200 vàng" textAlignment="CENTER" wrappingWidth="109.33667373657227" />
                            </children>
                         </VBox>
                      </children>

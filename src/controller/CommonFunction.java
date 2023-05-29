@@ -117,25 +117,26 @@ public class CommonFunction {
 	public static void saveAccountData() {
 		if(accounts_gold != null && accounts !=null) {
 			accounts_gold.put(username, gold);
+			try {
+	    		FileWriter fw = new FileWriter(new File(FILE_ACCOUNTDATA));
+	    		for(Map.Entry<String, String> entry : accounts.entrySet()) {
+	    			String username = entry.getKey();
+	    			String password = entry.getValue();
+	    			String gold = accounts_gold.get(username).toString();
+		    		fw.write(USERNAME + ": " + username);
+		    		fw.write(System.getProperty("line.separator"));
+		    		fw.write(PASSWORD + ": " + password);
+		    		fw.write(System.getProperty("line.separator"));
+		    		fw.write(GOLD + ": " + gold);
+		    		fw.write(System.getProperty("line.separator"));
+		    		fw.write(System.getProperty("line.separator"));
+	    		}
+	    		fw.close();
+	    	}catch(Exception e) {
+	    		e.printStackTrace();
+	    	}
 		}
-    	try {
-    		FileWriter fw = new FileWriter(new File(FILE_ACCOUNTDATA));
-    		for(Map.Entry<String, String> entry : accounts.entrySet()) {
-    			String username = entry.getKey();
-    			String password = entry.getValue();
-    			String gold = accounts_gold.get(username).toString();
-	    		fw.write(USERNAME + ": " + username);
-	    		fw.write(System.getProperty("line.separator"));
-	    		fw.write(PASSWORD + ": " + password);
-	    		fw.write(System.getProperty("line.separator"));
-	    		fw.write(GOLD + ": " + gold);
-	    		fw.write(System.getProperty("line.separator"));
-	    		fw.write(System.getProperty("line.separator"));
-    		}
-    		fw.close();
-    	}catch(Exception e) {
-    		e.printStackTrace();
-    	}
+    	
 	}
 	
 	
