@@ -15,6 +15,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -134,7 +135,6 @@ public class TrangChuController {
 			@Override
 			public void handle(ActionEvent event) {
 				CommonFunction.sceneTransition("/view/gamePlay.fxml", event);
-
 			}
 		});
 		setPlayerName(CommonFunction.username);
@@ -179,9 +179,12 @@ public class TrangChuController {
 
 		// Đặt hiệu ứng cho xe đang được chọn
 		carImageView.setEffect(new DropShadow(10, Color.YELLOW));
+		String selectedCarID = carImageView.getId();
 
 		// Cập nhật biến selectedCar với xe đang được chọn
 		selectedCar = carImageView;
+		CommonFunction.carID=selectedCarID;
+		
 	}
 
 	private void setButtonAnimation(Button ButtonName) {
@@ -338,11 +341,12 @@ public class TrangChuController {
 		}
 	}
 
+	
 	public void handleItem_chosing(VBox itemName, int giaTriVatPham, int num) {
-		// Gắn sự kiện click chuột cho VBox "kietSuc"
-		itemName.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
+	    // Gắn sự kiện click chuột cho VBox "kietSuc"
+	    itemName.setOnMouseClicked(new EventHandler<MouseEvent>() {
+	        @Override
+	        public void handle(MouseEvent event) {
 				try {
 					goldAmount_value.setText(String.valueOf(CommonFunction.gold));
 					int soVangHienCo = CommonFunction.gold;
@@ -365,7 +369,26 @@ public class TrangChuController {
 					alert.showAndWait();
 				}
 			}
-		});
+	    });
+	    
+	    // Gắn sự kiện mouse entered cho VBox
+	    itemName.setOnMouseEntered(new EventHandler<MouseEvent>() {
+	        @Override
+	        public void handle(MouseEvent event) {
+	            // Hiển thị thông tin vật phẩm trong Tooltip
+	            Tooltip tooltip = new Tooltip("Tên Vật phẩm: Item " + num + "\n"
+	                    + "Giá trị: " + giaTriVatPham + "\n"
+	                    + "Mô tả: Mô tả vật phẩm " + num);
+	            
+	            // Thiết lập kiểu font chữ và màu nền của Tooltip
+	            tooltip.setStyle("-fx-font-size: 14px;"
+	                    + "-fx-background-color: white;"
+	                    + "-fx-text-fill: black;");
+	            
+	            // Hiển thị Tooltip khi chuột di chuyển vào VBox
+	            Tooltip.install(itemName, tooltip);
+	        }
+	    });
 	}
 
 }

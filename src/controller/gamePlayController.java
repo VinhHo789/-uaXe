@@ -68,8 +68,6 @@ public class gamePlayController implements Initializable {
 	@FXML
 	private ImageView endingRoadImageView;
 	
-	
-	
 	@FXML
 	private ImageView tocBienImageView;
 	
@@ -165,7 +163,6 @@ public class gamePlayController implements Initializable {
 	
 	@FXML 
 	private ImageView car2ImageView;
-	
 	
 	@FXML 
 	private ImageView car3ImageView;
