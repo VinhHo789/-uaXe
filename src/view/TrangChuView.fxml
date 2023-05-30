@@ -90,7 +90,7 @@
                               <Image url="@../img/asset/Game_Kiếm_Tiền.jpg" />
                            </image>
                         </ImageView>
-                        <Button layoutX="144.0" layoutY="403.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="171.0" style="-fx-background-radius: 100; -fx-background-color: #fff454;" styleClass="transparent-button" text="Vào Kiếm Tiền" textAlignment="CENTER" />
+                        <Button fx:id="vaoKiemTienButton" layoutX="144.0" layoutY="403.0" mnemonicParsing="false" onAction="#vaoKiemTienAction" prefHeight="35.0" prefWidth="171.0" style="-fx-background-radius: 100; -fx-background-color: #fff454;" styleClass="transparent-button" text="Vào Kiếm Tiền" textAlignment="CENTER" />
                         <AnchorPane layoutX="434.0" layoutY="100.0" prefHeight="355.0" prefWidth="430.0">
                            <children>
                               <ImageView fitHeight="319.0" fitWidth="381.0" layoutX="28.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
@@ -265,7 +265,7 @@
       </BorderPane>
       <VBox id="Item_Chosing" fx:id="Item_Chosing" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="888.0" visible="false">
          <children>
-            <Label fx:id="doDaiDuongDuaText" alignment="CENTER" prefHeight="90.0" prefWidth="888.0" text="CHÀO MỪNG BẠN ĐÃ ĐẾN TRƯỜNG ĐUA" textAlignment="CENTER">
+            <Label fx:id="doDaiDuongDuaText" alignment="CENTER" prefHeight="90.0" prefWidth="888.0" text="CHÀO MỪNG BẠN ĐÃ ĐẾN TRƯỜNG ĐUA" textAlignment="CENTER" textFill="#e3ad49">
                <font>
                   <Font size="38.0" />
                </font>
@@ -273,12 +273,12 @@
                   <Insets top="60.0" />
                </VBox.margin>
             </Label>
-            <Label fx:id="mauDuongDua" alignment="CENTER" prefHeight="18.0" prefWidth="1443.0" text="ĐƯỜNG ĐUA MẪU X">
+            <Label fx:id="mauDuongDua" alignment="CENTER" prefHeight="18.0" prefWidth="1443.0" text="ĐƯỜNG ĐUA MẪU X" textFill="#e3ad49">
                <font>
-                  <Font size="60.0" />
+                  <Font name="Consolas" size="60.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="46.0" prefWidth="1458.0" text="CHÚC BẠN MAY MẮN!">
+            <Label alignment="CENTER" prefHeight="46.0" prefWidth="1458.0" text="CHÚC BẠN MAY MẮN!" textFill="#e3ad49">
                <font>
                   <Font size="30.0" />
                </font>
@@ -294,7 +294,7 @@
                      </effect>
                   </Line>
                   <Line endX="427.86334228515625" endY="7.62939453125E-5" layoutX="370.0" layoutY="200.0" startX="-239.59999084472656" startY="4.57763671875E-5" strokeWidth="3.0" />
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="204.0" layoutY="24.0" prefHeight="18.0" prefWidth="460.0" text="HÃY CHỌN VẬT PHẨM HỖ TRỢ">
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="204.0" layoutY="24.0" prefHeight="18.0" prefWidth="460.0" text="HÃY CHỌN VẬT PHẨM HỖ TRỢ" textFill="#e3ad49">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -308,7 +308,7 @@
                                     <Image url="@../img/asset/KietSuc.jpg" />
                                  </image>
                               </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="400 vàng" textAlignment="CENTER" wrappingWidth="109.33667373657227" />
+                              <Text fill="#e3ad49" strokeType="OUTSIDE" strokeWidth="0.0" text="400 vàng" textAlignment="CENTER" wrappingWidth="109.33667373657227" />
                            </children>
                         </VBox>
                         <VBox fx:id="tocBien" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
@@ -318,7 +318,7 @@
                                     <Image url="@../img/asset/TocBien.jpg" />
                                  </image>
                               </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="500 vàng" textAlignment="CENTER" wrappingWidth="109.33667373657227" />
+                              <Text fill="#e3ad49" strokeType="OUTSIDE" strokeWidth="0.0" text="500 vàng" textAlignment="CENTER" wrappingWidth="109.33667373657227" />
                            </children>
                         </VBox>
                         <VBox fx:id="tocHanh" layoutX="240.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
@@ -328,17 +328,17 @@
                                     <Image url="@../img/asset/TocHanh.jpg" />
                                  </image>
                               </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="200 vàng" textAlignment="CENTER" wrappingWidth="109.33667373657227" />
+                              <Text fill="#e3ad49" strokeType="OUTSIDE" strokeWidth="0.0" text="200 vàng" textAlignment="CENTER" wrappingWidth="109.33667373657227" />
                            </children>
                         </VBox>
                      </children>
                   </HBox>
-                  <Text layoutX="571.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số Vàng của bạn:" wrappingWidth="185.18340301513672">
+                  <Text fill="#e3ad49" layoutX="571.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số Vàng của bạn:" wrappingWidth="185.18340301513672">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Text>
-                  <Label fx:id="goldAmount_value" layoutX="756.0" layoutY="204.0" text=".">
+                  <Label fx:id="goldAmount_value" layoutX="756.0" layoutY="204.0" text="." textFill="#e3ad49">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -348,7 +348,7 @@
                   <Insets />
                </VBox.margin>
             </AnchorPane>
-            <Button fx:id="playGameButton" graphicTextGap="3.0" mnemonicParsing="false" prefHeight="94.0" prefWidth="198.0" text="BẮT ĐẦU">
+            <Button fx:id="playGameButton" graphicTextGap="3.0" mnemonicParsing="false" prefHeight="94.0" prefWidth="198.0" stylesheets="@../css/application.css" text="BẮT ĐẦU">
                <font>
                   <Font size="34.0" />
                </font>

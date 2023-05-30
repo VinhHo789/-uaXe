@@ -96,6 +96,9 @@ public class TrangChuController {
 	private Button trungbinh;
 	@FXML
 	private Button dai;
+	
+	@FXML
+	private Button vaoKiemTienButton;
 
 	@FXML
 	private Tab duongnhua;
@@ -138,8 +141,9 @@ public class TrangChuController {
 	@FXML
 	Label mauDuongDua;
 	
-	@FXML
+
     protected ImageView muaVatPhamBackGround;
+	
 	
 
 	private Tab selectedMap;
@@ -147,17 +151,22 @@ public class TrangChuController {
 	private ImageView selectedCar;
 
 	final String BACKGROUND_PATH = "/img/asset/background_Home.jpg";
+	final String MUAVATOHAMBACKGROUND_PATH = "/img/asset/bg2.jpg";
 	Image bkgImg = new Image(getClass().getResource(BACKGROUND_PATH).toExternalForm());
+	Image muaVatPhambkgImg = new Image(getClass().getResource(MUAVATOHAMBACKGROUND_PATH).toExternalForm());
 
 	public void initialize() {
 		HomePage1.setBackground(new javafx.scene.layout.Background(
 				new javafx.scene.layout.BackgroundImage(bkgImg, null, null, null, null)));
+		
+		Item_Chosing.setBackground(new javafx.scene.layout.Background(
+				new javafx.scene.layout.BackgroundImage(muaVatPhambkgImg, null, null, null, null)));
 
 		HomePage1.toBack();
+		Item_Chosing.toBack();
 
 		HomePage.setVisible(true);
 		Map_Choosing.setVisible(false);
-
 		playGameButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -165,6 +174,8 @@ public class TrangChuController {
 
 			}
 		});
+		
+		
 		setPlayerName(CommonFunction.username);
 		setGoldAmount(CommonFunction.gold);
 		handleItem_chosing(kietSuc, 400, 2);
@@ -270,6 +281,7 @@ public class TrangChuController {
 		    choosableSetUp(xe3);
 		    choosableSetUp(xe4);
 		    choosableSetUp(xe5);
+		    choosableSetUp(vaoKiemTienButton);
 		    
 		    //Thêm background, logic cho màn hình mua vật phẩm
 		    //thêm logic cho thoát game
@@ -532,6 +544,7 @@ public class TrangChuController {
 			button.getScene().setCursor(Cursor.DEFAULT);
         });
 	}
+
 
 
 

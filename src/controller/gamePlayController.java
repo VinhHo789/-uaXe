@@ -1,5 +1,7 @@
 package controller;
 
+
+//Thêm hiệu ứng kiệt sức
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -273,10 +275,10 @@ public class gamePlayController implements Initializable {
 		}
 		// Load the road image
 		if(CommonFunction.mapID.equals("duongnhua")) {
-			roadImage1 = new Image(getClass().getResourceAsStream("/img/map/1-map2.png"));
-			roadImage2 = new Image(getClass().getResourceAsStream("/img/map/1-map1.png"));
-			startingroadImage = new Image(getClass().getResourceAsStream("/img/map/1-startingmap.png"));
-			endingroadImage = new Image(getClass().getResourceAsStream("/img/map/1-endingmap.png"));
+			roadImage1 = new Image(getClass().getResourceAsStream("/img/map/1-map2.jpg"));
+			roadImage2 = new Image(getClass().getResourceAsStream("/img/map/1-map1.jpg"));
+			startingroadImage = new Image(getClass().getResourceAsStream("/img/map/1-startingmap.jpg"));
+			endingroadImage = new Image(getClass().getResourceAsStream("/img/map/1-endingmap.jpg"));
 		}
 		else if (CommonFunction.mapID.equals("duongdat")) {
 			roadImage1 = new Image(getClass().getResourceAsStream("/img/map/2-map2.png"));
