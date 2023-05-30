@@ -9,12 +9,14 @@ import java.util.Map;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Bounds;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -26,6 +28,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.scene.Cursor;
 import javafx.scene.control.Alert;
 
 public class TrangChuController {
@@ -35,9 +38,6 @@ public class TrangChuController {
 
 	@FXML
 	private TextField goldAmountField;
-
-	@FXML
-	private ImageView setting;
 
 	@FXML
 	private Text thoatgame;
@@ -113,6 +113,22 @@ public class TrangChuController {
 	private ImageView xe4;
 	@FXML
 	private ImageView xe5;
+	
+	@FXML
+	protected ImageView tocHanhImageView;
+	
+	@FXML
+    protected ImageView tocBienImageView;
+	
+	@FXML
+    protected ImageView kietSucImageView;
+	
+	@FXML
+	Label mauDuongDua;
+	
+	@FXML
+    protected ImageView muaVatPhamBackGround;
+	
 
 	private Tab selectedMap;
 	private Button selectedLength;
@@ -159,6 +175,85 @@ public class TrangChuController {
 		xe3.setOnMouseClicked(event -> handleCarSelection(xe3));
 		xe4.setOnMouseClicked(event -> handleCarSelection(xe4));
 		xe5.setOnMouseClicked(event -> handleCarSelection(xe5));
+		
+		 final Tooltip tooltip = new Tooltip();
+		 tocHanh.setOnMouseEntered(new EventHandler<MouseEvent>() {
+		        @Override
+		        public void handle(MouseEvent event) {
+		            tooltip.setText("Tăng tốc 60% trong vòng 3 giây");
+		            tooltip.setAutoHide(false);
+		            Bounds bounds = tocHanh.localToScreen(tocHanh.getBoundsInLocal());
+		            tooltip.show(tocHanh, bounds.getMinX() + bounds.getWidth(), bounds.getMinY());
+		        }
+		    });
+
+		    tocHanh.setOnMouseExited(new EventHandler<MouseEvent>() {
+		        @Override
+		        public void handle(MouseEvent event) {
+		            tooltip.hide();
+		        }
+		    });
+
+		    
+		    tocBien.setOnMouseEntered(new EventHandler<MouseEvent>() {
+		        @Override
+		        public void handle(MouseEvent event) {
+		        	 tooltip.setText("Dịch chuyển 1 khoảng nhỏ về phía trước");
+			         tooltip.setAutoHide(false);
+			         Bounds bounds = tocBien.localToScreen(tocBien.getBoundsInLocal());
+			         tooltip.show(tocBien, bounds.getMinX() + bounds.getWidth(), bounds.getMinY());
+		        }
+		    });
+		    tocBien.setOnMouseExited(new EventHandler<MouseEvent>() {
+		        @Override
+		        public void handle(MouseEvent event) {
+		            // Code to hide the image info for tocBien
+		        	tooltip.hide();
+		        }
+		    });
+		    
+		    kietSuc.setOnMouseEntered(new EventHandler<MouseEvent>() {
+		        @Override
+		        public void handle(MouseEvent event) {
+		        	tooltip.setText("Làm chậm mọi kẻ thù đi 30% trong 2 giây");
+		            tooltip.setAutoHide(false);
+		            Bounds bounds = kietSuc.localToScreen(kietSuc.getBoundsInLocal());
+		            tooltip.show(kietSuc, bounds.getMinX() + bounds.getWidth(), bounds.getMinY());
+		        }
+		    });
+		    kietSuc.setOnMouseExited(new EventHandler<MouseEvent>() {
+		        @Override
+		        public void handle(MouseEvent event) {
+		            // Code to hide the image info for tocBien
+		        	tooltip.hide();
+		        }
+		    });
+		    
+		    choosableSetUp(tocHanhImageView);
+		    choosableSetUp(tocBienImageView);
+		    choosableSetUp(kietSucImageView);
+		    choosableSetUp(VaoDua);
+		    choosableSetUp(QuayLai);
+		    choosableSetUp(TiepTucCarChoosing);
+		    choosableSetUp(QuayLaiMap_Choosing);
+		    choosableSetUp(TiepTuc_ItemChoosing);
+		    choosableSetUp(playGameButton);
+		    choosableSetUp(ngan);
+		    choosableSetUp(trungbinh);
+		    choosableSetUp(dai);
+		    choosableSetUp(xe1);
+		    choosableSetUp(xe2);
+		    choosableSetUp(xe3);
+		    choosableSetUp(xe4);
+		    choosableSetUp(xe5);
+		    
+		    //Thêm background, logic cho màn hình mua vật phẩm
+		    //thêm logic cho thoát game
+		    
+		    
+		    
+
+		    
 	}
 
 	private void handleMapSelection(Tab tab) {
@@ -367,5 +462,30 @@ public class TrangChuController {
 			}
 		});
 	}
+	
+	public void choosableSetUp(ImageView imageView) {
+        // Set event handler for mouse hover
+        imageView.setOnMouseEntered((MouseEvent event) -> {
+            imageView.getScene().setCursor(Cursor.HAND);
+        });
+
+        // Set event handler for mouse exit
+        imageView.setOnMouseExited((MouseEvent event) -> {
+            imageView.getScene().setCursor(Cursor.DEFAULT);
+        });
+	}
+	
+	public void choosableSetUp(Button button) {
+        // Set event handler for mouse hover
+		button.setOnMouseEntered((MouseEvent event) -> {
+			button.getScene().setCursor(Cursor.HAND);
+        });
+
+        // Set event handler for mouse exit
+		button.setOnMouseExited((MouseEvent event) -> {
+			button.getScene().setCursor(Cursor.DEFAULT);
+        });
+	}
+
 
 }
