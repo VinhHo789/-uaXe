@@ -27,7 +27,7 @@
 	<children>
       <BorderPane id="HomePage" fx:id="HomePage1" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="888.0" stylesheets="@../value/style.css">
          <top>
-            <HBox prefHeight="77.0" prefWidth="888.0" styleClass="top-bar" stylesheets="@../value/style.css" BorderPane.alignment="CENTER">
+            <HBox prefHeight="71.0" prefWidth="888.0" styleClass="top-bar" stylesheets="@../value/style.css" BorderPane.alignment="CENTER">
                <children>
                   <ImageView fitHeight="91.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -61,12 +61,12 @@
                         <Insets top="30.0" />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView fx:id="setting" fitHeight="44.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="backSetting" fitHeight="67.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/asset/setting.png" />
+                        <Image url="@../img/asset/backIcon.png" />
                      </image>
                      <HBox.margin>
-                        <Insets left="20.0" top="30.0" />
+                        <Insets left="20.0" top="25.0" />
                      </HBox.margin>
                   </ImageView>
                   <Text fx:id="thoatgame" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Thoát Game">
@@ -171,7 +171,11 @@
                                              <children>
                                                 <ImageView fitHeight="307.0" fitWidth="544.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
+<<<<<<< Updated upstream
                                                       <Image url="@../img/asset/DreamShaper_v5_overpass_high_speed_for_racing_game_dramatic_se_0.jpg" />
+=======
+                                                      <Image url="@../img/asset/Cầu%20vượt%20tử%20thần.jpg" />
+>>>>>>> Stashed changes
                                                    </image>
                                                 </ImageView>
                                              </children>
@@ -273,7 +277,7 @@
                   <Insets top="60.0" />
                </VBox.margin>
             </Label>
-            <Label fx:id="mauDuongDua" alignment="CENTER" prefHeight="18.0" prefWidth="1443.0" text="ĐƯỜNG ĐUA MẪU X">
+            <Label fx:id="mauDuongDua" alignment="CENTER" prefHeight="127.0" prefWidth="888.0" text="CỬA HÀNG VẬT PHẨM">
                <font>
                   <Font size="60.0" />
                </font>
