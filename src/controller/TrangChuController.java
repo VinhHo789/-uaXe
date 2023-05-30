@@ -28,13 +28,19 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-<<<<<<< HEAD
+
 import javafx.scene.Cursor;
-=======
+
+import javafx.stage.Stage;
+
+import javafx.scene.Node;
+
+
 import javafx.stage.Stage;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
->>>>>>> f72b6e74551b3d8c07d3e501d71ea41583227c15
+
+
 import javafx.scene.control.Alert;
 
 public class TrangChuController {
@@ -181,8 +187,19 @@ public class TrangChuController {
 		xe3.setOnMouseClicked(event -> handleCarSelection(xe3));
 		xe4.setOnMouseClicked(event -> handleCarSelection(xe4));
 		xe5.setOnMouseClicked(event -> handleCarSelection(xe5));
+
+
+		playerNameField.setCursor(Cursor.DEFAULT);
+		goldAmountField.setCursor(Cursor.DEFAULT);
 		
-<<<<<<< HEAD
+		playerNameField.selectedTextProperty().addListener((observableVal,oldVal,newVal)->{
+			playerNameField.deselect();
+		});
+
+		goldAmountField.selectedTextProperty().addListener((observableVal,oldVal,newVal)->{
+			goldAmountField.deselect();
+		});
+
 		 final Tooltip tooltip = new Tooltip();
 		 tocHanh.setOnMouseEntered(new EventHandler<MouseEvent>() {
 		        @Override
@@ -261,7 +278,7 @@ public class TrangChuController {
 		    
 
 		    
-=======
+
 		playerNameField.setCursor(Cursor.DEFAULT);
 		goldAmountField.setCursor(Cursor.DEFAULT);
 		
@@ -272,7 +289,7 @@ public class TrangChuController {
 		goldAmountField.selectedTextProperty().addListener((observableVal,oldVal,newVal)->{
 			goldAmountField.deselect();
 		});
->>>>>>> f72b6e74551b3d8c07d3e501d71ea41583227c15
+
 	}
 
 	private void handleMapSelection(Tab tab) {
@@ -482,7 +499,16 @@ public class TrangChuController {
 		});
 	}
 	
-<<<<<<< HEAD
+
+
+	@FXML
+	public void vaoKiemTienAction(ActionEvent event) {
+		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+		CommonFunction.stop();
+		new minigame(stage);
+	}
+
+
 	public void choosableSetUp(ImageView imageView) {
         // Set event handler for mouse hover
         imageView.setOnMouseEntered((MouseEvent event) -> {
@@ -507,13 +533,7 @@ public class TrangChuController {
         });
 	}
 
-=======
-	@FXML
-	public void vaoKiemTienAction(ActionEvent event) {
-		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-		CommonFunction.stop();
-		new minigame(stage);
-	}
->>>>>>> f72b6e74551b3d8c07d3e501d71ea41583227c15
+
+
 
 }
