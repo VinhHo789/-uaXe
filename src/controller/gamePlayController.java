@@ -30,6 +30,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
@@ -53,6 +54,7 @@ import javafx.event.*;
 import javafx.scene.input.MouseEvent;
 
 public class gamePlayController implements Initializable {
+	
 	@FXML
 	private AnchorPane giaoDienAnchorPane;
 
@@ -206,26 +208,26 @@ public class gamePlayController implements Initializable {
 	
 	
 	
-	Image tocBienImage = new Image(getClass().getResourceAsStream("/img/asset/TocBien.jpg"));
-	Image tocHanhImage = new Image(getClass().getResourceAsStream("/img/asset/TocHanh.jpg"));
-	Image kietSucImage = new Image(getClass().getResourceAsStream("/img/asset/KietSuc.jpg"));
-	Image head1Image = new Image(getClass().getResourceAsStream("/img/asset/chars/head1.png"));
-	Image head2Image = new Image(getClass().getResourceAsStream("/img/asset/chars/head2.png"));
-	Image head3Image = new Image(getClass().getResourceAsStream("/img/asset/chars/head3.png"));
-	Image flashEffectImage = new Image(getClass().getResourceAsStream("/img/asset/flashEffect.png"));
-	Image tocHanhEffectImage = new Image(getClass().getResourceAsStream("/img/asset/tocHanhEffect.png"));
+	Image tocBienImage = new Image(getClass().getResource("/img/asset/TocBien.jpg").toExternalForm());
+	Image tocHanhImage = new Image(getClass().getResource("/img/asset/TocHanh.jpg").toExternalForm());
+	Image kietSucImage = new Image(getClass().getResource("/img/asset/KietSuc.jpg").toExternalForm());
+	Image head1Image = new Image(getClass().getResource("/img/asset/chars/head1.png").toExternalForm());
+	Image head2Image = new Image(getClass().getResource("/img/asset/chars/head2.png").toExternalForm());
+	Image head3Image = new Image(getClass().getResource("/img/asset/chars/head3.png").toExternalForm());
+	Image flashEffectImage = new Image(getClass().getResource("/img/asset/flashEffect.png").toExternalForm());
+	Image tocHanhEffectImage = new Image(getClass().getResource("/img/asset/tocHanhEffect.png").toExternalForm());
 	
 	
-	Image car1Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car1.png"));
-	Image car2Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car2.png"));
-	Image car3Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car3.png"));
-	Image car4Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car4.png"));
-	Image car5Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car5.png"));
-	Image podiumImage = new Image(getClass().getResourceAsStream("/img/asset/podium.png"));
-	Image roadImage1 = new Image(getClass().getResourceAsStream("/img/map/3-map2.png"));
-	Image roadImage2 = new Image(getClass().getResourceAsStream("/img/map/3-map1.png"));
-	Image startingroadImage = new Image(getClass().getResourceAsStream("/img/map/3-startingmap.png"));
-	Image endingroadImage = new Image(getClass().getResourceAsStream("/img/map/3-endingmap.png"));
+	Image car1Image = new Image(getClass().getResource("/img/asset/cars/car1.png").toExternalForm());
+	Image car2Image = new Image(getClass().getResource("/img/asset/cars/car2.png").toExternalForm());
+	Image car3Image = new Image(getClass().getResource("/img/asset/cars/car3.png").toExternalForm());
+	Image car4Image = new Image(getClass().getResource("/img/asset/cars/car4.png").toExternalForm());
+	Image car5Image = new Image(getClass().getResource("/img/asset/cars/car5.png").toExternalForm());
+	Image podiumImage = new Image(getClass().getResource("/img/asset/podium.png").toExternalForm());
+	Image roadImage1 = new Image(getClass().getResource("/img/map/3-map2.png").toExternalForm());
+	Image roadImage2 = new Image(getClass().getResource("/img/map/3-map1.png").toExternalForm());
+	Image startingroadImage = new Image(getClass().getResource("/img/map/3-startingmap.png").toExternalForm());
+	Image endingroadImage = new Image(getClass().getResource("/img/map/3-endingmap.png").toExternalForm());
 	
 
 
@@ -233,61 +235,61 @@ public class gamePlayController implements Initializable {
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		
 		if(CommonFunction.carID.equals("xe1")) {
-		car1Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car1.png"));
-		car2Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car2.png"));
-		car3Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car3.png"));
-		car4Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car4.png"));
-		car5Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car5.png"));
+		car1Image = new Image(getClass().getResource("/img/asset/cars/car1.png").toExternalForm());
+		car2Image = new Image(getClass().getResource("/img/asset/cars/car2.png").toExternalForm());
+		car3Image = new Image(getClass().getResource("/img/asset/cars/car3.png").toExternalForm());
+		car4Image = new Image(getClass().getResource("/img/asset/cars/car4.png").toExternalForm());
+		car5Image = new Image(getClass().getResource("/img/asset/cars/car5.png").toExternalForm());
 		}
 		
 		if(CommonFunction.carID.equals("xe1")) {
-			car1Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car1.png"));
-			car2Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car2.png"));
-			car3Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car3.png"));
-			car4Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car4.png"));
-			car5Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car5.png"));
+			car1Image = new Image(getClass().getResource("/img/asset/cars/car1.png").toExternalForm());
+			car2Image = new Image(getClass().getResource("/img/asset/cars/car2.png").toExternalForm());
+			car3Image = new Image(getClass().getResource("/img/asset/cars/car3.png").toExternalForm());
+			car4Image = new Image(getClass().getResource("/img/asset/cars/car4.png").toExternalForm());
+			car5Image = new Image(getClass().getResource("/img/asset/cars/car5.png").toExternalForm());
 		} else if(CommonFunction.carID.equals("xe2")) {
-			car1Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car2.png"));
-			car2Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car1.png"));
-			car3Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car3.png"));
-			car4Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car4.png"));
-			car5Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car5.png"));
+			car1Image = new Image(getClass().getResource("/img/asset/cars/car2.png").toExternalForm());
+			car2Image = new Image(getClass().getResource("/img/asset/cars/car1.png").toExternalForm());
+			car3Image = new Image(getClass().getResource("/img/asset/cars/car3.png").toExternalForm());
+			car4Image = new Image(getClass().getResource("/img/asset/cars/car4.png").toExternalForm());
+			car5Image = new Image(getClass().getResource("/img/asset/cars/car5.png").toExternalForm());
 		} else if(CommonFunction.carID.equals("xe3")) {
-			car1Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car3.png"));
-			car2Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car1.png"));
-			car3Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car2.png"));
-			car4Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car5.png"));
-			car5Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car4.png"));
+			car1Image = new Image(getClass().getResource("/img/asset/cars/car3.png").toExternalForm());
+			car2Image = new Image(getClass().getResource("/img/asset/cars/car1.png").toExternalForm());
+			car3Image = new Image(getClass().getResource("/img/asset/cars/car2.png").toExternalForm());
+			car4Image = new Image(getClass().getResource("/img/asset/cars/car5.png").toExternalForm());
+			car5Image = new Image(getClass().getResource("/img/asset/cars/car4.png").toExternalForm());
 		} else if(CommonFunction.carID.equals("xe4")) {
-			car1Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car4.png"));
-			car2Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car2.png"));
-			car3Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car1.png"));
-			car4Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car3.png"));
-			car5Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car5.png"));
+			car1Image = new Image(getClass().getResource("/img/asset/cars/car4.png").toExternalForm());
+			car2Image = new Image(getClass().getResource("/img/asset/cars/car2.png").toExternalForm());
+			car3Image = new Image(getClass().getResource("/img/asset/cars/car1.png").toExternalForm());
+			car4Image = new Image(getClass().getResource("/img/asset/cars/car3.png").toExternalForm());
+			car5Image = new Image(getClass().getResource("/img/asset/cars/car5.png").toExternalForm());
 		} else if(CommonFunction.carID.equals("xe5")) {
-			car1Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car5.png"));
-			car2Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car4.png"));
-			car3Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car2.png"));
-			car4Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car3.png"));
-			car5Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car1.png"));
+			car1Image = new Image(getClass().getResource("/img/asset/cars/car5.png").toExternalForm());
+			car2Image = new Image(getClass().getResource("/img/asset/cars/car4.png").toExternalForm());
+			car3Image = new Image(getClass().getResource("/img/asset/cars/car2.png").toExternalForm());
+			car4Image = new Image(getClass().getResource("/img/asset/cars/car3.png").toExternalForm());
+			car5Image = new Image(getClass().getResource("/img/asset/cars/car1.png").toExternalForm());
 		}
 		// Load the road image
 		if(CommonFunction.mapID.equals("duongnhua")) {
-			roadImage1 = new Image(getClass().getResourceAsStream("/img/map/1-map2.png"));
-			roadImage2 = new Image(getClass().getResourceAsStream("/img/map/1-map1.png"));
-			startingroadImage = new Image(getClass().getResourceAsStream("/img/map/1-startingmap.png"));
-			endingroadImage = new Image(getClass().getResourceAsStream("/img/map/1-endingmap.png"));
+			roadImage1 = new Image(getClass().getResource("/img/map/1-map2.png").toExternalForm());
+			roadImage2 = new Image(getClass().getResource("/img/map/1-map1.png").toExternalForm());
+			startingroadImage = new Image(getClass().getResource("/img/map/1-startingmap.png").toExternalForm());
+			endingroadImage = new Image(getClass().getResource("/img/map/1-endingmap.png").toExternalForm());
 		}
 		else if (CommonFunction.mapID.equals("duongdat")) {
-			roadImage1 = new Image(getClass().getResourceAsStream("/img/map/2-map2.png"));
-			roadImage2 = new Image(getClass().getResourceAsStream("/img/map/2-map1.png"));
-			startingroadImage = new Image(getClass().getResourceAsStream("/img/map/2-startingmap.png"));
-			endingroadImage = new Image(getClass().getResourceAsStream("/img/map/2-endingmap.png"));
+			roadImage1 = new Image(getClass().getResource("/img/map/2-map2.png").toExternalForm());
+			roadImage2 = new Image(getClass().getResource("/img/map/2-map1.png").toExternalForm());
+			startingroadImage = new Image(getClass().getResource("/img/map/2-startingmap.png").toExternalForm());
+			endingroadImage = new Image(getClass().getResource("/img/map/2-endingmap.png").toExternalForm());
 		}else if(CommonFunction.mapID.equals("duongbaron")){
-			roadImage1 = new Image(getClass().getResourceAsStream("/img/map/3-map2.png"));
-			roadImage2 = new Image(getClass().getResourceAsStream("/img/map/3-map1.png"));
-			startingroadImage = new Image(getClass().getResourceAsStream("/img/map/3-startingmap.png"));
-			endingroadImage = new Image(getClass().getResourceAsStream("/img/map/3-endingmap.png"));
+			roadImage1 = new Image(getClass().getResource("/img/map/3-map2.png").toExternalForm());
+			roadImage2 = new Image(getClass().getResource("/img/map/3-map1.png").toExternalForm());
+			startingroadImage = new Image(getClass().getResource("/img/map/3-startingmap.png").toExternalForm());
+			endingroadImage = new Image(getClass().getResource("/img/map/3-endingmap.png").toExternalForm());
 		}
 		
 		if(CommonFunction.mapLength.equals("ngan")) {
@@ -854,7 +856,7 @@ public class gamePlayController implements Initializable {
         });
 		
 		tocHanhImageView.setOnMouseClicked((MouseEvent mouseevent) -> {
-			//tocHanhImageView.setDisable(true);
+			tocHanhImageView.setDisable(true);
 			translateTransition1.stop(); // Stop the current transition
 		    double currentX = car1StackPane.getTranslateX(); // Get the current X position
 	    	double newX = currentX + 130;
@@ -944,23 +946,21 @@ public class gamePlayController implements Initializable {
 		thoatGameButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Stage stg = (Stage)((Node)event.getSource()).getScene().getWindow();
-                stg.getOnCloseRequest().handle(new WindowEvent(stg, WindowEvent.WINDOW_CLOSE_REQUEST));;
-               
-                
+                CommonFunction.closeStage();
             }
         });
 		
 		tiepTucChoiButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+            	CommonFunction.stop();
+            	CommonFunction.musicFilePath = "src/music/LND.mp3";
+            	CommonFunction.play();
             	try {
-                    FXMLLoader loader = new FXMLLoader(CommonFunction.class.getResource("/view/TrangchuView.fxml"));
-                    StackPane root = loader.load();
-                    Scene scene = new Scene(root);
+                    Parent root = FXMLLoader.load(getClass().getResource("/view/TrangchuView.fxml"));
+                    Scene scene = new Scene(root,888,619);
                     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     window.setScene(scene);
-                    window.show();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

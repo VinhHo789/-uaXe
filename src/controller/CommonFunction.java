@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
@@ -41,11 +42,9 @@ public class CommonFunction {
     public static final String PASSWORD = "Password";
 	public static final String GOLD = "Gold";
 	public static int betGold;
-	
-    
-    
+    public static Stage primaryStage = null;
     public static void play() {
-    	media =  new Media(new File(musicFilePath).toURI().toString());
+    	media =  new Media(Paths.get(musicFilePath).toUri().toString());
     	mediaPlayer = new MediaPlayer(media);
 
         
@@ -132,6 +131,7 @@ public class CommonFunction {
 		    		fw.write(System.getProperty("line.separator"));
 	    		}
 	    		fw.close();
+	    		System.out.println("saved");
 	    	}catch(Exception e) {
 	    		e.printStackTrace();
 	    	}
@@ -139,5 +139,9 @@ public class CommonFunction {
     	
 	}
 	
-	
+	public static void closeStage() {
+    	CommonFunction.saveAccountData();
+    	System.out.println("close");
+    	primaryStage.close();
+	}
 }

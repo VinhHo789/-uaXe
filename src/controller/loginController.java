@@ -363,8 +363,6 @@ public class loginController implements Initializable {
     		CommonFunction.volume = 0.5;
     		CommonFunction.gold = accounts_gold.get(username);
     		CommonFunction.username = username;
-    		CommonFunction.accounts_gold = accounts_gold;
-    		CommonFunction.accounts = accounts;
     	}else {
     		loginErr.setVisible(true);
     		loginShowPassWord.clear();
@@ -767,6 +765,8 @@ public class loginController implements Initializable {
 		});
 //		username password
 		getAccountData();
+		CommonFunction.accounts_gold = accounts_gold;
+		CommonFunction.accounts = accounts;
 		
 //		loginPane fade in effect
 		loginPane.setOpacity(0);

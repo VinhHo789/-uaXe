@@ -69,8 +69,7 @@ public class GiaodienUI implements Initializable{
         quitButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Stage stg = (Stage)((Node)event.getSource()).getScene().getWindow();
-                stg.close();
+                CommonFunction.closeStage();
             }
         });
         mainAnchorPane.setBackground(new Background(new BackgroundImage(new Image(getClass().getResource("/img/asset/background.jpg").toExternalForm())

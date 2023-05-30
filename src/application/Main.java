@@ -51,7 +51,8 @@ public class Main extends Application {
 	//Bien com chua cac bien va ham common
     
     public void start(Stage primaryStage) {
-        try {
+        CommonFunction.primaryStage = primaryStage;
+    	try {
             Parent root = FXMLLoader.load(getClass().getResource("/view/introVid.fxml"));
             Scene scene = new Scene(root, 888, 619);
             
@@ -68,8 +69,7 @@ public class Main extends Application {
             primaryStage.show();
             primaryStage.setResizable(false);
             primaryStage.setOnCloseRequest((event)->{
-            	CommonFunction.saveAccountData();
-            	System.out.println("hello");
+            	CommonFunction.closeStage();
             	//primaryStage.close();
             });
             
