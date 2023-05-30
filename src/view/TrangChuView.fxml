@@ -231,26 +231,41 @@
                                  <image>
                                     <Image url="@../img/asset/cars/modelcar1.png" />
                                  </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </ImageView>
                               <ImageView fitHeight="184.0" fitWidth="137.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" fx:id="xe2">
                                  <image>
                                     <Image url="@../img/asset/cars/modelcar2.png" />
                                  </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </ImageView>
                               <ImageView fitHeight="183.0" fitWidth="109.0" layoutX="148.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" fx:id="xe3">
                                  <image>
                                     <Image url="@../img/asset/cars/modelcar3.png" />
                                  </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </ImageView>
                               <ImageView fitHeight="180.0" fitWidth="137.0" layoutX="285.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" fx:id="xe4">
                                  <image>
                                     <Image url="@../img/asset/cars/modelcar4.png" />
                                  </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </ImageView>
                               <ImageView fitHeight="180.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true" fx:id="xe5">
                                  <image>
                                     <Image url="@../img/asset/cars/modelcar5.png" />
                                  </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </ImageView>
                            </children>
                         </HBox>

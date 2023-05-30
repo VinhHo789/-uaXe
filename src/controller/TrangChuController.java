@@ -385,6 +385,7 @@ public class TrangChuController {
 	@FXML
 	public void vaoKiemTienAction(ActionEvent event) {
 		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+		CommonFunction.stop();
 		new minigame(stage);
 	}
 

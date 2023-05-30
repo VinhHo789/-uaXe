@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 
@@ -41,6 +42,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
@@ -236,6 +240,15 @@ public class minigame {
 		});
 	}
 	
+	//Audio
+	AudioClip crashSound = new AudioClip(Paths.get("src/img/asset/minigameCrashSound.wav").toUri().toString());
+	AudioClip levelupSound = new AudioClip(Paths.get("src/img/asset/minigameLevelupSound.mp3").toUri().toString());
+	MediaPlayer policeCarSound = new MediaPlayer(
+		new Media(Paths.get("src/img/asset/policeSound.mp3").toUri().toString()));
+	MediaPlayer backgroundMusic = new MediaPlayer(
+		new Media(Paths.get("src/img/asset/backgroundSound.mp3").toUri().toString()));
+	AudioClip gameStartSound = new AudioClip(Paths.get("src/img/asset/gameStartSound.mp3").toUri().toString());
+	
 	public minigame(Stage stage) {
 		this.stage = stage;
 		root.setPrefWidth(888);
@@ -314,6 +327,11 @@ public class minigame {
 		gc.strokeText("SCORE", 10, 35);
 		gc.setFill(Paint.valueOf("#FFFFFF"));
 		drawScore();
+		
+		//Audio
+		backgroundMusic.setCycleCount(Integer.MAX_VALUE);
+		policeCarSound.setCycleCount(Integer.MAX_VALUE);
+		policeCarSound.setVolume(0.4);
 
 //		game start here
 		gameloop = new AnimationTimer() {
@@ -325,6 +343,9 @@ public class minigame {
 		};
 		
 		root.requestFocus();
+		gameStartSound.play();
+		backgroundMusic.play();
+		policeCarSound.play();
 		new Obstacle();
 		createCoin();
 		gameloop.start();
@@ -352,6 +373,7 @@ public class minigame {
 
 		// speed up
 		if (time % 300 == 0) {
+			levelupSound.play();
 			roadAnimation.setRate(roadAnimation.getRate() + 0.25);
 			carSpeed = (roadAnimation.getRate()+3)*0.25*INIT_CAR_SPEED;
 		}
@@ -361,6 +383,8 @@ public class minigame {
 		for(Node node : coinList) {
 			ImageView coin = (ImageView)node;
 			if(car.getBoundsInParent().intersects(coin.getBoundsInParent())) {
+				AudioClip coinSound = new AudioClip(Paths.get("src/img/asset/minigameCoinSound.wav").toUri().toString());
+				coinSound.play();
 				score += Math.round(roadAnimation.getRate()*10);
 				drawScore();
 				removedCoinList.add(coin);
@@ -425,8 +449,14 @@ public class minigame {
 	void gameOver() {
 		CommonFunction.gold += Math.round(score/10.0); //gold earned from minigame
 		
+		crashSound.play();
+		policeCarSound.stop();
+		backgroundMusic.stop();
 		gameloop.stop();
 		carController.stop();
+		
+		AudioClip buttonSound = new AudioClip(Paths.get("src/img/asset/buttonSound.mp3").toUri().toString());		
+		
 		for (Animation ani : animationList)
 			ani.stop();
 		keyPressed.removeListener(keyPressChangeListener);
@@ -522,6 +552,7 @@ public class minigame {
 
 		backButton.focusedProperty().addListener((observableVal,oldVal,newVal)->{
 			if(newVal) {
+				buttonSound.play();
 				backButtonImgV.setImage(backButtonColoredImg);
 			}else {
 				backButtonImgV.setImage(backButtonImg);
@@ -529,6 +560,7 @@ public class minigame {
 		});
 		playButton.focusedProperty().addListener((observableVal,oldVal,newVal)->{
 			if(newVal) {
+				buttonSound.play();
 				playButtonImgV.setImage(playButtonColoredImg);
 			}else {
 				playButtonImgV.setImage(playButtonImg);
@@ -536,6 +568,7 @@ public class minigame {
 		});
 		
 		backButton.setOnAction((event)->{
+			CommonFunction.play();
 			Parent root;
 			try {
 				root = FXMLLoader.load(getClass().getResource("/view/TrangChuView.fxml"));
