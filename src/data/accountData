@@ -2,6 +2,14 @@ Username: aa
 Password: aa
 Gold: 1000
 
+Username: Daithi123
+Password: 123456789
+<<<<<<< Updated upstream
+Gold: 900
+=======
+Gold: 0
+>>>>>>> Stashed changes
+
 Username: a
 Password: a
 Gold: 99912385
@@ -16,7 +24,11 @@ Gold: 1000
 
 Username: Daithi
 Password: 123456789
-Gold: 1000
+<<<<<<< Updated upstream
+Gold: 48
+=======
+Gold: 35
+>>>>>>> Stashed changes
 
 Username: QuocTrieu
 Password: 2912
@@ -29,4 +41,8 @@ Gold: 1000
 Username: NhuHaoNguyen
 Password: 07112003
 Gold: 1000
+
+Username: Daithi123456
+Password: 123456789
+Gold: 400
 
