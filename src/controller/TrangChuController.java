@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.geometry.Bounds;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -29,6 +30,19 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+
+import javafx.scene.Cursor;
+
+import javafx.stage.Stage;
+
+import javafx.scene.Node;
+
+
+import javafx.stage.Stage;
+import javafx.scene.Cursor;
+import javafx.scene.Node;
+
+
 import javafx.scene.control.Alert;
 
 import javafx.scene.layout.BackgroundFill;
@@ -40,9 +54,6 @@ public class TrangChuController {
 
 	@FXML
 	private TextField goldAmountField;
-
-	@FXML
-	private ImageView setting;
 
 	@FXML
 	private Text thoatgame;
@@ -89,6 +100,9 @@ public class TrangChuController {
 	private Button trungbinh;
 	@FXML
 	private Button dai;
+	
+	@FXML
+	private Button vaoKiemTienButton;
 
 	@FXML
 	private Tab duongnhua;
@@ -118,6 +132,28 @@ public class TrangChuController {
 	private ImageView xe4;
 	@FXML
 	private ImageView xe5;
+	
+	@FXML
+	protected ImageView tocHanhImageView;
+	
+	@FXML
+    protected ImageView tocBienImageView;
+	
+	@FXML
+    protected ImageView kietSucImageView;
+	
+	@FXML
+	Label mauDuongDua;
+	
+
+    protected ImageView muaVatPhamBackGround;
+    
+    @FXML
+    ImageView setting;
+    
+
+	
+	
 
 	@FXML
 	private Label mauDuongDua;
@@ -133,13 +169,18 @@ public class TrangChuController {
 	private ImageView selectedCar;
 
 	final String BACKGROUND_PATH = "/img/asset/background_Home.jpg";
+	final String MUAVATOHAMBACKGROUND_PATH = "/img/asset/bg2.jpg";
 	Image bkgImg = new Image(getClass().getResource(BACKGROUND_PATH).toExternalForm());
+	Image muaVatPhambkgImg = new Image(getClass().getResource(MUAVATOHAMBACKGROUND_PATH).toExternalForm());
 
 	// final String ItemBACKGOUND_PATH ="";
 
 	public void initialize() {
 		HomePage1.setBackground(new javafx.scene.layout.Background(
 				new javafx.scene.layout.BackgroundImage(bkgImg, null, null, null, null)));
+		
+		Item_Chosing.setBackground(new javafx.scene.layout.Background(
+				new javafx.scene.layout.BackgroundImage(muaVatPhambkgImg, null, null, null, null)));
 
 		BackgroundFill background_fill = new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY);
 		// tạo background fill với màu lightblue.
@@ -151,16 +192,19 @@ public class TrangChuController {
 		mauDuongDua.setStyle("-fx-border-radius: 10px;");
 		doDaiDuongDuaText.setStyle("-fx-border-radius: 10px;");
 		HomePage1.toBack();
+		Item_Chosing.toBack();
 
 		HomePage.setVisible(true);
 		Map_Choosing.setVisible(false);
-
 		playGameButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				CommonFunction.sceneTransition("/view/gamePlay.fxml", event);
+		    CommonFunction.saveAccountData();
 			}
 		});
+		
+		
 		setPlayerName(CommonFunction.username);
 		setGoldAmount(CommonFunction.gold);
 		handleItem_chosing(kietSuc, 400, 2);
@@ -183,8 +227,6 @@ public class TrangChuController {
 		xe3.setOnMouseClicked(event -> handleCarSelection(xe3));
 		xe4.setOnMouseClicked(event -> handleCarSelection(xe4));
 		xe5.setOnMouseClicked(event -> handleCarSelection(xe5));
-<<<<<<< Updated upstream
-=======
 
 		playerNameField.setCursor(Cursor.DEFAULT);
 		goldAmountField.setCursor(Cursor.DEFAULT);
@@ -198,6 +240,110 @@ public class TrangChuController {
 		});
 		handlebackSetting();
 		handlethoatgame();
+    final Tooltip tooltip = new Tooltip();
+		tocHanh.setOnMouseEntered(new EventHandler<MouseEvent>() {
+		        @Override
+		        public void handle(MouseEvent event) {
+		            tooltip.setText("Tăng tốc 60% trong vòng 3 giây");
+		            tooltip.setAutoHide(false);
+		            Bounds bounds = tocHanh.localToScreen(tocHanh.getBoundsInLocal());
+		            tooltip.show(tocHanh, bounds.getMinX() + bounds.getWidth(), bounds.getMinY());
+		        }
+		    });
+
+		    tocHanh.setOnMouseExited(new EventHandler<MouseEvent>() {
+		        @Override
+		        public void handle(MouseEvent event) {
+		            tooltip.hide();
+		        }
+		    });
+
+		    
+		    tocBien.setOnMouseEntered(new EventHandler<MouseEvent>() {
+		        @Override
+		        public void handle(MouseEvent event) {
+		        	 tooltip.setText("Dịch chuyển 1 khoảng nhỏ về phía trước");
+			         tooltip.setAutoHide(false);
+			         Bounds bounds = tocBien.localToScreen(tocBien.getBoundsInLocal());
+			         tooltip.show(tocBien, bounds.getMinX() + bounds.getWidth(), bounds.getMinY());
+		        }
+		    });
+		    tocBien.setOnMouseExited(new EventHandler<MouseEvent>() {
+		        @Override
+		        public void handle(MouseEvent event) {
+		            // Code to hide the image info for tocBien
+		        	tooltip.hide();
+		        }
+		    });
+		    
+		    kietSuc.setOnMouseEntered(new EventHandler<MouseEvent>() {
+		        @Override
+		        public void handle(MouseEvent event) {
+		        	tooltip.setText("Làm chậm mọi kẻ thù đi 30% trong 2 giây");
+		            tooltip.setAutoHide(false);
+		            Bounds bounds = kietSuc.localToScreen(kietSuc.getBoundsInLocal());
+		            tooltip.show(kietSuc, bounds.getMinX() + bounds.getWidth(), bounds.getMinY());
+		        }
+		    });
+		    kietSuc.setOnMouseExited(new EventHandler<MouseEvent>() {
+		        @Override
+		        public void handle(MouseEvent event) {
+		            // Code to hide the image info for tocBien
+		        	tooltip.hide();
+		        }
+		    });
+		    
+		    choosableSetUp(tocHanhImageView);
+		    choosableSetUp(tocBienImageView);
+		    choosableSetUp(kietSucImageView);
+		    choosableSetUp(VaoDua);
+		    choosableSetUp(QuayLai);
+		    choosableSetUp(TiepTucCarChoosing);
+		    choosableSetUp(QuayLaiMap_Choosing);
+		    choosableSetUp(TiepTuc_ItemChoosing);
+		    choosableSetUp(playGameButton);
+		    choosableSetUp(ngan);
+		    choosableSetUp(trungbinh);
+		    choosableSetUp(dai);
+		    choosableSetUp(xe1);
+		    choosableSetUp(xe2);
+		    choosableSetUp(xe3);
+		    choosableSetUp(xe4);
+		    choosableSetUp(xe5);
+		    choosableSetUp(vaoKiemTienButton);
+		    choosableSetUp(setting);
+		    choosableSetUp(thoatgame);
+		    
+		    //Thêm background, logic cho màn hình mua vật phẩm
+		    //thêm logic cho thoát game
+		    
+		    
+		    setting.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					CommonFunction.sceneTransition("/view/settingMenu.fxml", event);
+				}
+		    });
+		    
+		    thoatgame.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					CommonFunction.sceneTransition("/view/GiaodienUI.fxml", event);
+				}
+		    });
+		    
+
+		playerNameField.setCursor(Cursor.DEFAULT);
+		goldAmountField.setCursor(Cursor.DEFAULT);
+		
+		playerNameField.selectedTextProperty().addListener((observableVal,oldVal,newVal)->{
+			playerNameField.deselect();
+		});
+
+		goldAmountField.selectedTextProperty().addListener((observableVal,oldVal,newVal)->{
+			goldAmountField.deselect();
+		});
+		
 
 	}
 
@@ -251,7 +397,20 @@ public class TrangChuController {
 		backSetting.setOnMouseExited(event -> {
 			backSetting.setStyle("-fx-effect: null;");
 		});
->>>>>>> Stashed changes
+
+		playerNameField.setCursor(Cursor.DEFAULT);
+		goldAmountField.setCursor(Cursor.DEFAULT);
+		
+		playerNameField.selectedTextProperty().addListener((observableVal,oldVal,newVal)->{
+			playerNameField.deselect();
+		});
+
+		goldAmountField.selectedTextProperty().addListener((observableVal,oldVal,newVal)->{
+			goldAmountField.deselect();
+		});
+
+		 
+
 	}
 
 	private void handleMapSelection(Tab tab) {
@@ -273,17 +432,13 @@ public class TrangChuController {
 		// Đặt hiệu ứng cho xe đang được chọn
 		carImageView.setEffect(new DropShadow(10, Color.YELLOW));
 		String selectedCarID = carImageView.getId();
-<<<<<<< Updated upstream
+
 
 		// Cập nhật biến selectedCar với xe đang được chọn
 		selectedCar = carImageView;
 		CommonFunction.carID=selectedCarID;
 		
-=======
-		// Cập nhật biến selectedCar với xe đang được chọn
-		selectedCar = carImageView;
-		CommonFunction.carID = selectedCarID;
->>>>>>> Stashed changes
+
 	}
 
 	private void setButtonAnimation(Button ButtonName) {
@@ -397,6 +552,13 @@ public class TrangChuController {
 				CommonFunction.betGold = soTienDatCuoc;
 				goldAmount_value.setText(Integer.toString(CommonFunction.gold));
 				CommonFunction.carID = selectedCar.getId();
+				if(CommonFunction.mapID.equals("duongnhua")) {
+					mauDuongDua.setText("CHINH PHỤC TƯƠNG LAI");
+				} else if (CommonFunction.mapID.equals("duongdat")) {
+					mauDuongDua.setText("PHIÊU LƯU BỤI BẶM");
+				} else {
+					mauDuongDua.setText("CẦU VƯỢT TỬ THẦN");
+				}
 				HomePage1.setVisible(false);
 				Item_Chosing.setVisible(true);
 
@@ -444,6 +606,8 @@ public class TrangChuController {
 				CommonFunction.betGold = soTienDatCuoc;
 				setGoldAmount(CommonFunction.gold);
 				CommonFunction.gold = soVangConLai;
+				
+				
 				// goldAmount_value.setText(String.valueOf(CommonFunction.gold));
 
 				// Thực thi xử lý tiếp theo tại đây
@@ -463,6 +627,7 @@ public class TrangChuController {
 	        @Override
 	        public void handle(MouseEvent event) {
 				try {
+					
 					goldAmount_value.setText(String.valueOf(CommonFunction.gold));
 					int soVangHienCo = CommonFunction.gold;
 					if (soVangHienCo < giaTriVatPham) {
@@ -484,7 +649,6 @@ public class TrangChuController {
 					alert.showAndWait();
 				}
 			}
-<<<<<<< Updated upstream
 	    });
 	    
 	    // Gắn sự kiện mouse entered cho VBox
@@ -505,7 +669,6 @@ public class TrangChuController {
 	            Tooltip.install(itemName, tooltip);
 	        }
 	    });
-=======
 		});
 		itemName.setOnMouseEntered(new EventHandler<MouseEvent>() {
 			@Override
@@ -550,7 +713,56 @@ public class TrangChuController {
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		CommonFunction.stop();
 		new minigame(stage);
->>>>>>> Stashed changes
 	}
+	
+
+
+	@FXML
+	public void vaoKiemTienAction(ActionEvent event) {
+		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+		CommonFunction.stop();
+		new minigame(stage);
+	}
+
+
+	public void choosableSetUp(ImageView imageView) {
+        // Set event handler for mouse hover
+        imageView.setOnMouseEntered((MouseEvent event) -> {
+            imageView.getScene().setCursor(Cursor.HAND);
+        });
+
+        // Set event handler for mouse exit
+        imageView.setOnMouseExited((MouseEvent event) -> {
+            imageView.getScene().setCursor(Cursor.DEFAULT);
+        });
+	}
+	
+	public void choosableSetUp(Button button) {
+        // Set event handler for mouse hover
+		button.setOnMouseEntered((MouseEvent event) -> {
+			button.getScene().setCursor(Cursor.HAND);
+        });
+
+        // Set event handler for mouse exit
+		button.setOnMouseExited((MouseEvent event) -> {
+			button.getScene().setCursor(Cursor.DEFAULT);
+        });
+	}
+	
+	public void choosableSetUp(Text text) {
+        // Set event handler for mouse hover
+		text.setOnMouseEntered((MouseEvent event) -> {
+			text.getScene().setCursor(Cursor.HAND);
+        });
+
+        // Set event handler for mouse exit
+		text.setOnMouseExited((MouseEvent event) -> {
+			text.getScene().setCursor(Cursor.DEFAULT);
+        });
+	}
+
+
+
+
 
 }
