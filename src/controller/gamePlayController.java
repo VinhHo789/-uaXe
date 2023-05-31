@@ -856,7 +856,7 @@ public class gamePlayController implements Initializable {
         });
 		
 		tocHanhImageView.setOnMouseClicked((MouseEvent mouseevent) -> {
-			//tocHanhImageView.setDisable(true);
+			tocHanhImageView.setDisable(true);
 			translateTransition1.stop(); // Stop the current transition
 		    double currentX = car1StackPane.getTranslateX(); // Get the current X position
 	    	double newX = currentX + 130;
@@ -947,7 +947,9 @@ public class gamePlayController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 Stage stg = (Stage)((Node)event.getSource()).getScene().getWindow();
-                stg.getOnCloseRequest().handle(new WindowEvent(stg, WindowEvent.WINDOW_CLOSE_REQUEST));;
+                CommonFunction.saveAccountData();
+                stg.close();
+                
                
                 
             }
@@ -1141,17 +1143,17 @@ public class gamePlayController implements Initializable {
 	    // Check the position of car1StackPane and update the UI accordingly
 	    if (carStackPanes.indexOf(car1StackPane) == 0) {
 	        thongBaoText.setText("Chúc mừng, bạn đã về nhất và chiến thắng!");
-	        soTienAnDuocText.setText("Số tiền ăn được: " + CommonFunction.betGold * 4);
+	        soTienAnDuocText.setText("Số tiền ăn được: " + (int) CommonFunction.betGold * 4);
 	        CommonFunction.gold += CommonFunction.betGold * 4;
 	        soTienHienCoText.setText("Số tiến hiện có: " + CommonFunction.gold);
 	    } else if (carStackPanes.indexOf(car1StackPane) == 1) {
 	        thongBaoText.setText("Rất tiếc, bạn đã về nhì, chỉ 1 chút nữa thôi!");
-	        soTienAnDuocText.setText("Số tiền ăn được: "+ CommonFunction.betGold * 0.5);
+	        soTienAnDuocText.setText("Số tiền ăn được: "+ (int) CommonFunction.betGold * 0.5);
 	        CommonFunction.gold += CommonFunction.betGold * 0.5;
 	        soTienHienCoText.setText("Số tiến hiện có: " + CommonFunction.gold);
 	    } else if (carStackPanes.indexOf(car1StackPane) == 2) {
 	        thongBaoText.setText("Thật đáng tiếc, bạn đã về ba, cố hơn nữa nhé!");
-	        soTienAnDuocText.setText("Số tiền ăn được: "+ CommonFunction.betGold * 0.5);
+	        soTienAnDuocText.setText("Số tiền ăn được: "+ (int) CommonFunction.betGold * 0.5);
 	        CommonFunction.gold += CommonFunction.betGold * 0.5;
 	        soTienHienCoText.setText("Số tiến hiện có: " + CommonFunction.gold);
 	    } else {

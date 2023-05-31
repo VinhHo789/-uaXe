@@ -422,6 +422,13 @@ public class TrangChuController {
 				CommonFunction.betGold = soTienDatCuoc;
 				goldAmount_value.setText(Integer.toString(CommonFunction.gold));
 				CommonFunction.carID = selectedCar.getId();
+				if(CommonFunction.mapID.equals("duongnhua")) {
+					mauDuongDua.setText("CHINH PHỤC TƯƠNG LAI");
+				} else if (CommonFunction.mapID.equals("duongdat")) {
+					mauDuongDua.setText("PHIÊU LƯU BỤI BẶM");
+				} else {
+					mauDuongDua.setText("CẦU VƯỢT TỬ THẦN");
+				}
 				HomePage1.setVisible(false);
 				Item_Chosing.setVisible(true);
 
@@ -469,6 +476,8 @@ public class TrangChuController {
 				CommonFunction.betGold = soTienDatCuoc;
 				setGoldAmount(CommonFunction.gold);
 				CommonFunction.gold = soVangConLai;
+				
+				
 				// goldAmount_value.setText(String.valueOf(CommonFunction.gold));
 
 				// Thực thi xử lý tiếp theo tại đây
@@ -487,6 +496,7 @@ public class TrangChuController {
 			@Override
 			public void handle(MouseEvent event) {
 				try {
+					
 					goldAmount_value.setText(String.valueOf(CommonFunction.gold));
 					int soVangHienCo = CommonFunction.gold;
 					if (soVangHienCo < giaTriVatPham) {
