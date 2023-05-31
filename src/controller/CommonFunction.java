@@ -103,6 +103,19 @@ public class CommonFunction {
         }
     }
     
+    public static void sceneTransition (String path, MouseEvent event){
+    	try {
+            FXMLLoader loader = new FXMLLoader(CommonFunction.class.getResource(path));
+            AnchorPane root = loader.load();
+            Scene scene = new Scene(root);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(scene);
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
     public static void loadConfig() {
 	    try (FileInputStream in = new FileInputStream(CONFIG_FILE_PATH)) {
 	        config.load(in);

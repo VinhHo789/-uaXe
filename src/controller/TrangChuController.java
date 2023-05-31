@@ -143,6 +143,11 @@ public class TrangChuController {
 	
 
     protected ImageView muaVatPhamBackGround;
+    
+    @FXML
+    ImageView setting;
+    
+
 	
 	
 
@@ -171,12 +176,8 @@ public class TrangChuController {
 			@Override
 			public void handle(ActionEvent event) {
 				CommonFunction.sceneTransition("/view/gamePlay.fxml", event);
-				Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-				window.setOnCloseRequest(closeevent -> {
-		            CommonFunction.saveAccountData();
-		            window.close();// Consume the event to prevent window close
+		        CommonFunction.saveAccountData();
 		            
-		        });
 			}
 		});
 		
@@ -287,13 +288,26 @@ public class TrangChuController {
 		    choosableSetUp(xe4);
 		    choosableSetUp(xe5);
 		    choosableSetUp(vaoKiemTienButton);
+		    choosableSetUp(setting);
+		    choosableSetUp(thoatgame);
 		    
 		    //Thêm background, logic cho màn hình mua vật phẩm
 		    //thêm logic cho thoát game
 		    
 		    
+		    setting.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					CommonFunction.sceneTransition("/view/settingMenu.fxml", event);
+				}
+		    });
 		    
-
+		    thoatgame.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					CommonFunction.sceneTransition("/view/GiaodienUI.fxml", event);
+				}
+		    });
 		    
 
 		playerNameField.setCursor(Cursor.DEFAULT);
@@ -306,7 +320,8 @@ public class TrangChuController {
 		goldAmountField.selectedTextProperty().addListener((observableVal,oldVal,newVal)->{
 			goldAmountField.deselect();
 		});
-
+		
+		
 	}
 
 	private void handleMapSelection(Tab tab) {
@@ -557,6 +572,18 @@ public class TrangChuController {
         // Set event handler for mouse exit
 		button.setOnMouseExited((MouseEvent event) -> {
 			button.getScene().setCursor(Cursor.DEFAULT);
+        });
+	}
+	
+	public void choosableSetUp(Text text) {
+        // Set event handler for mouse hover
+		text.setOnMouseEntered((MouseEvent event) -> {
+			text.getScene().setCursor(Cursor.HAND);
+        });
+
+        // Set event handler for mouse exit
+		text.setOnMouseExited((MouseEvent event) -> {
+			text.getScene().setCursor(Cursor.DEFAULT);
         });
 	}
 

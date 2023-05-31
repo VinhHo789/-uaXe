@@ -1,7 +1,5 @@
 package application;
 	
-
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -43,27 +41,12 @@ import java.util.Properties;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
 
-
 public class Main extends Application {
-
-	//Dat dep trai
-
-	//Bien com chua cac bien va ham common
-    
     public void start(Stage primaryStage) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/view/introVid.fxml"));
             Scene scene = new Scene(root, 888, 619);
-            
-            
-            // Load configuration file
-            //loadConfig();
 
-            // Create media and media player objects
-
-
-           
-            
             primaryStage.setScene(scene);
             primaryStage.show();
             primaryStage.setResizable(false);
