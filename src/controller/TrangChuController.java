@@ -9,6 +9,7 @@ import java.util.Map;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.geometry.Bounds;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -25,6 +26,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -42,6 +44,9 @@ import javafx.scene.Node;
 
 
 import javafx.scene.control.Alert;
+
+import javafx.scene.layout.BackgroundFill;
+import controller.minigame;
 
 public class TrangChuController {
 
@@ -151,6 +156,14 @@ public class TrangChuController {
 	
 	
 
+
+
+	@FXML
+	private Label doDaiDuongDuaText;
+
+	@FXML
+	private ImageView backSetting;
+
 	private Tab selectedMap;
 	private Button selectedLength;
 	private ImageView selectedCar;
@@ -160,6 +173,8 @@ public class TrangChuController {
 	Image bkgImg = new Image(getClass().getResource(BACKGROUND_PATH).toExternalForm());
 	Image muaVatPhambkgImg = new Image(getClass().getResource(MUAVATOHAMBACKGROUND_PATH).toExternalForm());
 
+	// final String ItemBACKGOUND_PATH ="";
+
 	public void initialize() {
 		HomePage1.setBackground(new javafx.scene.layout.Background(
 				new javafx.scene.layout.BackgroundImage(bkgImg, null, null, null, null)));
@@ -167,6 +182,15 @@ public class TrangChuController {
 		Item_Chosing.setBackground(new javafx.scene.layout.Background(
 				new javafx.scene.layout.BackgroundImage(muaVatPhambkgImg, null, null, null, null)));
 
+		BackgroundFill background_fill = new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY);
+		// tạo background fill với màu lightblue.
+		Background background = new Background(background_fill);
+		// thêm background fill vào background.
+		Item_Chosing.setBackground(background);
+		// Thiết lập background cho đối tượng Item_Chosing.
+
+		mauDuongDua.setStyle("-fx-border-radius: 10px;");
+		doDaiDuongDuaText.setStyle("-fx-border-radius: 10px;");
 		HomePage1.toBack();
 		Item_Chosing.toBack();
 
@@ -176,8 +200,7 @@ public class TrangChuController {
 			@Override
 			public void handle(ActionEvent event) {
 				CommonFunction.sceneTransition("/view/gamePlay.fxml", event);
-		        CommonFunction.saveAccountData();
-		            
+		    CommonFunction.saveAccountData();
 			}
 		});
 		
@@ -205,71 +228,19 @@ public class TrangChuController {
 		xe4.setOnMouseClicked(event -> handleCarSelection(xe4));
 		xe5.setOnMouseClicked(event -> handleCarSelection(xe5));
 
-
 		playerNameField.setCursor(Cursor.DEFAULT);
 		goldAmountField.setCursor(Cursor.DEFAULT);
-		
-		playerNameField.selectedTextProperty().addListener((observableVal,oldVal,newVal)->{
+
+		playerNameField.selectedTextProperty().addListener((observableVal, oldVal, newVal) -> {
 			playerNameField.deselect();
 		});
 
-		goldAmountField.selectedTextProperty().addListener((observableVal,oldVal,newVal)->{
+		goldAmountField.selectedTextProperty().addListener((observableVal, oldVal, newVal) -> {
 			goldAmountField.deselect();
 		});
-
-		 final Tooltip tooltip = new Tooltip();
-		 tocHanh.setOnMouseEntered(new EventHandler<MouseEvent>() {
-		        @Override
-		        public void handle(MouseEvent event) {
-		            tooltip.setText("Tăng tốc 60% trong vòng 3 giây");
-		            tooltip.setAutoHide(false);
-		            Bounds bounds = tocHanh.localToScreen(tocHanh.getBoundsInLocal());
-		            tooltip.show(tocHanh, bounds.getMinX() + bounds.getWidth(), bounds.getMinY());
-		        }
-		    });
-
-		    tocHanh.setOnMouseExited(new EventHandler<MouseEvent>() {
-		        @Override
-		        public void handle(MouseEvent event) {
-		            tooltip.hide();
-		        }
-		    });
-
-		    
-		    tocBien.setOnMouseEntered(new EventHandler<MouseEvent>() {
-		        @Override
-		        public void handle(MouseEvent event) {
-		        	 tooltip.setText("Dịch chuyển 1 khoảng nhỏ về phía trước");
-			         tooltip.setAutoHide(false);
-			         Bounds bounds = tocBien.localToScreen(tocBien.getBoundsInLocal());
-			         tooltip.show(tocBien, bounds.getMinX() + bounds.getWidth(), bounds.getMinY());
-		        }
-		    });
-		    tocBien.setOnMouseExited(new EventHandler<MouseEvent>() {
-		        @Override
-		        public void handle(MouseEvent event) {
-		            // Code to hide the image info for tocBien
-		        	tooltip.hide();
-		        }
-		    });
-		    
-		    kietSuc.setOnMouseEntered(new EventHandler<MouseEvent>() {
-		        @Override
-		        public void handle(MouseEvent event) {
-		        	tooltip.setText("Làm chậm mọi kẻ thù đi 30% trong 2 giây");
-		            tooltip.setAutoHide(false);
-		            Bounds bounds = kietSuc.localToScreen(kietSuc.getBoundsInLocal());
-		            tooltip.show(kietSuc, bounds.getMinX() + bounds.getWidth(), bounds.getMinY());
-		        }
-		    });
-		    kietSuc.setOnMouseExited(new EventHandler<MouseEvent>() {
-		        @Override
-		        public void handle(MouseEvent event) {
-		            // Code to hide the image info for tocBien
-		        	tooltip.hide();
-		        }
-		    });
-		    
+		handlebackSetting();
+		handlethoatgame();
+    
 		    choosableSetUp(tocHanhImageView);
 		    choosableSetUp(tocBienImageView);
 		    choosableSetUp(kietSucImageView);
@@ -288,27 +259,15 @@ public class TrangChuController {
 		    choosableSetUp(xe4);
 		    choosableSetUp(xe5);
 		    choosableSetUp(vaoKiemTienButton);
-		    choosableSetUp(setting);
-		    choosableSetUp(thoatgame);
+		    //choosableSetUp(setting);
+		    //choosableSetUp(thoatgame);
 		    
 		    //Thêm background, logic cho màn hình mua vật phẩm
 		    //thêm logic cho thoát game
 		    
 		    
-		    setting.setOnMouseClicked(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent event) {
-					CommonFunction.sceneTransition("/view/settingMenu.fxml", event);
-				}
-		    });
 		    
-		    thoatgame.setOnMouseClicked(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent event) {
-					CommonFunction.sceneTransition("/view/GiaodienUI.fxml", event);
-				}
-		    });
-		    
+		    Car_Choosing.setVisible(false);
 
 		playerNameField.setCursor(Cursor.DEFAULT);
 		goldAmountField.setCursor(Cursor.DEFAULT);
@@ -320,8 +279,95 @@ public class TrangChuController {
 		goldAmountField.selectedTextProperty().addListener((observableVal,oldVal,newVal)->{
 			goldAmountField.deselect();
 		});
+		playerNameField.setCursor(Cursor.DEFAULT);
+		goldAmountField.setCursor(Cursor.DEFAULT);
 		
+		playerNameField.selectedTextProperty().addListener((observableVal,oldVal,newVal)->{
+			playerNameField.deselect();
+		});
+
+		goldAmountField.selectedTextProperty().addListener((observableVal,oldVal,newVal)->{
+			goldAmountField.deselect();
+		});
+
 		
+
+	}
+
+//	private void changemauDuongDuaText() {
+//		// TODO Auto-generated method stub
+//		String tenmauduongdua="";
+//		if(CommonFunction.mapID==null)
+//		{
+//			tenmauduongdua="";
+//		}
+//		if(CommonFunction.mapID =="duongdat" ){
+//			tenmauduongdua="PHIÊU LƯU BỤI BẠM";
+//		}
+//		if(CommonFunction.mapID == "duongnhua"){
+//			tenmauduongdua="CHINH PHỤC TƯƠNG LAI";
+//		}
+//		if(CommonFunction.mapID=="duongbaron"){
+//			tenmauduongdua="CẦU VƯỢT TỬ THẦN";
+//		}
+//		
+//		
+//		mauDuongDua.setText(tenmauduongdua);
+//			
+//	}
+
+	private void handlethoatgame() {
+		// TODO Auto-generated method stub
+		thoatgame.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				thoatgame.setFill(Color.RED);
+				thoatgame.getScene().setCursor(Cursor.HAND);
+			}
+		});
+
+		thoatgame.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				thoatgame.setFill(Color.WHITE); // Thay đổi lại màu chữ về màu đen khi di chuột ra khỏi nhãn.
+				thoatgame.getScene().setCursor(Cursor.DEFAULT);
+			}
+		});
+		
+		thoatgame.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				Stage stg = (Stage)((Node)event.getSource()).getScene().getWindow();
+                CommonFunction.saveAccountData();
+                stg.close();
+			}
+	    });
+
+	}
+
+	private void handlebackSetting() {
+
+		backSetting.setOnMouseEntered(event -> {
+			backSetting.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);");
+			backSetting.getScene().setCursor(Cursor.HAND);
+		});
+
+		// Lấy lại giá trị ban đầu khi chuột rời khỏi ImageView
+		backSetting.setOnMouseExited(event -> {
+			backSetting.setStyle("-fx-effect: null;");
+			backSetting.getScene().setCursor(Cursor.DEFAULT);
+		});
+		
+		backSetting.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				CommonFunction.sceneTransition("/view/GiaodienUI.fxml", event);
+			}
+	    });
+
+
+		 
+
 	}
 
 	private void handleMapSelection(Tab tab) {
@@ -342,9 +388,14 @@ public class TrangChuController {
 
 		// Đặt hiệu ứng cho xe đang được chọn
 		carImageView.setEffect(new DropShadow(10, Color.YELLOW));
+		String selectedCarID = carImageView.getId();
+
 
 		// Cập nhật biến selectedCar với xe đang được chọn
 		selectedCar = carImageView;
+		CommonFunction.carID=selectedCarID;
+		
+
 	}
 
 	private void setButtonAnimation(Button ButtonName) {
@@ -372,11 +423,11 @@ public class TrangChuController {
 	@FXML
 	private void handleVaoDuaButtonClick() {
 		int goldAmount = CommonFunction.gold;
-		if (goldAmount < 1) {
+		if (goldAmount < 100) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Số vàng không đủ");
 			alert.setHeaderText(null);
-			alert.setContentText("Bạn cần tối thiểu 1 vàng để vào đua!");
+			alert.setContentText("Bạn cần tối thiểu 100 vàng để vào đua!");
 			alert.showAndWait();
 		} else {
 			HomePage.setVisible(false);
@@ -397,6 +448,20 @@ public class TrangChuController {
 			CommonFunction.mapID = selectedMapId;
 			String selectedLengthId = selectedLength.getId();
 			CommonFunction.mapLength = selectedLengthId;
+
+			String tenmauduongdua="";
+			if (selectedMap == duongdat) {
+				tenmauduongdua="PHIÊU LƯU BỤI BẬM";
+			}
+
+			if (selectedMap == duongbaron) {
+				tenmauduongdua="CẦU VƯỢT TỬ THẦN";
+			}
+			if (selectedMap == duongnhua) {
+				tenmauduongdua="CHINH PHỤC TƯƠNG LAI";
+
+			}
+			mauDuongDua.setText(tenmauduongdua);
 
 			// Xử lý dựa trên map và độ dài đã chọn
 			Map_Choosing.setVisible(false);
@@ -420,11 +485,13 @@ public class TrangChuController {
 	@FXML
 	private void TiepTuc_ItemChoosing() {
 		try {
+
+			
 			goldAmount_value.setText(Integer.toString(CommonFunction.gold));
 			int soTienDatCuoc = Integer.parseInt(nhapTienCuocTextField.getText());
 			int soVangHienCo = CommonFunction.gold;
 			if (soTienDatCuoc < 100) {
-	            throw new NumberFormatException();
+				throw new NumberFormatException();
 			}
 			if (soTienDatCuoc > soVangHienCo) {
 				Alert alert = new Alert(AlertType.WARNING, "Bạn không đủ số vàng để đặt cược!", ButtonType.OK);
@@ -485,7 +552,7 @@ public class TrangChuController {
 			int soTienDatCuoc = Integer.parseInt(nhapTienCuocTextField.getText());
 			int soVangHienCo = CommonFunction.gold;
 			if (soTienDatCuoc < 100) {
-	            throw new NumberFormatException();
+				throw new NumberFormatException();
 			}
 			if (soTienDatCuoc > soVangHienCo) {
 				Alert alert = new Alert(AlertType.WARNING, "Bạn không đủ số vàng để đặt cược!", ButtonType.OK);
@@ -510,11 +577,12 @@ public class TrangChuController {
 		}
 	}
 
+	
 	public void handleItem_chosing(VBox itemName, int giaTriVatPham, int num) {
-		// Gắn sự kiện click chuột cho VBox "kietSuc"
-		itemName.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
+	    // Gắn sự kiện click chuột cho VBox "kietSuc"
+	    itemName.setOnMouseClicked(new EventHandler<MouseEvent>() {
+	        @Override
+	        public void handle(MouseEvent event) {
 				try {
 					
 					goldAmount_value.setText(String.valueOf(CommonFunction.gold));
@@ -525,7 +593,7 @@ public class TrangChuController {
 						alert.showAndWait();
 					} else {
 						// Trừ tiền và ẩn VBox
-						
+
 						goldAmount_value.setText(String.valueOf(soVangHienCo - giaTriVatPham));
 						CommonFunction.gold -= giaTriVatPham;
 						CommonFunction.vatPham[num] = true;
@@ -538,17 +606,75 @@ public class TrangChuController {
 					alert.showAndWait();
 				}
 			}
+	    });
+	    
+	    // Gắn sự kiện mouse entered cho VBox
+	    itemName.setOnMouseEntered(new EventHandler<MouseEvent>() {
+	        @Override
+	        public void handle(MouseEvent event) {
+	            // Hiển thị thông tin vật phẩm trong Tooltip
+	            Tooltip tooltip = new Tooltip("Tên Vật phẩm: Item " + num + "\n"
+	                    + "Giá trị: " + giaTriVatPham + "\n"
+	                    + "Mô tả: Mô tả vật phẩm " + num);
+	            
+	            // Thiết lập kiểu font chữ và màu nền của Tooltip
+	            tooltip.setStyle("-fx-font-size: 14px;"
+	                    + "-fx-background-color: white;"
+	                    + "-fx-text-fill: black;");
+	            
+	            // Hiển thị Tooltip khi chuột di chuyển vào VBox
+	            Tooltip.install(itemName, tooltip);
+	        }
+	    });
+
+		itemName.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				// Hiển thị thông tin vật phẩm trong Tooltip
+				String tenVatPham = "";
+				String moTa = "";
+				if (num == 0) {
+					// tốc biến
+					tenVatPham = "Tốc Biến";
+					moTa = "xe của bạn sẽ biến mất khỏi vị trí hiện tại "
+							+ "\nxuất hiện lại ở vị trí phía trước trên đường đua. "
+							+ "\nItem này giúp bạn rút ngắn khoảng cách so với đối thủ";
+				}
+				if (num == 1) {
+					// tốc hành
+					tenVatPham = "Tốc Hành";
+					moTa = " xe của bạn sẽ tăng tốc độ";
+
+				}
+				if (num == 2) {
+					// kiệt sức
+					tenVatPham = "Kiệt Sức";
+					moTa = " làm cho những xe đối thủ khác giảm tốc độ"
+							+ "\ngiúp bạn bảo vệ vị trí của mình \nvà gây khó khăn cho đối thủ";
+				}
+
+				Tooltip tooltip = new Tooltip(
+						"Tên Vật phẩm:" + tenVatPham + "\n" + "Giá trị: " + giaTriVatPham + "\n" + "Mô tả:" + moTa);
+
+				// Thiết lập kiểu font chữ và màu nền của Tooltip
+				tooltip.setStyle("-fx-font-size: 14px;" + "-fx-background-color: white;" + "-fx-text-fill: black;");
+
+				// Hiển thị Tooltip khi chuột di chuyển vào VBox
+				Tooltip.install(itemName, tooltip);
+			}
 		});
+	}
+
+	@FXML
+	public void vaoKiemTienAction(ActionEvent event) {
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		CommonFunction.stop();
+		new minigame(stage);
 	}
 	
 
 
-	@FXML
-	public void vaoKiemTienAction(ActionEvent event) {
-		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-		CommonFunction.stop();
-		new minigame(stage);
-	}
+
 
 
 	public void choosableSetUp(ImageView imageView) {
