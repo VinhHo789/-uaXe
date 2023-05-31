@@ -10,11 +10,14 @@ import java.util.Map.Entry;
 import java.util.Properties;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Slider;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
@@ -41,7 +44,8 @@ public class CommonFunction {
     public static final String PASSWORD = "Password";
 	public static final String GOLD = "Gold";
 	public static int betGold;
-	
+	private static final String CLICK_SOUND_PATH = "src/music/click.mp3";
+
     
     
     public static void play() {
@@ -58,6 +62,14 @@ public class CommonFunction {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    public static void createNewClickHandler() {
+    	EventHandler<MouseEvent> buttonClickHandler = event -> {
+            // Play the click sound
+            AudioClip clickSound = new AudioClip(CommonFunction.class.getResource(CLICK_SOUND_PATH).toString());
+            clickSound.play();
+        };
     }
     
     public static void stop() {
@@ -79,6 +91,19 @@ public class CommonFunction {
     	
     }
     public static void sceneTransition (String path, ActionEvent event){
+    	try {
+            FXMLLoader loader = new FXMLLoader(CommonFunction.class.getResource(path));
+            AnchorPane root = loader.load();
+            Scene scene = new Scene(root);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(scene);
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public static void sceneTransition (String path, MouseEvent event){
     	try {
             FXMLLoader loader = new FXMLLoader(CommonFunction.class.getResource(path));
             AnchorPane root = loader.load();

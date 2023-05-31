@@ -1,5 +1,7 @@
 package controller;
 
+
+//Thêm hiệu ứng kiệt sức
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -177,6 +179,9 @@ public class gamePlayController implements Initializable {
 	@FXML 
 	private ImageView car5ImageView;
 	
+	@FXML 
+	private StackPane stackPane;
+	
 	
 	
 	
@@ -232,6 +237,9 @@ public class gamePlayController implements Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		
+		
+		
+		
 		if(CommonFunction.carID.equals("xe1")) {
 		car1Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car1.png"));
 		car2Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car2.png"));
@@ -273,10 +281,10 @@ public class gamePlayController implements Initializable {
 		}
 		// Load the road image
 		if(CommonFunction.mapID.equals("duongnhua")) {
-			roadImage1 = new Image(getClass().getResourceAsStream("/img/map/1-map2.png"));
-			roadImage2 = new Image(getClass().getResourceAsStream("/img/map/1-map1.png"));
-			startingroadImage = new Image(getClass().getResourceAsStream("/img/map/1-startingmap.png"));
-			endingroadImage = new Image(getClass().getResourceAsStream("/img/map/1-endingmap.png"));
+			roadImage1 = new Image(getClass().getResourceAsStream("/img/map/1-map2.jpg"));
+			roadImage2 = new Image(getClass().getResourceAsStream("/img/map/1-map1.jpg"));
+			startingroadImage = new Image(getClass().getResourceAsStream("/img/map/1-startingmap.jpg"));
+			endingroadImage = new Image(getClass().getResourceAsStream("/img/map/1-endingmap.jpg"));
 		}
 		else if (CommonFunction.mapID.equals("duongdat")) {
 			roadImage1 = new Image(getClass().getResourceAsStream("/img/map/2-map2.png"));
@@ -854,7 +862,7 @@ public class gamePlayController implements Initializable {
         });
 		
 		tocHanhImageView.setOnMouseClicked((MouseEvent mouseevent) -> {
-			//tocHanhImageView.setDisable(true);
+			tocHanhImageView.setDisable(true);
 			translateTransition1.stop(); // Stop the current transition
 		    double currentX = car1StackPane.getTranslateX(); // Get the current X position
 	    	double newX = currentX + 130;
@@ -945,7 +953,9 @@ public class gamePlayController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 Stage stg = (Stage)((Node)event.getSource()).getScene().getWindow();
-                stg.getOnCloseRequest().handle(new WindowEvent(stg, WindowEvent.WINDOW_CLOSE_REQUEST));;
+                CommonFunction.saveAccountData();
+                stg.close();
+                
                
                 
             }
@@ -961,6 +971,8 @@ public class gamePlayController implements Initializable {
                     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     window.setScene(scene);
                     window.show();
+                    CommonFunction.musicFilePath = "src/music/LND.mp3";
+                    CommonFunction.play();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -1135,21 +1147,25 @@ public class gamePlayController implements Initializable {
 	            }
 	        }
 	    }
+	    int tienAnDuoc = 0;
 
 	    // Check the position of car1StackPane and update the UI accordingly
 	    if (carStackPanes.indexOf(car1StackPane) == 0) {
 	        thongBaoText.setText("Chúc mừng, bạn đã về nhất và chiến thắng!");
-	        soTienAnDuocText.setText("Số tiền ăn được: " + CommonFunction.betGold * 4);
+	        tienAnDuoc = CommonFunction.betGold * 4;
+	        soTienAnDuocText.setText("Số tiền ăn được: " + tienAnDuoc);
 	        CommonFunction.gold += CommonFunction.betGold * 4;
 	        soTienHienCoText.setText("Số tiến hiện có: " + CommonFunction.gold);
 	    } else if (carStackPanes.indexOf(car1StackPane) == 1) {
 	        thongBaoText.setText("Rất tiếc, bạn đã về nhì, chỉ 1 chút nữa thôi!");
-	        soTienAnDuocText.setText("Số tiền ăn được: "+ CommonFunction.betGold * 0.5);
+	        tienAnDuoc = (int) (CommonFunction.betGold * 0.5);
+	        soTienAnDuocText.setText("Số tiền ăn được: "+ tienAnDuoc);
 	        CommonFunction.gold += CommonFunction.betGold * 0.5;
 	        soTienHienCoText.setText("Số tiến hiện có: " + CommonFunction.gold);
 	    } else if (carStackPanes.indexOf(car1StackPane) == 2) {
 	        thongBaoText.setText("Thật đáng tiếc, bạn đã về ba, cố hơn nữa nhé!");
-	        soTienAnDuocText.setText("Số tiền ăn được: "+ CommonFunction.betGold * 0.5);
+	        tienAnDuoc = (int) (CommonFunction.betGold * 0.5);
+	        soTienAnDuocText.setText("Số tiền ăn được: "+ tienAnDuoc);
 	        CommonFunction.gold += CommonFunction.betGold * 0.5;
 	        soTienHienCoText.setText("Số tiến hiện có: " + CommonFunction.gold);
 	    } else {
@@ -1159,40 +1175,40 @@ public class gamePlayController implements Initializable {
 	    }
 	}
 
-	public void playCongratEffect() {
-		// Create a File object with the path to the video file
-        String videoPath = "src/music/congratEffect.mp4";
-        File videoFile = new File(videoPath);
-
-        // Convert the File object to a file URI
-        String fileUri = videoFile.toURI().toString();
-
-        // Create a Media object with the file URI
-        Media media = new Media(fileUri);
-
-        // Create a MediaPlayer and associate it with the Media object
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
-
-        // Create a MediaView and bind it to the MediaPlayer
-        MediaView mediaView = new MediaView(mediaPlayer);
-
-        Color greenScreenColor = Color.GREEN;
-
-        // Create a ColorInput with the green screen color
-        ColorInput colorInput = new ColorInput();
-        colorInput.setPaint(greenScreenColor);
-
-        // Create a Blend effect with the ColorInput
-        Blend blend = new Blend();
-        blend.setTopInput(colorInput);
-
-        // Apply the Blend effect to the MediaView
-        mediaView.setEffect(blend);
-        
-        congratEffectAnchorPane.getChildren().add(mediaView);
-        mediaPlayer.play();
-
-	}
+//	public void playCongratEffect() {
+//		// Create a File object with the path to the video file
+//        String videoPath = "src/music/congratEffect.mp4";
+//        File videoFile = new File(videoPath);
+//
+//        // Convert the File object to a file URI
+//        String fileUri = videoFile.toURI().toString();
+//
+//        // Create a Media object with the file URI
+//        Media media = new Media(fileUri);
+//
+//        // Create a MediaPlayer and associate it with the Media object
+//        MediaPlayer mediaPlayer = new MediaPlayer(media);
+//
+//        // Create a MediaView and bind it to the MediaPlayer
+//        MediaView mediaView = new MediaView(mediaPlayer);
+//
+//        Color greenScreenColor = Color.GREEN;
+//
+//        // Create a ColorInput with the green screen color
+//        ColorInput colorInput = new ColorInput();
+//        colorInput.setPaint(greenScreenColor);
+//
+//        // Create a Blend effect with the ColorInput
+//        Blend blend = new Blend();
+//        blend.setTopInput(colorInput);
+//
+//        // Apply the Blend effect to the MediaView
+//        mediaView.setEffect(blend);
+//        
+//        congratEffectAnchorPane.getChildren().add(mediaView);
+//        mediaPlayer.play();
+//
+//	}
 
 
 }
