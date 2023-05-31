@@ -171,7 +171,12 @@ public class TrangChuController {
 			@Override
 			public void handle(ActionEvent event) {
 				CommonFunction.sceneTransition("/view/gamePlay.fxml", event);
-
+				Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+				window.setOnCloseRequest(closeevent -> {
+		            CommonFunction.saveAccountData();
+		            window.close();// Consume the event to prevent window close
+		            
+		        });
 			}
 		});
 		
