@@ -46,6 +46,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 
 import javafx.scene.layout.BackgroundFill;
+import controller.minigame;
 
 public class TrangChuController {
 
@@ -155,8 +156,7 @@ public class TrangChuController {
 	
 	
 
-	@FXML
-	private Label mauDuongDua;
+
 
 	@FXML
 	private Label doDaiDuongDuaText;
@@ -240,59 +240,7 @@ public class TrangChuController {
 		});
 		handlebackSetting();
 		handlethoatgame();
-    final Tooltip tooltip = new Tooltip();
-		tocHanh.setOnMouseEntered(new EventHandler<MouseEvent>() {
-		        @Override
-		        public void handle(MouseEvent event) {
-		            tooltip.setText("Tăng tốc 60% trong vòng 3 giây");
-		            tooltip.setAutoHide(false);
-		            Bounds bounds = tocHanh.localToScreen(tocHanh.getBoundsInLocal());
-		            tooltip.show(tocHanh, bounds.getMinX() + bounds.getWidth(), bounds.getMinY());
-		        }
-		    });
-
-		    tocHanh.setOnMouseExited(new EventHandler<MouseEvent>() {
-		        @Override
-		        public void handle(MouseEvent event) {
-		            tooltip.hide();
-		        }
-		    });
-
-		    
-		    tocBien.setOnMouseEntered(new EventHandler<MouseEvent>() {
-		        @Override
-		        public void handle(MouseEvent event) {
-		        	 tooltip.setText("Dịch chuyển 1 khoảng nhỏ về phía trước");
-			         tooltip.setAutoHide(false);
-			         Bounds bounds = tocBien.localToScreen(tocBien.getBoundsInLocal());
-			         tooltip.show(tocBien, bounds.getMinX() + bounds.getWidth(), bounds.getMinY());
-		        }
-		    });
-		    tocBien.setOnMouseExited(new EventHandler<MouseEvent>() {
-		        @Override
-		        public void handle(MouseEvent event) {
-		            // Code to hide the image info for tocBien
-		        	tooltip.hide();
-		        }
-		    });
-		    
-		    kietSuc.setOnMouseEntered(new EventHandler<MouseEvent>() {
-		        @Override
-		        public void handle(MouseEvent event) {
-		        	tooltip.setText("Làm chậm mọi kẻ thù đi 30% trong 2 giây");
-		            tooltip.setAutoHide(false);
-		            Bounds bounds = kietSuc.localToScreen(kietSuc.getBoundsInLocal());
-		            tooltip.show(kietSuc, bounds.getMinX() + bounds.getWidth(), bounds.getMinY());
-		        }
-		    });
-		    kietSuc.setOnMouseExited(new EventHandler<MouseEvent>() {
-		        @Override
-		        public void handle(MouseEvent event) {
-		            // Code to hide the image info for tocBien
-		        	tooltip.hide();
-		        }
-		    });
-		    
+    
 		    choosableSetUp(tocHanhImageView);
 		    choosableSetUp(tocBienImageView);
 		    choosableSetUp(kietSucImageView);
@@ -311,27 +259,15 @@ public class TrangChuController {
 		    choosableSetUp(xe4);
 		    choosableSetUp(xe5);
 		    choosableSetUp(vaoKiemTienButton);
-		    choosableSetUp(setting);
-		    choosableSetUp(thoatgame);
+		    //choosableSetUp(setting);
+		    //choosableSetUp(thoatgame);
 		    
 		    //Thêm background, logic cho màn hình mua vật phẩm
 		    //thêm logic cho thoát game
 		    
 		    
-		    setting.setOnMouseClicked(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent event) {
-					CommonFunction.sceneTransition("/view/settingMenu.fxml", event);
-				}
-		    });
 		    
-		    thoatgame.setOnMouseClicked(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent event) {
-					CommonFunction.sceneTransition("/view/GiaodienUI.fxml", event);
-				}
-		    });
-		    
+		    Car_Choosing.setVisible(false);
 
 		playerNameField.setCursor(Cursor.DEFAULT);
 		goldAmountField.setCursor(Cursor.DEFAULT);
@@ -343,6 +279,17 @@ public class TrangChuController {
 		goldAmountField.selectedTextProperty().addListener((observableVal,oldVal,newVal)->{
 			goldAmountField.deselect();
 		});
+		playerNameField.setCursor(Cursor.DEFAULT);
+		goldAmountField.setCursor(Cursor.DEFAULT);
+		
+		playerNameField.selectedTextProperty().addListener((observableVal,oldVal,newVal)->{
+			playerNameField.deselect();
+		});
+
+		goldAmountField.selectedTextProperty().addListener((observableVal,oldVal,newVal)->{
+			goldAmountField.deselect();
+		});
+
 		
 
 	}
@@ -375,6 +322,7 @@ public class TrangChuController {
 			@Override
 			public void handle(MouseEvent event) {
 				thoatgame.setFill(Color.RED);
+				thoatgame.getScene().setCursor(Cursor.HAND);
 			}
 		});
 
@@ -382,8 +330,18 @@ public class TrangChuController {
 			@Override
 			public void handle(MouseEvent event) {
 				thoatgame.setFill(Color.WHITE); // Thay đổi lại màu chữ về màu đen khi di chuột ra khỏi nhãn.
+				thoatgame.getScene().setCursor(Cursor.DEFAULT);
 			}
 		});
+		
+		thoatgame.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				Stage stg = (Stage)((Node)event.getSource()).getScene().getWindow();
+                CommonFunction.saveAccountData();
+                stg.close();
+			}
+	    });
 
 	}
 
@@ -391,23 +349,22 @@ public class TrangChuController {
 
 		backSetting.setOnMouseEntered(event -> {
 			backSetting.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);");
+			backSetting.getScene().setCursor(Cursor.HAND);
 		});
 
 		// Lấy lại giá trị ban đầu khi chuột rời khỏi ImageView
 		backSetting.setOnMouseExited(event -> {
 			backSetting.setStyle("-fx-effect: null;");
+			backSetting.getScene().setCursor(Cursor.DEFAULT);
 		});
-
-		playerNameField.setCursor(Cursor.DEFAULT);
-		goldAmountField.setCursor(Cursor.DEFAULT);
 		
-		playerNameField.selectedTextProperty().addListener((observableVal,oldVal,newVal)->{
-			playerNameField.deselect();
-		});
+		backSetting.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				CommonFunction.sceneTransition("/view/GiaodienUI.fxml", event);
+			}
+	    });
 
-		goldAmountField.selectedTextProperty().addListener((observableVal,oldVal,newVal)->{
-			goldAmountField.deselect();
-		});
 
 		 
 
@@ -669,7 +626,7 @@ public class TrangChuController {
 	            Tooltip.install(itemName, tooltip);
 	        }
 	    });
-		});
+
 		itemName.setOnMouseEntered(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
@@ -717,12 +674,7 @@ public class TrangChuController {
 	
 
 
-	@FXML
-	public void vaoKiemTienAction(ActionEvent event) {
-		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-		CommonFunction.stop();
-		new minigame(stage);
-	}
+
 
 
 	public void choosableSetUp(ImageView imageView) {

@@ -27,6 +27,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -44,6 +45,11 @@ import javafx.collections.FXCollections;
 public class Main extends Application {
     public void start(Stage primaryStage) {
         try {
+        	primaryStage.setTitle("Game đua xe 88"); // Set the window title
+
+            // Load the icon image
+            Image icon = new Image(getClass().getResourceAsStream("/img/asset/cars/car1.png"));
+            primaryStage.getIcons().add(icon); // Set the window icon
             Parent root = FXMLLoader.load(getClass().getResource("/view/introVid.fxml"));
             Scene scene = new Scene(root, 888, 619);
 

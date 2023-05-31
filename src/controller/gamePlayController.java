@@ -69,11 +69,7 @@ public class gamePlayController implements Initializable {
 	
 	@FXML
 	private ImageView endingRoadImageView;
-<<<<<<< Updated upstream
-	
-=======
 
->>>>>>> Stashed changes
 	@FXML
 	private ImageView tocBienImageView;
 	
