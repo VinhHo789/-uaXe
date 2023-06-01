@@ -515,8 +515,8 @@ public class TrangChuController {
 	        @Override
 	        public void handle(MouseEvent event) {
 	            // Hiển thị thông tin vật phẩm trong Tooltip
-	            Tooltip tooltip = new Tooltip("Tên Vật phẩm: Item " + num + "\n"
-	                    + "Giá trị: " + giaTriVatPham + "\n"
+	            Tooltip tooltip = new Tooltip("Tên vật phẩm: Item " + num + "\n"
+	                    + "Trị giá: " + giaTriVatPham + "\n"
 	                    + "Mô tả: Mô tả vật phẩm " + num);
 	            
 	            // Thiết lập kiểu font chữ và màu nền của Tooltip
@@ -544,18 +544,18 @@ public class TrangChuController {
 				if (num == 1) {
 					// tốc hành
 					tenVatPham = "Tốc Hành";
-					moTa = " xe của bạn sẽ tăng tốc độ";
+					moTa = "xe của bạn sẽ tăng tốc độ";
 
 				}
 				if (num == 2) {
 					// kiệt sức
 					tenVatPham = "Kiệt Sức";
-					moTa = " làm cho những xe đối thủ khác giảm tốc độ"
+					moTa = "làm cho những xe đối thủ khác giảm tốc độ"
 							+ "\ngiúp bạn bảo vệ vị trí của mình \nvà gây khó khăn cho đối thủ";
 				}
 
 				Tooltip tooltip = new Tooltip(
-						"Tên Vật phẩm:" + tenVatPham + "\n" + "Giá trị: " + giaTriVatPham + "\n" + "Mô tả:" + moTa);
+						"Tên Vật phẩm: " + tenVatPham + "\n" + "Giá trị: " + giaTriVatPham + "\n" + "Mô tả: " + moTa);
 
 				// Thiết lập kiểu font chữ và màu nền của Tooltip
 				tooltip.setStyle("-fx-font-size: 14px;" + "-fx-background-color: white;" + "-fx-text-fill: black;");
