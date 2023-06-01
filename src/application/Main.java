@@ -58,17 +58,11 @@ public class Main extends Application {
             primaryStage.setResizable(false);
             primaryStage.setOnCloseRequest((event)->{
             	CommonFunction.saveAccountData();
-            	System.out.println("hello");
-            	//primaryStage.close();
             });
-            
-
         } catch(Exception e) {
             e.printStackTrace();
         }
     }
-
-
 	public static void main(String[] args) {
 		launch(args);
 	}

@@ -273,7 +273,7 @@
                   <Insets top="60.0" />
                </VBox.margin>
             </Label>
-            <Label fx:id="mauDuongDua" alignment="CENTER" prefHeight="127.0" prefWidth="888.0" text="CỬA HÀNG VẬT PHẨM">
+            <Label fx:id="mauDuongDua" alignment="CENTER" prefHeight="127.0" prefWidth="888.0" text="CỬA HÀNG VẬT PHẨM" textFill="#e3ad49">
                <font>
                   <Font name="Consolas" size="60.0" />
                </font>

@@ -61,6 +61,7 @@ public class settingMenuController implements Initializable{
         volumeSlider.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                CommonFunction.playClickSound();
                 double volume = volumeSlider.getValue() / 100;
                 CommonFunction.volume = volume;
                 CommonFunction.changeVolume(volume);  
@@ -71,6 +72,7 @@ public class settingMenuController implements Initializable{
         backButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                CommonFunction.playClickSound();
             	if (charGrid.isVisible()==true) {
             		settingMenu.setVisible(true);
         			charGrid.setVisible(false);
@@ -89,6 +91,7 @@ public class settingMenuController implements Initializable{
         
         
         charBtn.setOnAction((event) -> {
+            CommonFunction.playClickSound();
         	settingMenu.setVisible(false);
     		charGrid.setVisible(true);
     		updateCharBtns(settingMenuController.charID);
@@ -96,16 +99,19 @@ public class settingMenuController implements Initializable{
         
         // 1st Char Btn
         charBtn1.setOnAction((event) -> {
+            CommonFunction.playClickSound();
         	charID = 1;
         	updateCharBtns(settingMenuController.charID);
         });
         // 2nd Char Btn
         charBtn2.setOnAction((event) -> {
+            CommonFunction.playClickSound();
         	charID = 2;
         	updateCharBtns(settingMenuController.charID);
         });
         // 3rd Char Btn
         charBtn3.setOnAction((event) -> {
+            CommonFunction.playClickSound();
         	charID = 3;
         	updateCharBtns(settingMenuController.charID);
         });
@@ -114,6 +120,7 @@ public class settingMenuController implements Initializable{
 	}
 	
 	public void openCharacterMenu(ActionEvent e) {
+        CommonFunction.playClickSound();
 		settingMenu.setVisible(false);
 		charGrid.setVisible(true);
 	}

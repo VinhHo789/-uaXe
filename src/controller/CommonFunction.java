@@ -45,9 +45,16 @@ public class CommonFunction {
 	public static final String GOLD = "Gold";
 	public static int betGold;
 	private static final String CLICK_SOUND_PATH = "src/music/click.mp3";
+	public static Media clicksound = new Media(new File(CLICK_SOUND_PATH).toURI().toString());
+    public static MediaPlayer clickMedia = new MediaPlayer(clicksound);
 
     
-    
+    public static void playClickSound() {
+    	clicksound =  new Media(new File(CLICK_SOUND_PATH).toURI().toString());
+    	clickMedia = new MediaPlayer(clicksound);
+    	clickMedia.setVolume(volume + 0.25);
+    	clickMedia.play();
+    }
     public static void play() {
     	media =  new Media(new File(musicFilePath).toURI().toString());
     	mediaPlayer = new MediaPlayer(media);
@@ -64,13 +71,7 @@ public class CommonFunction {
         }
     }
     
-    public static void createNewClickHandler() {
-    	EventHandler<MouseEvent> buttonClickHandler = event -> {
-            // Play the click sound
-            AudioClip clickSound = new AudioClip(CommonFunction.class.getResource(CLICK_SOUND_PATH).toString());
-            clickSound.play();
-        };
-    }
+
     
     public static void stop() {
     	mediaPlayer.stop();

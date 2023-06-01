@@ -216,6 +216,7 @@ public class gamePlayController implements Initializable {
 	Image head3Image = new Image(getClass().getResourceAsStream("/img/asset/chars/head3.png"));
 	Image flashEffectImage = new Image(getClass().getResourceAsStream("/img/asset/flashEffect.png"));
 	Image tocHanhEffectImage = new Image(getClass().getResourceAsStream("/img/asset/tocHanhEffect.png"));
+	Image kietSucEffectImage = new Image(getClass().getResourceAsStream("/img/asset/kietSucEffect.png"));
 	
 	
 	Image car1Image = new Image(getClass().getResourceAsStream("/img/asset/cars/car1.png"));
@@ -323,6 +324,10 @@ public class gamePlayController implements Initializable {
 		ImageView head3ImageView = new ImageView(head3Image);
 		ImageView flashEffectImageView = new ImageView(flashEffectImage);
 		ImageView tocHanhEffectImageView = new ImageView(tocHanhEffectImage);
+		ImageView kietSucEffectImageView2 = new ImageView(kietSucEffectImage);
+		ImageView kietSucEffectImageView3 = new ImageView(kietSucEffectImage);
+		ImageView kietSucEffectImageView4 = new ImageView(kietSucEffectImage);
+		ImageView kietSucEffectImageView5 = new ImageView(kietSucEffectImage);
 		
 		
 		roadImageView2.setVisible(false);
@@ -438,6 +443,18 @@ public class gamePlayController implements Initializable {
 	    
 	    tocHanhEffectImageView.setFitWidth(80);
 	    tocHanhEffectImageView.setFitHeight(40);
+	    
+	    kietSucEffectImageView2.setFitWidth(80);
+	    kietSucEffectImageView2.setFitHeight(40);
+
+	    kietSucEffectImageView3.setFitWidth(80);
+	    kietSucEffectImageView3.setFitHeight(40);
+	    
+	    kietSucEffectImageView4.setFitWidth(80);
+	    kietSucEffectImageView4.setFitHeight(40);
+	    
+	    kietSucEffectImageView5.setFitWidth(80);
+	    kietSucEffectImageView5.setFitHeight(40);
 	    
 	    head1ImageView.setFitWidth(30); // Set the desired fit width
 	    head1ImageView.setFitHeight(30); // Set the desired fit height
@@ -827,25 +844,27 @@ public class gamePlayController implements Initializable {
             }
         });
 		tocBienImageView.setOnMouseClicked((MouseEvent event) -> {
+			String tocBienURL = "src/music/flashSoundEffect.mp3";
+			Media tocBienSound = new Media(new File(tocBienURL).toURI().toString());
+			MediaPlayer tocBienMedia = new MediaPlayer(tocBienSound);
+			tocBienMedia.setVolume(CommonFunction.volume + 0.25);
+			
 			tocBienImageView.setDisable(true);
 			translateTransition1.stop(); // Stop the current transition
 		    double currentX = car1StackPane.getTranslateX(); // Get the current X position
 	    	double newX = currentX + 90;
-	    	
-	    	
-	    	
 	    	TranslateTransition flashTranslateTransition5 = new TranslateTransition(Duration.seconds(0.5), flashEffectImageView);
 	    	flashEffectImageView.setTranslateX(car1StackPane.getTranslateX());
 	    	flashEffectImageView.setTranslateY(car1StackPane.getTranslateY() + car1StackPane.getLayoutY());
 	    	flashTranslateTransition5.setToX(car1StackPane.getTranslateX());
 	    	flashTranslateTransition5.setToY(car1StackPane.getTranslateY() + car1StackPane.getLayoutY());
 	    	giaoDienAnchorPane.getChildren().add(flashEffectImageView);
-	    	
 	    	car1StackPane.setTranslateX(newX);
 	    	originalX1 = newX;
 	    	translateTransition1.setDuration(Duration.seconds(0));
 		    translateTransition1.play();
 	    	flashTranslateTransition5.play();
+	    	tocBienMedia.play();
 	    	flashTranslateTransition5.setOnFinished(translateevent -> {
 	    		giaoDienAnchorPane.getChildren().remove(flashEffectImageView);
 	        });
@@ -859,6 +878,11 @@ public class gamePlayController implements Initializable {
         });
 		
 		tocHanhImageView.setOnMouseClicked((MouseEvent mouseevent) -> {
+			String tocHanhURL = "src/music/ghostSoundEffect.mp3";
+			Media tocHanhSound = new Media(new File(tocHanhURL).toURI().toString());
+			MediaPlayer tocHanhMedia = new MediaPlayer(tocHanhSound);
+			tocHanhMedia.setVolume(CommonFunction.volume + 0.25);
+			
 			tocHanhImageView.setDisable(true);
 			translateTransition1.stop(); // Stop the current transition
 		    double currentX = car1StackPane.getTranslateX(); // Get the current X position
@@ -873,6 +897,7 @@ public class gamePlayController implements Initializable {
 	        newTocHanhTransition.setToX(newX);
 	        newTransition.play();
 	        newTocHanhTransition.play();
+	        tocHanhMedia.play();
 	        
 	        newTransition.setOnFinished(event -> {
 	            translateTransition1.setDuration(Duration.seconds(0));
@@ -882,6 +907,12 @@ public class gamePlayController implements Initializable {
         });
 		
 		kietSucImageView.setOnMouseClicked((MouseEvent mouseevent) -> {
+			String kietSucURL = "src/music/exhaust.mp3";
+			Media kietSucSound = new Media(new File(kietSucURL).toURI().toString());
+			MediaPlayer kietSucMedia = new MediaPlayer(kietSucSound);
+			kietSucMedia.setVolume(CommonFunction.volume + 0.25);
+
+			
 			kietSucImageView.setDisable(true);
 			translateTransition2.stop();
 			translateTransition3.stop();
@@ -896,6 +927,27 @@ public class gamePlayController implements Initializable {
 	    	TranslateTransition newTransition4 = new TranslateTransition(Duration.seconds(1), car4StackPane);
 	    	TranslateTransition newTransition5 = new TranslateTransition(Duration.seconds(1), car5StackPane);
 	    	
+	    	TranslateTransition newKietSucTransition2 = new TranslateTransition(Duration.seconds(1), kietSucEffectImageView2);
+	    	TranslateTransition newKietSucTransition3 = new TranslateTransition(Duration.seconds(1), kietSucEffectImageView3);
+	    	TranslateTransition newKietSucTransition4 = new TranslateTransition(Duration.seconds(1), kietSucEffectImageView4);
+	    	TranslateTransition newKietSucTransition5 = new TranslateTransition(Duration.seconds(1), kietSucEffectImageView5);
+	    	
+	    	kietSucEffectImageView2.setTranslateX(car2StackPane.getTranslateX());
+	    	kietSucEffectImageView2.setTranslateY(car2StackPane.getTranslateY() + car2StackPane.getLayoutY());
+	    	giaoDienAnchorPane.getChildren().add(kietSucEffectImageView2);
+	    	
+	    	kietSucEffectImageView3.setTranslateX(car3StackPane.getTranslateX());
+	    	kietSucEffectImageView3.setTranslateY(car3StackPane.getTranslateY() + car3StackPane.getLayoutY());
+	    	giaoDienAnchorPane.getChildren().add(kietSucEffectImageView3);
+	    	
+	    	kietSucEffectImageView4.setTranslateX(car4StackPane.getTranslateX());
+	    	kietSucEffectImageView4.setTranslateY(car4StackPane.getTranslateY() + car4StackPane.getLayoutY());
+	    	giaoDienAnchorPane.getChildren().add(kietSucEffectImageView4);
+	    	
+	    	kietSucEffectImageView5.setTranslateX(car5StackPane.getTranslateX());
+	    	kietSucEffectImageView5.setTranslateY(car5StackPane.getTranslateY() + car5StackPane.getLayoutY());
+	    	giaoDienAnchorPane.getChildren().add(kietSucEffectImageView5);
+	    	
 	    	originalX2 = newX2;
 	    	originalX3 = newX3;
 	    	originalX4 = newX4;
@@ -905,26 +957,42 @@ public class gamePlayController implements Initializable {
 	        newTransition4.setToX(newX4);
 	        newTransition5.setToX(newX5);
 	        
+	        newKietSucTransition2.setToX(newX2);
+	        newKietSucTransition3.setToX(newX3);
+	        newKietSucTransition4.setToX(newX4);
+	        newKietSucTransition5.setToX(newX5);
+	        
 	        
 	        newTransition2.play();
 	        newTransition3.play();
 	        newTransition4.play();
 	        newTransition5.play();
+	        
+	        newKietSucTransition2.play();
+	        newKietSucTransition3.play();
+	        newKietSucTransition4.play();
+	        newKietSucTransition5.play();
+	        kietSucMedia.play();
 	        newTransition2.setOnFinished(event -> {
 	            translateTransition2.setDuration(Duration.seconds(0));
 	            translateTransition2.play();
+	            giaoDienAnchorPane.getChildren().remove(kietSucEffectImageView2);
 	        });
 	        newTransition3.setOnFinished(event -> {
 	            translateTransition3.setDuration(Duration.seconds(0));
 	            translateTransition3.play();
+	            giaoDienAnchorPane.getChildren().remove(kietSucEffectImageView3);
 	        });
 	        newTransition4.setOnFinished(event -> {
 	            translateTransition4.setDuration(Duration.seconds(0));
 	            translateTransition4.play();
+	            giaoDienAnchorPane.getChildren().remove(kietSucEffectImageView4);
+	            
 	        });
 	        newTransition5.setOnFinished(event -> {
 	            translateTransition5.setDuration(Duration.seconds(0));
 	            translateTransition5.play();
+	            giaoDienAnchorPane.getChildren().remove(kietSucEffectImageView5);
 	        });
         });
 		
@@ -951,6 +1019,7 @@ public class gamePlayController implements Initializable {
             public void handle(ActionEvent event) {
                 Stage stg = (Stage)((Node)event.getSource()).getScene().getWindow();
                 CommonFunction.saveAccountData();
+                CommonFunction.playClickSound();
                 stg.close();
                 
                
@@ -962,6 +1031,8 @@ public class gamePlayController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
             	try {
+            	
+                    CommonFunction.playClickSound();
                     FXMLLoader loader = new FXMLLoader(CommonFunction.class.getResource("/view/TrangchuView.fxml"));
                     StackPane root = loader.load();
                     Scene scene = new Scene(root);

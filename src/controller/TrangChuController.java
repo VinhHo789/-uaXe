@@ -176,18 +176,15 @@ public class TrangChuController {
 	// final String ItemBACKGOUND_PATH ="";
 
 	public void initialize() {
+		CommonFunction.vatPham[0] = false;
+		CommonFunction.vatPham[1] = false;
+		CommonFunction.vatPham[2] = false;
 		HomePage1.setBackground(new javafx.scene.layout.Background(
 				new javafx.scene.layout.BackgroundImage(bkgImg, null, null, null, null)));
 		
 		Item_Chosing.setBackground(new javafx.scene.layout.Background(
 				new javafx.scene.layout.BackgroundImage(muaVatPhambkgImg, null, null, null, null)));
 
-		BackgroundFill background_fill = new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY);
-		// tạo background fill với màu lightblue.
-		Background background = new Background(background_fill);
-		// thêm background fill vào background.
-		Item_Chosing.setBackground(background);
-		// Thiết lập background cho đối tượng Item_Chosing.
 
 		mauDuongDua.setStyle("-fx-border-radius: 10px;");
 		doDaiDuongDuaText.setStyle("-fx-border-radius: 10px;");
@@ -199,6 +196,7 @@ public class TrangChuController {
 		playGameButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
+                CommonFunction.playClickSound();
 				CommonFunction.sceneTransition("/view/gamePlay.fxml", event);
 		    CommonFunction.saveAccountData();
 			}
@@ -337,6 +335,7 @@ public class TrangChuController {
 		thoatgame.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
+                CommonFunction.playClickSound();
 				Stage stg = (Stage)((Node)event.getSource()).getScene().getWindow();
                 CommonFunction.saveAccountData();
                 stg.close();
@@ -361,6 +360,7 @@ public class TrangChuController {
 		backSetting.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
+                CommonFunction.playClickSound();
 				CommonFunction.sceneTransition("/view/GiaodienUI.fxml", event);
 			}
 	    });
@@ -372,12 +372,14 @@ public class TrangChuController {
 
 	private void handleMapSelection(Tab tab) {
 		if (tab.isSelected()) {
+			CommonFunction.playClickSound();
 			selectedMap = tab;
 		}
 	}
 
 	private void handleLengthSelection(Button button) {
 		selectedLength = button;
+		CommonFunction.playClickSound();
 	}
 
 	private void handleCarSelection(ImageView carImageView) {
@@ -385,6 +387,7 @@ public class TrangChuController {
 			// Đặt lại hiệu ứng của xe trước đó (nếu có)
 			selectedCar.setEffect(null);
 		}
+		CommonFunction.playClickSound();
 
 		// Đặt hiệu ứng cho xe đang được chọn
 		carImageView.setEffect(new DropShadow(10, Color.YELLOW));
@@ -422,6 +425,7 @@ public class TrangChuController {
 
 	@FXML
 	private void handleVaoDuaButtonClick() {
+        CommonFunction.playClickSound();
 		int goldAmount = CommonFunction.gold;
 		if (goldAmount < 100) {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -437,15 +441,22 @@ public class TrangChuController {
 
 	@FXML
 	private void QuayLaiHome() {
+		CommonFunction.playClickSound();
 		HomePage.setVisible(true);
 		Map_Choosing.setVisible(false);
 	}
 
 	@FXML
 	private void TiepTucCarChoosing() {
-		if (selectedMap != null && selectedLength != null) {
-			String selectedMapId = selectedMap.getId();
-			CommonFunction.mapID = selectedMapId;
+        CommonFunction.playClickSound();
+		if (selectedLength != null) {
+			if(selectedMap == null) {
+				CommonFunction.mapID = "duongnhua";
+			} else {
+				String selectedMapId = selectedMap.getId();
+				CommonFunction.mapID = selectedMapId;
+
+			}
 			String selectedLengthId = selectedLength.getId();
 			CommonFunction.mapLength = selectedLengthId;
 
@@ -478,6 +489,7 @@ public class TrangChuController {
 	@FXML
 	private void QuayLaiMap_Choosing() {
 		// dang ở carchosing, quay lại map choosing
+        CommonFunction.playClickSound();
 		Car_Choosing.setVisible(false);
 		Map_Choosing.setVisible(true);
 	}
@@ -486,7 +498,7 @@ public class TrangChuController {
 	private void TiepTuc_ItemChoosing() {
 		try {
 
-			
+            CommonFunction.playClickSound();
 			goldAmount_value.setText(Integer.toString(CommonFunction.gold));
 			int soTienDatCuoc = Integer.parseInt(nhapTienCuocTextField.getText());
 			int soVangHienCo = CommonFunction.gold;
@@ -532,6 +544,7 @@ public class TrangChuController {
 		try {
 			int soTienDatCuoc = Integer.parseInt(nhapTienCuocTextField.getText());
 			int soVangHienCo = CommonFunction.gold;
+            CommonFunction.playClickSound();
 
 			if (soTienDatCuoc > soVangHienCo) {
 				Alert alert = new Alert(AlertType.WARNING,
@@ -549,6 +562,7 @@ public class TrangChuController {
 	@FXML
 	private void handleTiepTucItemChoosingButtonAction() {
 		try {
+            CommonFunction.playClickSound();
 			int soTienDatCuoc = Integer.parseInt(nhapTienCuocTextField.getText());
 			int soVangHienCo = CommonFunction.gold;
 			if (soTienDatCuoc < 100) {
@@ -584,6 +598,7 @@ public class TrangChuController {
 	        @Override
 	        public void handle(MouseEvent event) {
 				try {
+	                CommonFunction.playClickSound();
 					
 					goldAmount_value.setText(String.valueOf(CommonFunction.gold));
 					int soVangHienCo = CommonFunction.gold;
@@ -612,6 +627,7 @@ public class TrangChuController {
 	    itemName.setOnMouseEntered(new EventHandler<MouseEvent>() {
 	        @Override
 	        public void handle(MouseEvent event) {
+	        	
 	            // Hiển thị thông tin vật phẩm trong Tooltip
 	            Tooltip tooltip = new Tooltip("Tên Vật phẩm: Item " + num + "\n"
 	                    + "Giá trị: " + giaTriVatPham + "\n"
@@ -667,6 +683,7 @@ public class TrangChuController {
 
 	@FXML
 	public void vaoKiemTienAction(ActionEvent event) {
+        CommonFunction.playClickSound();
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		CommonFunction.stop();
 		new minigame(stage);

@@ -11,7 +11,7 @@ public class testHomePage extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/TrangChuView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/GiaodienUI.fxml"));
         CommonFunction.gold = 9999;
         primaryStage.setTitle("Test Game Interface");
         primaryStage.setScene(new Scene(root));

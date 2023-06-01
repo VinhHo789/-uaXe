@@ -46,7 +46,7 @@ public class GiaodienUI implements Initializable{
 		// TODO Auto-generated method stub
         playButton.setOnAction((event)-> {
         	try {
-        		
+                CommonFunction.playClickSound();
                 FXMLLoader loader = new FXMLLoader(CommonFunction.class.getResource("/view/TrangchuView.fxml"));
                 StackPane root = loader.load();
                 Scene scene = new Scene(root);
@@ -60,6 +60,7 @@ public class GiaodienUI implements Initializable{
 
         // Create the Setting button
         settingButton.setOnAction((event)-> {
+            CommonFunction.playClickSound();
     		System.out.println("after move from ui -> setting: " + CommonFunction.volume);
         	CommonFunction.sceneTransition("/view/settingMenu.fxml", event);
         	
@@ -69,6 +70,7 @@ public class GiaodienUI implements Initializable{
         quitButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                CommonFunction.playClickSound();
                 Stage stg = (Stage)((Node)event.getSource()).getScene().getWindow();
                 stg.close();
             }
